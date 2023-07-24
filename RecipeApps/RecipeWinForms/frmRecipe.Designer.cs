@@ -45,7 +45,7 @@
             this.txtCalories = new System.Windows.Forms.TextBox();
             this.lblCaptionRecipePicName = new System.Windows.Forms.Label();
             this.lblUserName = new System.Windows.Forms.Label();
-            this.lblCuisine = new System.Windows.Forms.Label();
+            this.lblCousineType = new System.Windows.Forms.Label();
             this.txtCuisine = new System.Windows.Forms.TextBox();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -77,7 +77,7 @@
             this.tableLayoutPanel1.Controls.Add(this.txtCalories, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.lblCaptionRecipePicName, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.lblUserName, 0, 9);
-            this.tableLayoutPanel1.Controls.Add(this.lblCuisine, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.lblCousineType, 0, 8);
             this.tableLayoutPanel1.Controls.Add(this.txtCuisine, 1, 8);
             this.tableLayoutPanel1.Controls.Add(this.txtUserName, 1, 9);
             this.tableLayoutPanel1.Controls.Add(this.toolStrip1, 0, 0);
@@ -255,16 +255,16 @@
             this.lblUserName.TabIndex = 17;
             this.lblUserName.Text = "Username";
             // 
-            // lblCuisine
+            // lblCousineType
             // 
-            this.lblCuisine.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblCuisine.AutoSize = true;
-            this.lblCuisine.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblCuisine.Location = new System.Drawing.Point(3, 337);
-            this.lblCuisine.Name = "lblCuisine";
-            this.lblCuisine.Size = new System.Drawing.Size(74, 25);
-            this.lblCuisine.TabIndex = 18;
-            this.lblCuisine.Text = "Cuisine";
+            this.lblCousineType.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblCousineType.AutoSize = true;
+            this.lblCousineType.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblCousineType.Location = new System.Drawing.Point(3, 337);
+            this.lblCousineType.Name = "lblCousineType";
+            this.lblCousineType.Size = new System.Drawing.Size(128, 25);
+            this.lblCousineType.TabIndex = 18;
+            this.lblCousineType.Text = "Cousine Type";
             // 
             // txtCuisine
             // 
@@ -357,7 +357,7 @@
         private TextBox txtCalories;
         private Label lblCaptionRecipePicName;
         private Label lblUserName;
-        private Label lblCuisine;
+        private Label lblCousineType;
         private TextBox txtCuisine;
         private TextBox txtUserName;
         private ToolStrip toolStrip1;
