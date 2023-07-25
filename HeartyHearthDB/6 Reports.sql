@@ -24,8 +24,8 @@ select RecipeName =
     end, 
     r.RecipeStatus, r.datepublished, DateArchived = isnull(convert(varchar(20),r.datearchived), ''), u.username, r.calories, NumIngredients = COUNT(ir.ingredientid)
 from recipe r 
-join Users u 
-on r.userid = u.Userid
+join users u 
+on r.usersid = u.Usersid
 join IngredientRecipe ir 
 on ir.Recipeid = r.Recipeid
 where r.RecipeStatus in ('published', 'archived')
@@ -71,7 +71,7 @@ order by dr.StepNumber
 SELECT m.MealName, u.username, SumCalories = isnull(sum(r.Calories), 0), NumCourses = count(c.CourseType), NumRecipes = COUNT(r.RecipeName)
 from meal m 
 join users u 
-on u.Userid = m.Userid
+on u.Usersid = m.Usersid
 join CourseMeal cm 
 on cm.Mealid = m.Mealid
 join coursemealrecipe cmr 
@@ -98,7 +98,7 @@ order by m.MealName
 SELECT m.MealName, u.Username, m.datecreated, m.MealPictureName
 from meal m 
 join users u 
-on m.userid = u.Userid
+on m.usersid = u.Usersid
 where m.MealName = 'Lunch'
 
 ---- SM You're checking on coursetype = 'main' twice. Consider doing that nested. And instead of checking case when column, do case column when.
@@ -127,7 +127,7 @@ where m.MealName = 'lunch'
 SELECT cb.CookbookName, u.UserFirstName, u.UserLastName, RecipesPerBook = COUNT(cbr.Recipeid)
 from CookBook cb 
 join Users u 
-on u.UserId = cb.userid
+on u.UsersId = cb.usersid
 join CookBookRecipe cbr 
 on cbr.Cookbookid = cb.Cookbookid
 where cb.isactive = 1
@@ -142,7 +142,7 @@ order by cb.CookbookName
 SELECT cb.CookbookName, u.Username, cb.datecreated, cb.Price, NumRecipes = COUNT(cbr.Recipeid), cb.CookbookPictureName
 from CookBook cb 
 join Users u 
-on cb.userid = u.UserId
+on cb.usersid = u.UsersId
 join CookBookRecipe cbr 
 on cbr.Cookbookid = cb.Cookbookid
 where cb.CookbookName = 'treats for two'
@@ -210,14 +210,14 @@ and x.MaxStepNum = dr.StepNumber
 SELECT NumRecipes = count(r.RecipeName), u.Username, r.RecipeStatus
 from Users u 
 left join Recipe r 
-on r.Userid = u.UserId
+on r.Usersid = u.UsersId
 group by u.Username, r.RecipeStatus
 order by u.Username
 
 SELECT NumRecipesPerUser = COUNT(r.RecipeName), AvgDays = isnull(AVG(DATEDIFF(day, r.DateDrafted, r.DatePublished)),0), u.Username
 from Users u 
 left join Recipe r 
-on r.Userid = u.UserId
+on r.Usersid = u.UsersId
 group by u.Username
 
 select u.username, NumMealsPerUser = COUNT(m.MealName), 
@@ -228,7 +228,7 @@ select u.username, NumMealsPerUser = COUNT(m.MealName),
                     end
 from Users u 
 left join meal m  
-on m.userid = u.UserId
+on m.usersid = u.UsersId
 group by u.Username, m.IsActive
 
 select u.username, numCookbooks = COUNT(cb.CookbookName), 
@@ -239,7 +239,7 @@ select u.username, numCookbooks = COUNT(cb.CookbookName),
                     end
 from CookBook cb
 join Users u 
-on cb.userid = u.UserId
+on cb.usersid = u.UsersId
 group by u.Username, cb.IsActive
 
 
@@ -256,11 +256,11 @@ and r.RecipeStatus = 'archived'
 SELECT u.username, NumRecipes = count(r.RecipeName), NumMeals = COUNT(m.MealName), NumCookBooks = COUNT(cb.CookbookName)
 from Recipe r 
 join Users u 
-on r.Userid = u.UserId
+on r.Usersid = u.UsersId
 left join meal m 
-on m.userid = u.UserId
+on m.usersid = u.UsersId
 left join CookBook cb 
-on u.UserId = cb.userid
+on u.UsersId = cb.usersid
 group by u.Username
 
 select 
@@ -283,13 +283,13 @@ select
     end
 from users u 
 join Recipe r 
-on r.Userid = u.UserId
+on r.Usersid = u.UsersId
 order by u.Username
 
 select u.Username, c.cousinetype, NumRecipesPerCuisine = count(r.RecipeName)
 from users u 
 join Recipe r 
-on r.Userid = u.UserId
+on r.Usersid = u.UsersId
 join Cousine c 
 on r.cousineid = c.Cousineid
 group by u.Username, c.cousinetype

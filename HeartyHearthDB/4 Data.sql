@@ -61,7 +61,7 @@ union select 'Bracha', 'Fischer', 'bf425!'
 union select 'Miriam', 'Horowitz', 'mh7770109'
 union select 'Rivkah', 'Vorcher', 'rv3561%'
 
-SELECT * from users 
+SELECT * from users
 
 insert cousine(CousineType)
 SELECT 'American'
@@ -83,8 +83,8 @@ with x as(
     union select 'nf3003050', 'Hungarian', 'Batter Dipped Chicken', 250, '08/21/16', '11/11/19 06:56:36.562', null
 )
 
-insert recipe(userid, cousineid, recipename, calories,  datedrafted, datepublished, datearchived)
-select u.UserId, c.cousineid, x.recipename,x.calories, x.datedrafted, x.datepublished, x.DateArchived
+insert recipe(usersid, cousineid, recipename, calories,  datedrafted, datepublished, datearchived)
+select u.UsersId, c.cousineid, x.recipename,x.calories, x.datedrafted, x.datepublished, x.DateArchived
 from x  
 join users u 
 on x.username = u.Username
@@ -241,8 +241,8 @@ with x as(
     union select 'rv3561%', 'Brunch', 0
 )
 
-insert meal(userid, mealname, isactive)
-select u.UserId, x.mealname,  x.isactive
+insert meal(usersid, mealname, isactive)
+select u.UsersId, x.mealname,  x.isactive
 from x 
 join Users u 
 on u.Username = x.username
@@ -314,8 +314,8 @@ with x as(
     union select 'mh7770109', 'Cookoo Cooks', 45.89, 1
 )
 
-insert cookbook(userid, cookbookname, price, isactive)
-SELECT u.UserId, x.cookbookname, x.price, x.isactive
+insert cookbook(usersid, cookbookname, price, isactive)
+SELECT u.UsersId, x.cookbookname, x.price, x.isactive
 from x 
 join users u 
 on u.Username = x.username

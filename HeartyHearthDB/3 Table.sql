@@ -14,7 +14,7 @@ drop table if exists measurement
 drop table if exists Recipe
 drop table if exists cousine
 drop table if exists Users
-drop table if EXISTS ingredient
+drop table if EXISTS Ingredient
 
 create table dbo.Ingredient(
     ingredientid INT not null IDENTITY PRIMARY KEY,
@@ -25,14 +25,14 @@ create table dbo.Ingredient(
 )
 
 CREATE TABLE dbo.Users(
-    UserId int not null IDENTITY PRIMARY KEY,
+    UsersId int not null IDENTITY PRIMARY KEY,
     UserFirstName VARCHAR(30) not null
         CONSTRAINT c_UserFirstName_cannot_be_Blank CHECK (userfirstname <> ''),
     UserLastName VARCHAR(30) not null
         CONSTRAINT c_UserLastName_cannot_be_Blank CHECK (userlastname <> ''),
     Username VARCHAR(30) not NULL
         CONSTRAINT c_UserName_cannot_be_Blank CHECK (username <> '')
-        CONSTRAINT u_Users_UserName UNIQUE 
+        CONSTRAINT u_User_UserName UNIQUE 
         
 )
 
@@ -45,7 +45,7 @@ create table dbo.Cousine(
 
 create table dbo.Recipe(
     Recipeid int not null IDENTITY PRIMARY KEY,
-    Userid int not null CONSTRAINT f_Users_Userid FOREIGN KEY REFERENCES users(UserId),
+    Usersid int not null CONSTRAINT f_User_Usersid FOREIGN KEY REFERENCES users(UsersId),
     cousineid int not null CONSTRAINT f_cousine_cousineid FOREIGN KEY REFERENCES cousine(cousineid),
     RecipeName VARCHAR(30) not NULL
         CONSTRAINT c_RecipeName_cannot_be_Blank CHECK (Recipename <> '')
@@ -107,7 +107,7 @@ create table dbo.Course(
 
 create table dbo.Meal(
     Mealid int not null IDENTITY PRIMARY KEY,
-    userid int not null CONSTRAINT f_Meal_Userid FOREIGN KEY REFERENCES users(Userid),
+    usersid int not null CONSTRAINT f_Meal_Usersid FOREIGN KEY REFERENCES users(Usersid),
     MealName VARCHAR(30)
         CONSTRAINT c_Meal_Name_cannot_be_Blank CHECK (mealname <> '')
         CONSTRAINT u_Meal_MealName UNIQUE,
@@ -133,7 +133,7 @@ create table dbo.CourseMealRecipe(
 
 create table dbo.CookBook(
     Cookbookid int not null IDENTITY PRIMARY KEY,
-    userid int not null CONSTRAINT f_Cookbook_Userid FOREIGN KEY REFERENCES users(Userid),
+    usersid int not null CONSTRAINT f_Cookbook_Usersid FOREIGN KEY REFERENCES users(Usersid),
     CookbookName varchar(50) not null
         CONSTRAINT c_CookbookName_cannot_be_blank CHECK (cookbookname <> '')
         CONSTRAINT u_Cookbook_CookBookName UNIQUE,
