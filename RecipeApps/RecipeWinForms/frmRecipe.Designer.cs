@@ -31,22 +31,22 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRecipe));
             this.tblMain = new System.Windows.Forms.TableLayoutPanel();
             this.lblCaptionRecipeName = new System.Windows.Forms.Label();
-            this.lblCaptionRecipeStatus = new System.Windows.Forms.Label();
-            this.lblCaptionDateArchived = new System.Windows.Forms.Label();
             this.lblCaptionDateDrafted = new System.Windows.Forms.Label();
             this.lblCaptionCalories = new System.Windows.Forms.Label();
-            this.txtDateArchived = new System.Windows.Forms.TextBox();
-            this.txtRecipeStatus = new System.Windows.Forms.TextBox();
             this.txtRecipeName = new System.Windows.Forms.TextBox();
             this.txtRecipePictureName = new System.Windows.Forms.TextBox();
             this.txtCalories = new System.Windows.Forms.TextBox();
             this.lblCaptionRecipePicName = new System.Windows.Forms.Label();
-            this.lblUserName = new System.Windows.Forms.Label();
-            this.lblCousineType = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnDelete = new System.Windows.Forms.ToolStripButton();
+            this.lblCaptionDateArchived = new System.Windows.Forms.Label();
+            this.lblCaptionRecipeStatus = new System.Windows.Forms.Label();
+            this.lblCousineType = new System.Windows.Forms.Label();
+            this.lblUserName = new System.Windows.Forms.Label();
+            this.txtDateArchived = new System.Windows.Forms.TextBox();
+            this.txtRecipeStatus = new System.Windows.Forms.TextBox();
             this.lstCousineType = new System.Windows.Forms.ComboBox();
             this.lstUsername = new System.Windows.Forms.ComboBox();
             this.lblDateDrafted = new System.Windows.Forms.Label();
@@ -106,29 +106,6 @@
             this.lblCaptionRecipeName.Text = "Recipe Name";
             this.lblCaptionRecipeName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblCaptionRecipeStatus
-            // 
-            this.lblCaptionRecipeStatus.AutoSize = true;
-            this.lblCaptionRecipeStatus.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblCaptionRecipeStatus.Location = new System.Drawing.Point(3, 267);
-            this.lblCaptionRecipeStatus.Margin = new System.Windows.Forms.Padding(3, 7, 3, 0);
-            this.lblCaptionRecipeStatus.Name = "lblCaptionRecipeStatus";
-            this.lblCaptionRecipeStatus.Size = new System.Drawing.Size(129, 25);
-            this.lblCaptionRecipeStatus.TabIndex = 13;
-            this.lblCaptionRecipeStatus.Text = "Recipe Status";
-            // 
-            // lblCaptionDateArchived
-            // 
-            this.lblCaptionDateArchived.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblCaptionDateArchived.AutoSize = true;
-            this.lblCaptionDateArchived.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblCaptionDateArchived.Location = new System.Drawing.Point(3, 226);
-            this.lblCaptionDateArchived.Name = "lblCaptionDateArchived";
-            this.lblCaptionDateArchived.Size = new System.Drawing.Size(135, 25);
-            this.lblCaptionDateArchived.TabIndex = 11;
-            this.lblCaptionDateArchived.Text = "Date Archived";
-            this.lblCaptionDateArchived.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // lblCaptionDateDrafted
             // 
             this.lblCaptionDateDrafted.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -152,24 +129,6 @@
             this.lblCaptionCalories.TabIndex = 5;
             this.lblCaptionCalories.Text = "Calories";
             this.lblCaptionCalories.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txtDateArchived
-            // 
-            this.txtDateArchived.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtDateArchived.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtDateArchived.Location = new System.Drawing.Point(289, 221);
-            this.txtDateArchived.Name = "txtDateArchived";
-            this.txtDateArchived.Size = new System.Drawing.Size(511, 30);
-            this.txtDateArchived.TabIndex = 12;
-            // 
-            // txtRecipeStatus
-            // 
-            this.txtRecipeStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtRecipeStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtRecipeStatus.Location = new System.Drawing.Point(289, 263);
-            this.txtRecipeStatus.Name = "txtRecipeStatus";
-            this.txtRecipeStatus.Size = new System.Drawing.Size(511, 30);
-            this.txtRecipeStatus.TabIndex = 14;
             // 
             // txtRecipeName
             // 
@@ -210,28 +169,6 @@
             this.lblCaptionRecipePicName.Text = "Recipe Picture Name";
             this.lblCaptionRecipePicName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblUserName
-            // 
-            this.lblUserName.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblUserName.AutoSize = true;
-            this.lblUserName.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblUserName.Location = new System.Drawing.Point(3, 352);
-            this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(99, 25);
-            this.lblUserName.TabIndex = 17;
-            this.lblUserName.Text = "Username";
-            // 
-            // lblCousineType
-            // 
-            this.lblCousineType.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblCousineType.AutoSize = true;
-            this.lblCousineType.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblCousineType.Location = new System.Drawing.Point(3, 310);
-            this.lblCousineType.Name = "lblCousineType";
-            this.lblCousineType.Size = new System.Drawing.Size(128, 25);
-            this.lblCousineType.TabIndex = 15;
-            this.lblCousineType.Text = "Cousine Type";
-            // 
             // toolStrip1
             // 
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -270,13 +207,76 @@
             this.btnDelete.Size = new System.Drawing.Size(72, 32);
             this.btnDelete.Text = "Delete";
             // 
+            // lblCaptionDateArchived
+            // 
+            this.lblCaptionDateArchived.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblCaptionDateArchived.AutoSize = true;
+            this.lblCaptionDateArchived.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblCaptionDateArchived.Location = new System.Drawing.Point(3, 226);
+            this.lblCaptionDateArchived.Name = "lblCaptionDateArchived";
+            this.lblCaptionDateArchived.Size = new System.Drawing.Size(135, 25);
+            this.lblCaptionDateArchived.TabIndex = 9;
+            this.lblCaptionDateArchived.Text = "Date Archived";
+            this.lblCaptionDateArchived.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblCaptionRecipeStatus
+            // 
+            this.lblCaptionRecipeStatus.AutoSize = true;
+            this.lblCaptionRecipeStatus.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblCaptionRecipeStatus.Location = new System.Drawing.Point(3, 267);
+            this.lblCaptionRecipeStatus.Margin = new System.Windows.Forms.Padding(3, 7, 3, 0);
+            this.lblCaptionRecipeStatus.Name = "lblCaptionRecipeStatus";
+            this.lblCaptionRecipeStatus.Size = new System.Drawing.Size(129, 25);
+            this.lblCaptionRecipeStatus.TabIndex = 11;
+            this.lblCaptionRecipeStatus.Text = "Recipe Status";
+            // 
+            // lblCousineType
+            // 
+            this.lblCousineType.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblCousineType.AutoSize = true;
+            this.lblCousineType.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblCousineType.Location = new System.Drawing.Point(3, 310);
+            this.lblCousineType.Name = "lblCousineType";
+            this.lblCousineType.Size = new System.Drawing.Size(128, 25);
+            this.lblCousineType.TabIndex = 13;
+            this.lblCousineType.Text = "Cousine Type";
+            // 
+            // lblUserName
+            // 
+            this.lblUserName.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblUserName.AutoSize = true;
+            this.lblUserName.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblUserName.Location = new System.Drawing.Point(3, 352);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.Size = new System.Drawing.Size(99, 25);
+            this.lblUserName.TabIndex = 15;
+            this.lblUserName.Text = "Username";
+            // 
+            // txtDateArchived
+            // 
+            this.txtDateArchived.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtDateArchived.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtDateArchived.Location = new System.Drawing.Point(289, 221);
+            this.txtDateArchived.Name = "txtDateArchived";
+            this.txtDateArchived.Size = new System.Drawing.Size(511, 30);
+            this.txtDateArchived.TabIndex = 10;
+            // 
+            // txtRecipeStatus
+            // 
+            this.txtRecipeStatus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtRecipeStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtRecipeStatus.Location = new System.Drawing.Point(289, 263);
+            this.txtRecipeStatus.Name = "txtRecipeStatus";
+            this.txtRecipeStatus.Size = new System.Drawing.Size(511, 30);
+            this.txtRecipeStatus.TabIndex = 12;
+            // 
             // lstCousineType
             // 
             this.lstCousineType.FormattingEnabled = true;
             this.lstCousineType.Location = new System.Drawing.Point(289, 305);
             this.lstCousineType.Name = "lstCousineType";
             this.lstCousineType.Size = new System.Drawing.Size(195, 28);
-            this.lstCousineType.TabIndex = 16;
+            this.lstCousineType.TabIndex = 14;
             // 
             // lstUsername
             // 
@@ -284,7 +284,7 @@
             this.lstUsername.Location = new System.Drawing.Point(289, 347);
             this.lstUsername.Name = "lstUsername";
             this.lstUsername.Size = new System.Drawing.Size(195, 28);
-            this.lstUsername.TabIndex = 18;
+            this.lstUsername.TabIndex = 16;
             // 
             // lblDateDrafted
             // 
@@ -294,7 +294,7 @@
             this.lblDateDrafted.Location = new System.Drawing.Point(289, 176);
             this.lblDateDrafted.Name = "lblDateDrafted";
             this.lblDateDrafted.Size = new System.Drawing.Size(511, 42);
-            this.lblDateDrafted.TabIndex = 19;
+            this.lblDateDrafted.TabIndex = 8;
             // 
             // frmRecipe
             // 
