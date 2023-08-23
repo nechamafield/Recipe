@@ -24,6 +24,11 @@ namespace RecipeSystem
             return SQLUtility.GetDataTable(sql);
         }
 
+        public static DataTable GetRecipeList()
+        {
+            return SQLUtility.GetDataTable("select recipeid, recipename from Recipe");
+        }
+
         public static void Save(DataTable dtRecipe)
         {
             SQLUtility.DebugPrintDataTable(dtRecipe);

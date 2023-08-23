@@ -20,7 +20,6 @@ namespace RecipeWinForms
 
         public void ShowForm(int recipeid)
         {
-            //string sql = "select r.*, c.cousinetype, u.username from Recipe r join Cousine c on r.cousineid = c.Cousineid join Users u on u.UsersId = r.Usersid where r.recipeid = " + recipeid.ToString();
             dtRecipe = Recipe.Load(recipeid);
             if(recipeid == 0)
             {
@@ -33,7 +32,7 @@ namespace RecipeWinForms
             WindowsFormsUtility.SetControlBinding(txtRecipeName, dtRecipe);
             WindowsFormsUtility.SetControlBinding(txtCalories, dtRecipe);
             WindowsFormsUtility.SetControlBinding(lblDateDrafted, dtRecipe);
-            //WindowsFormsUtility.SetControlBinding(txtDatePublished, dtRecipe);
+            WindowsFormsUtility.SetControlBinding(txtDatePublished, dtRecipe);
             WindowsFormsUtility.SetControlBinding(txtDateArchived, dtRecipe);
             WindowsFormsUtility.SetControlBinding(txtRecipeStatus, dtRecipe);
             WindowsFormsUtility.SetControlBinding(txtRecipePictureName, dtRecipe);
