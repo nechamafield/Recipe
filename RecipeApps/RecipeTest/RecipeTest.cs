@@ -33,6 +33,7 @@ namespace RecipeTest
             Assume.That(cousineid > 0, "can't run test no cousine in db");
             
             DateTime datedrafted = DateTime.Now;
+            recipename = recipename + DateTime.Now.ToString();
 
             TestContext.WriteLine("insert recipe with datedrafted = " + datedrafted);
             r["usersid"] = usersid;
@@ -45,9 +46,9 @@ namespace RecipeTest
             int maxid = SQLUtility.GetFirstColumnFirstRowValue("select max (recipeid) from recipe");
             maxid = maxid + 1;
 
-            int newid = SQLUtility.GetFirstColumnFirstRowValue("select * from recipe where recipeid = " + maxid);
-            Assert.IsTrue(newid > 0, "recipe with id = " + maxid + "is not found in db");
-            TestContext.WriteLine("recipe with " + maxid + "is found in db with pk value = " + newid);
+            int newid = SQLUtility.GetFirstColumnFirstRowValue("select * from recipe where recipename = " + "'" + recipename + "'");
+            Assert.IsTrue(newid > 0, "recipe with recipename = " + recipename + "is not found in db");
+            TestContext.WriteLine("recipe with " + recipename + "is found in db with pk value = " + newid);
         }
 
         [Test]
