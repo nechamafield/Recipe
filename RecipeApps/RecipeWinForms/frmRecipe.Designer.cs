@@ -40,19 +40,19 @@
             this.btnSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnDelete = new System.Windows.Forms.ToolStripButton();
-            this.lblDateDrafted = new System.Windows.Forms.Label();
             this.lblUserName = new System.Windows.Forms.Label();
             this.lblCousineType = new System.Windows.Forms.Label();
             this.lblCaptionRecipeStatus = new System.Windows.Forms.Label();
             this.lblCaptionDateArchived = new System.Windows.Forms.Label();
-            this.lblCaptionDateDrafted = new System.Windows.Forms.Label();
-            this.lblDatePublished = new System.Windows.Forms.Label();
             this.lstUsername = new System.Windows.Forms.ComboBox();
             this.lstCousineType = new System.Windows.Forms.ComboBox();
             this.txtRecipeStatus = new System.Windows.Forms.TextBox();
             this.txtDateArchived = new System.Windows.Forms.TextBox();
-            this.txtDatePublished = new System.Windows.Forms.TextBox();
-            this.txtDateDrafted = new System.Windows.Forms.TextBox();
+            this.lblDatePublished = new System.Windows.Forms.Label();
+            this.lblCaptionDateDrafted = new System.Windows.Forms.Label();
+            this.lblDateDrafted = new System.Windows.Forms.Label();
+            this.dtpDateDrafted = new System.Windows.Forms.DateTimePicker();
+            this.dtpDatePublished = new System.Windows.Forms.DateTimePicker();
             this.tblMain.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -80,9 +80,9 @@
             this.tblMain.Controls.Add(this.txtDateArchived, 1, 6);
             this.tblMain.Controls.Add(this.lblDatePublished, 0, 5);
             this.tblMain.Controls.Add(this.lblCaptionDateDrafted, 0, 4);
-            this.tblMain.Controls.Add(this.txtDateDrafted, 1, 4);
             this.tblMain.Controls.Add(this.lblDateDrafted, 1, 0);
-            this.tblMain.Controls.Add(this.txtDatePublished, 1, 5);
+            this.tblMain.Controls.Add(this.dtpDateDrafted, 1, 4);
+            this.tblMain.Controls.Add(this.dtpDatePublished, 1, 5);
             this.tblMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblMain.Location = new System.Drawing.Point(0, 0);
             this.tblMain.Name = "tblMain";
@@ -201,15 +201,6 @@
             this.btnDelete.Size = new System.Drawing.Size(72, 32);
             this.btnDelete.Text = "Delete";
             // 
-            // lblDateDrafted
-            // 
-            this.lblDateDrafted.AutoSize = true;
-            this.lblDateDrafted.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblDateDrafted.Location = new System.Drawing.Point(289, 0);
-            this.lblDateDrafted.Name = "lblDateDrafted";
-            this.lblDateDrafted.Size = new System.Drawing.Size(0, 20);
-            this.lblDateDrafted.TabIndex = 8;
-            // 
             // lblUserName
             // 
             this.lblUserName.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -255,30 +246,6 @@
             this.lblCaptionDateArchived.Text = "Date Archived";
             this.lblCaptionDateArchived.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblCaptionDateDrafted
-            // 
-            this.lblCaptionDateDrafted.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblCaptionDateDrafted.AutoSize = true;
-            this.lblCaptionDateDrafted.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblCaptionDateDrafted.Location = new System.Drawing.Point(3, 184);
-            this.lblCaptionDateDrafted.Name = "lblCaptionDateDrafted";
-            this.lblCaptionDateDrafted.Size = new System.Drawing.Size(124, 25);
-            this.lblCaptionDateDrafted.TabIndex = 7;
-            this.lblCaptionDateDrafted.Text = "Date Drafted";
-            this.lblCaptionDateDrafted.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblDatePublished
-            // 
-            this.lblDatePublished.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblDatePublished.AutoSize = true;
-            this.lblDatePublished.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblDatePublished.Location = new System.Drawing.Point(3, 225);
-            this.lblDatePublished.Name = "lblDatePublished";
-            this.lblDatePublished.Size = new System.Drawing.Size(143, 28);
-            this.lblDatePublished.TabIndex = 17;
-            this.lblDatePublished.Text = "Date Published";
-            this.lblDatePublished.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // lstUsername
             // 
             this.lstUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -316,24 +283,55 @@
             this.txtDateArchived.Size = new System.Drawing.Size(511, 30);
             this.txtDateArchived.TabIndex = 10;
             // 
-            // txtDatePublished
+            // lblDatePublished
             // 
-            this.txtDatePublished.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtDatePublished.Enabled = false;
-            this.txtDatePublished.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtDatePublished.Location = new System.Drawing.Point(289, 221);
-            this.txtDatePublished.Name = "txtDatePublished";
-            this.txtDatePublished.Size = new System.Drawing.Size(511, 30);
-            this.txtDatePublished.TabIndex = 18;
+            this.lblDatePublished.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblDatePublished.AutoSize = true;
+            this.lblDatePublished.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblDatePublished.Location = new System.Drawing.Point(3, 225);
+            this.lblDatePublished.Name = "lblDatePublished";
+            this.lblDatePublished.Size = new System.Drawing.Size(143, 28);
+            this.lblDatePublished.TabIndex = 17;
+            this.lblDatePublished.Text = "Date Published";
+            this.lblDatePublished.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtDateDrafted
+            // lblCaptionDateDrafted
             // 
-            this.txtDateDrafted.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtDateDrafted.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtDateDrafted.Location = new System.Drawing.Point(289, 179);
-            this.txtDateDrafted.Name = "txtDateDrafted";
-            this.txtDateDrafted.Size = new System.Drawing.Size(511, 30);
-            this.txtDateDrafted.TabIndex = 19;
+            this.lblCaptionDateDrafted.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblCaptionDateDrafted.AutoSize = true;
+            this.lblCaptionDateDrafted.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblCaptionDateDrafted.Location = new System.Drawing.Point(3, 184);
+            this.lblCaptionDateDrafted.Name = "lblCaptionDateDrafted";
+            this.lblCaptionDateDrafted.Size = new System.Drawing.Size(124, 25);
+            this.lblCaptionDateDrafted.TabIndex = 7;
+            this.lblCaptionDateDrafted.Text = "Date Drafted";
+            this.lblCaptionDateDrafted.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblDateDrafted
+            // 
+            this.lblDateDrafted.AutoSize = true;
+            this.lblDateDrafted.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblDateDrafted.Location = new System.Drawing.Point(289, 0);
+            this.lblDateDrafted.Name = "lblDateDrafted";
+            this.lblDateDrafted.Size = new System.Drawing.Size(0, 20);
+            this.lblDateDrafted.TabIndex = 8;
+            // 
+            // dtpDateDrafted
+            // 
+            this.dtpDateDrafted.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dtpDateDrafted.Location = new System.Drawing.Point(289, 179);
+            this.dtpDateDrafted.Name = "dtpDateDrafted";
+            this.dtpDateDrafted.Size = new System.Drawing.Size(335, 34);
+            this.dtpDateDrafted.TabIndex = 19;
+            // 
+            // dtpDatePublished
+            // 
+            this.dtpDatePublished.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dtpDatePublished.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDatePublished.Location = new System.Drawing.Point(289, 221);
+            this.dtpDatePublished.Name = "dtpDatePublished";
+            this.dtpDatePublished.Size = new System.Drawing.Size(183, 34);
+            this.dtpDatePublished.TabIndex = 20;
             // 
             // frmRecipe
             // 
@@ -376,7 +374,7 @@
         private ComboBox lstUsername;
         private Label lblDateDrafted;
         private Label lblDatePublished;
-        private TextBox txtDatePublished;
-        private TextBox txtDateDrafted;
+        private DateTimePicker dtpDateDrafted;
+        private DateTimePicker dtpDatePublished;
     }
 }
