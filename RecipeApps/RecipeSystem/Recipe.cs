@@ -44,6 +44,24 @@ namespace RecipeSystem
             //return SQLUtility.GetDataTable("select recipeid, recipename from Recipe");
         }
 
+        public static DataTable GetCousineList()
+        {
+            DataTable dt = new();
+            SqlCommand cmd = SQLUtility.GetSQLCommand("CousineGet");
+            cmd.Parameters["@All"].Value = 1;
+            dt = SQLUtility.GetDataTable(cmd);
+            return dt;
+        }
+
+        public static DataTable GetUsersList()
+        {
+            DataTable dt = new();
+            SqlCommand cmd = SQLUtility.GetSQLCommand("UsersGet");
+            cmd.Parameters["@All"].Value = 1;
+            dt = SQLUtility.GetDataTable(cmd);
+            return dt;
+        }
+
         public static void Save(DataTable dtRecipe)
         {
             SQLUtility.DebugPrintDataTable(dtRecipe);
