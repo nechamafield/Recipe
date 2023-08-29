@@ -39,14 +39,45 @@ namespace RecipeWinForms
             WindowsFormsUtility.SetControlBinding(txtRecipePictureName, dtRecipe);
             this.Show();
         }
+
         private void Save()
         {
-            Recipe.Save(dtRecipe);
+            Application.UseWaitCursor = true;
+            try
+            {
+                Recipe.Save(dtRecipe);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Hearty Hearth");
+            }
+            finally
+            {
+                Application.UseWaitCursor = false;
+            }
         }
+
+        private void Delete()
+        {
+            Application.UseWaitCursor = true;
+            try
+            {
+                Recipe.Delete(dtRecipe);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Hearth Hearth");
+            }
+            finally
+            {
+                Application.UseWaitCursor = false;
+            }
+        }
+
         private void BtnDelete_Click(object? sender, EventArgs e)
         {
-            Recipe.Delete(dtRecipe);
-            this.Close();
+            Delete();
         }
 
         private void BtnSave_Click(object? sender, EventArgs e)
