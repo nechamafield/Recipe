@@ -47,12 +47,11 @@
             this.lstUsername = new System.Windows.Forms.ComboBox();
             this.lstCousineType = new System.Windows.Forms.ComboBox();
             this.txtRecipeStatus = new System.Windows.Forms.TextBox();
-            this.txtDateArchived = new System.Windows.Forms.TextBox();
             this.lblDatePublished = new System.Windows.Forms.Label();
             this.lblCaptionDateDrafted = new System.Windows.Forms.Label();
-            this.lblDateDrafted = new System.Windows.Forms.Label();
-            this.dtpDateDrafted = new System.Windows.Forms.DateTimePicker();
-            this.dtpDatePublished = new System.Windows.Forms.DateTimePicker();
+            this.txtDatePublished = new System.Windows.Forms.TextBox();
+            this.txtDateArchived = new System.Windows.Forms.TextBox();
+            this.txtDateDrafted = new System.Windows.Forms.TextBox();
             this.tblMain.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -77,12 +76,11 @@
             this.tblMain.Controls.Add(this.lstUsername, 1, 9);
             this.tblMain.Controls.Add(this.lstCousineType, 1, 8);
             this.tblMain.Controls.Add(this.txtRecipeStatus, 1, 7);
-            this.tblMain.Controls.Add(this.txtDateArchived, 1, 6);
             this.tblMain.Controls.Add(this.lblDatePublished, 0, 5);
             this.tblMain.Controls.Add(this.lblCaptionDateDrafted, 0, 4);
-            this.tblMain.Controls.Add(this.lblDateDrafted, 1, 0);
-            this.tblMain.Controls.Add(this.dtpDateDrafted, 1, 4);
-            this.tblMain.Controls.Add(this.dtpDatePublished, 1, 5);
+            this.tblMain.Controls.Add(this.txtDatePublished, 1, 5);
+            this.tblMain.Controls.Add(this.txtDateArchived, 1, 6);
+            this.tblMain.Controls.Add(this.txtDateDrafted, 1, 4);
             this.tblMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblMain.Location = new System.Drawing.Point(0, 0);
             this.tblMain.Name = "tblMain";
@@ -273,16 +271,6 @@
             this.txtRecipeStatus.Size = new System.Drawing.Size(511, 30);
             this.txtRecipeStatus.TabIndex = 12;
             // 
-            // txtDateArchived
-            // 
-            this.txtDateArchived.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtDateArchived.Enabled = false;
-            this.txtDateArchived.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtDateArchived.Location = new System.Drawing.Point(289, 263);
-            this.txtDateArchived.Name = "txtDateArchived";
-            this.txtDateArchived.Size = new System.Drawing.Size(511, 30);
-            this.txtDateArchived.TabIndex = 10;
-            // 
             // lblDatePublished
             // 
             this.lblDatePublished.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -307,31 +295,33 @@
             this.lblCaptionDateDrafted.Text = "Date Drafted";
             this.lblCaptionDateDrafted.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblDateDrafted
+            // txtDatePublished
             // 
-            this.lblDateDrafted.AutoSize = true;
-            this.lblDateDrafted.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblDateDrafted.Location = new System.Drawing.Point(289, 0);
-            this.lblDateDrafted.Name = "lblDateDrafted";
-            this.lblDateDrafted.Size = new System.Drawing.Size(0, 20);
-            this.lblDateDrafted.TabIndex = 8;
+            this.txtDatePublished.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtDatePublished.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtDatePublished.Location = new System.Drawing.Point(289, 221);
+            this.txtDatePublished.Name = "txtDatePublished";
+            this.txtDatePublished.Size = new System.Drawing.Size(511, 34);
+            this.txtDatePublished.TabIndex = 19;
             // 
-            // dtpDateDrafted
+            // txtDateArchived
             // 
-            this.dtpDateDrafted.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.dtpDateDrafted.Location = new System.Drawing.Point(289, 179);
-            this.dtpDateDrafted.Name = "dtpDateDrafted";
-            this.dtpDateDrafted.Size = new System.Drawing.Size(335, 34);
-            this.dtpDateDrafted.TabIndex = 19;
+            this.txtDateArchived.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtDateArchived.Enabled = false;
+            this.txtDateArchived.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtDateArchived.Location = new System.Drawing.Point(289, 263);
+            this.txtDateArchived.Name = "txtDateArchived";
+            this.txtDateArchived.Size = new System.Drawing.Size(511, 30);
+            this.txtDateArchived.TabIndex = 10;
             // 
-            // dtpDatePublished
+            // txtDateDrafted
             // 
-            this.dtpDatePublished.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.dtpDatePublished.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDatePublished.Location = new System.Drawing.Point(289, 221);
-            this.dtpDatePublished.Name = "dtpDatePublished";
-            this.dtpDatePublished.Size = new System.Drawing.Size(183, 34);
-            this.dtpDatePublished.TabIndex = 20;
+            this.txtDateDrafted.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtDateDrafted.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtDateDrafted.Location = new System.Drawing.Point(289, 179);
+            this.txtDateDrafted.Name = "txtDateDrafted";
+            this.txtDateDrafted.Size = new System.Drawing.Size(511, 34);
+            this.txtDateDrafted.TabIndex = 20;
             // 
             // frmRecipe
             // 
@@ -372,9 +362,10 @@
         private ToolStripButton btnDelete;
         private ComboBox lstCousineType;
         private ComboBox lstUsername;
-        private Label lblDateDrafted;
         private Label lblDatePublished;
         private DateTimePicker dtpDateDrafted;
         private DateTimePicker dtpDatePublished;
+        private TextBox txtDatePublished;
+        private TextBox txtDateDrafted;
     }
 }
