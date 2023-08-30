@@ -22,12 +22,10 @@ namespace RecipeWinForms
         public void ShowForm(int recipeid)
         {
             dtRecipe = Recipe.Load(recipeid);
-            if(recipeid == 0)
+            if (recipeid == 0)
             {
                 dtRecipe.Rows.Add();
             }
-            //AF the 2 lists below should be refactored too.  RecipeSystem should have a method GetSTaffList and GetCuisineLIst, the sql should not be hardcoded in here
-            // In those methods, use cpu framework to execute sprocs(add StaffGet Sproc and CuisineGet sproc if needed) Then you should use WindowsFormsUtility.SetLIstBinding
             DataTable dtcousine = Recipe.GetCousineList();
             WindowsFormsUtility.SetListBinding(lstCousineType, dtcousine, dtRecipe, "Cousine");
             DataTable dtusername = Recipe.GetUsersList();
