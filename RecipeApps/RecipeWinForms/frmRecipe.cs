@@ -41,12 +41,47 @@ namespace RecipeWinForms
         }
         private void Save()
         {
-            Recipe.Save(dtRecipe);
+            Application.UseWaitCursor = true;
+            try
+            {
+                Recipe.Save(dtRecipe);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Hearty Hearth");
+            }
+            finally
+            {
+                Application.UseWaitCursor = false;
+            }
         }
+
+        private void Delete()
+        {
+            var response = MessageBox.Show("Are you sure you want to delete this recipe?", "Hearty Hearth", MessageBoxButtons.YesNo);
+            if (response == DialogResult.No)
+            {
+                return;
+            }
+            Application.UseWaitCursor = true;
+            try
+            {
+                Recipe.Delete(dtRecipe);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Hearty Hearth");
+            }
+            finally
+            {
+                Application.UseWaitCursor = false;
+            }
+        }
+
         private void BtnDelete_Click(object? sender, EventArgs e)
         {
-            Recipe.Delete(dtRecipe);
-            this.Close();
+            Delete();
         }
 
         private void BtnSave_Click(object? sender, EventArgs e)
