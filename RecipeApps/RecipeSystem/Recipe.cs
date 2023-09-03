@@ -97,5 +97,6 @@ namespace RecipeSystem
             SQLUtility.SetParameterValue(cmd, "@RecipeId", id);
             SQLUtility.ExecuteSQL(cmd);
         }
+    
     }
 }
