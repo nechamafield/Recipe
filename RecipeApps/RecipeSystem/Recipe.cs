@@ -64,30 +64,37 @@ namespace RecipeSystem
 
         public static void Save(DataTable dtRecipe)
         {
-            SQLUtility.DebugPrintDataTable(dtRecipe);
+            if(dtRecipe.Rows.Count == 0)
+            {
+                throw new Exception("Cannot call RecipeSave Method because there are no rows in table");
+            }
             DataRow r = dtRecipe.Rows[0];
-            int id = (int)r["RecipeId"];
-            string sql = "";
+            SQLUtility.SaveDataRow(r, "RecipeUpdate");
 
-            if (id > 0)
-            {
-                sql = string.Join(Environment.NewLine, $"update recipe set",
-                    $"RecipeName = '{r["RecipeName"]}',",
-                    $"Calories = '{r["Calories"]}',",
-                    $"DateDrafted = '{r["DateDrafted"]}',",
-                    ////$"RecipeStatus = '{r["RecipeStatus"]}',",        --------- hardcoded so not changing
-                    ////$"RecipePictureName = '{r["RecipePictureName"]}'",  //,",         --------- hardcoded so not changing
-                    $"Usersid = '{r["usersid"]}',",
-                    $"Cousineid = '{r["Cousineid"]}'",
-                    $"where recipeId = {r["recipeId"]}");
-            }
-            else
-            {
-                sql = "insert recipe(usersid, recipename, calories, datedrafted, Cousineid)";
-                sql += $"select '{r["usersid"]}', '{r["recipename"]}','{r["calories"]}', '{r["datedrafted"]}','{r["CousineId"]}'";
-            }
-            Debug.Print("---------------------");
-            SQLUtility.ExecuteSQL(sql);
+            //SQLUtility.DebugPrintDataTable(dtRecipe);
+            //DataRow r = dtRecipe.Rows[0];
+            //int id = (int)r["RecipeId"];
+            //string sql = "";
+
+            //if (id > 0)
+            //{
+            //    sql = string.Join(Environment.NewLine, $"update recipe set",
+            //        $"RecipeName = '{r["RecipeName"]}',",
+            //        $"Calories = '{r["Calories"]}',",
+            //        $"DateDrafted = '{r["DateDrafted"]}',",
+            //        ////$"RecipeStatus = '{r["RecipeStatus"]}',",        --------- hardcoded so not changing
+            //        ////$"RecipePictureName = '{r["RecipePictureName"]}'",  //,",         --------- hardcoded so not changing
+            //        $"Usersid = '{r["usersid"]}',",
+            //        $"Cousineid = '{r["Cousineid"]}'",
+            //        $"where recipeId = {r["recipeId"]}");
+            //}
+            //else
+            //{
+            //    sql = "insert recipe(usersid, recipename, calories, datedrafted, Cousineid)";
+            //    sql += $"select '{r["usersid"]}', '{r["recipename"]}','{r["calories"]}', '{r["datedrafted"]}','{r["CousineId"]}'";
+            //}
+            //Debug.Print("---------------------");
+            //SQLUtility.ExecuteSQL(sql);
         }
 
         public static void Delete(DataTable dtRecipe)
