@@ -1,4 +1,3 @@
--- SM Excellent work! 100%
 use heartyhearthdb 
 go 
 
