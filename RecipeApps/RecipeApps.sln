@@ -5,13 +5,13 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeWinForms", "RecipeWinForms\RecipeWinForms.csproj", "{8C3C97CD-167D-4EA1-BDEB-07EBEB3A36AD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CPUFramework", "..\..\..\CPUFramework\CPUFramework.csproj", "{55D859D7-C469-464E-AEEA-D1C61F4C9F1C}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CPUWindowsFormsFramework", "..\..\..\CPUWindowsFormsFramework\CPUWindowsFormsFramework.csproj", "{A87183E8-0348-490B-8429-1489E5BD54BE}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeSystem", "RecipeSystem\RecipeSystem.csproj", "{87377815-6289-4BAC-9DDB-632DC695326E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeTest", "RecipeTest\RecipeTest.csproj", "{55C632CF-B556-409D-B08D-E33DF06CD96D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CPUFramework", "..\..\CPUFramework\CPUFramework.csproj", "{11D32EC0-4142-45D1-BD81-4A8E77744609}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CPUWindowsFormsFramework", "..\..\CPUWindowsFormsFramework\CPUWindowsFormsFramework.csproj", "{685845BB-40EC-4A1F-8CBD-4464DCC4127A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,14 +23,6 @@ Global
 		{8C3C97CD-167D-4EA1-BDEB-07EBEB3A36AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C3C97CD-167D-4EA1-BDEB-07EBEB3A36AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C3C97CD-167D-4EA1-BDEB-07EBEB3A36AD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{55D859D7-C469-464E-AEEA-D1C61F4C9F1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{55D859D7-C469-464E-AEEA-D1C61F4C9F1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{55D859D7-C469-464E-AEEA-D1C61F4C9F1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{55D859D7-C469-464E-AEEA-D1C61F4C9F1C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A87183E8-0348-490B-8429-1489E5BD54BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A87183E8-0348-490B-8429-1489E5BD54BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A87183E8-0348-490B-8429-1489E5BD54BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A87183E8-0348-490B-8429-1489E5BD54BE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{87377815-6289-4BAC-9DDB-632DC695326E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{87377815-6289-4BAC-9DDB-632DC695326E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87377815-6289-4BAC-9DDB-632DC695326E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +31,14 @@ Global
 		{55C632CF-B556-409D-B08D-E33DF06CD96D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55C632CF-B556-409D-B08D-E33DF06CD96D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55C632CF-B556-409D-B08D-E33DF06CD96D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11D32EC0-4142-45D1-BD81-4A8E77744609}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11D32EC0-4142-45D1-BD81-4A8E77744609}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11D32EC0-4142-45D1-BD81-4A8E77744609}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11D32EC0-4142-45D1-BD81-4A8E77744609}.Release|Any CPU.Build.0 = Release|Any CPU
+		{685845BB-40EC-4A1F-8CBD-4464DCC4127A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{685845BB-40EC-4A1F-8CBD-4464DCC4127A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{685845BB-40EC-4A1F-8CBD-4464DCC4127A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{685845BB-40EC-4A1F-8CBD-4464DCC4127A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
