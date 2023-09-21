@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            tblMain = new TableLayoutPanel();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             tsMain = new ToolStrip();
             mnuMain = new ToolStrip();
             mnuFile = new ToolStripDropDownButton();
@@ -54,32 +54,17 @@
             mnuWindowsTile = new ToolStripMenuItem();
             mnuWindowsCascade = new ToolStripMenuItem();
             toolStripSeparator6 = new ToolStripSeparator();
-            tblMain.SuspendLayout();
+            toolStripButton1 = new ToolStripButton();
             mnuMain.SuspendLayout();
             SuspendLayout();
             // 
-            // tblMain
-            // 
-            tblMain.ColumnCount = 1;
-            tblMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tblMain.Controls.Add(tsMain, 0, 2);
-            tblMain.Controls.Add(mnuMain, 0, 0);
-            tblMain.Dock = DockStyle.Fill;
-            tblMain.Location = new Point(0, 0);
-            tblMain.Name = "tblMain";
-            tblMain.RowCount = 3;
-            tblMain.RowStyles.Add(new RowStyle());
-            tblMain.RowStyles.Add(new RowStyle());
-            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tblMain.Size = new Size(847, 556);
-            tblMain.TabIndex = 0;
-            // 
             // tsMain
             // 
+            tsMain.Dock = DockStyle.None;
             tsMain.ImageScalingSize = new Size(20, 20);
-            tsMain.Location = new Point(0, 35);
+            tsMain.Location = new Point(-1, 34);
             tsMain.Name = "tsMain";
-            tsMain.Size = new Size(847, 25);
+            tsMain.Size = new Size(112, 25);
             tsMain.TabIndex = 6;
             tsMain.Text = "toolStrip1";
             // 
@@ -87,10 +72,10 @@
             // 
             mnuMain.Dock = DockStyle.None;
             mnuMain.ImageScalingSize = new Size(20, 20);
-            mnuMain.Items.AddRange(new ToolStripItem[] { mnuFile, toolStripSeparator1, mnuRecipeNewRecipe, toolStripSeparator2, mnuMeals, toolStripSeparator3, mnuCookbookAutoCreate, toolStripSeparator4, mnuDataMaintenanceEditData, toolStripSeparator5, mnuWindows, toolStripSeparator6 });
-            mnuMain.Location = new Point(0, 0);
+            mnuMain.Items.AddRange(new ToolStripItem[] { mnuFile, toolStripSeparator1, mnuRecipeNewRecipe, toolStripSeparator2, mnuMeals, toolStripSeparator3, mnuCookbookAutoCreate, toolStripSeparator4, mnuDataMaintenanceEditData, toolStripSeparator5, mnuWindows, toolStripSeparator6, toolStripButton1 });
+            mnuMain.Location = new Point(-1, -1);
             mnuMain.Name = "mnuMain";
-            mnuMain.Size = new Size(724, 35);
+            mnuMain.Size = new Size(753, 35);
             mnuMain.TabIndex = 1;
             mnuMain.Text = "toolStrip1";
             // 
@@ -106,7 +91,7 @@
             // mnuFileDashboard
             // 
             mnuFileDashboard.Name = "mnuFileDashboard";
-            mnuFileDashboard.Size = new Size(224, 32);
+            mnuFileDashboard.Size = new Size(193, 32);
             mnuFileDashboard.Text = "DashBoard";
             // 
             // toolStripSeparator1
@@ -249,26 +234,32 @@
             toolStripSeparator6.Name = "toolStripSeparator6";
             toolStripSeparator6.Size = new Size(6, 35);
             // 
+            // toolStripButton1
+            // 
+            toolStripButton1.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            toolStripButton1.Image = (Image)resources.GetObject("toolStripButton1.Image");
+            toolStripButton1.ImageTransparentColor = Color.Magenta;
+            toolStripButton1.Name = "toolStripButton1";
+            toolStripButton1.Size = new Size(29, 32);
+            toolStripButton1.Text = "toolStripButton1";
+            // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(847, 556);
-            Controls.Add(tblMain);
+            Controls.Add(tsMain);
+            Controls.Add(mnuMain);
             IsMdiContainer = true;
             Name = "frmMain";
             Text = "Hearty Hearth";
-            WindowState = FormWindowState.Maximized;
-            tblMain.ResumeLayout(false);
-            tblMain.PerformLayout();
             mnuMain.ResumeLayout(false);
             mnuMain.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-
-        private TableLayoutPanel tblMain;
         private ToolStrip mnuMain;
         private ToolStripDropDownButton mnuFile;
         private ToolStripMenuItem mnuFileDashboard;
@@ -294,5 +285,6 @@
         private ToolStripMenuItem mnuWindowsCascade;
         private ToolStripSeparator toolStripSeparator6;
         private ToolStrip tsMain;
+        private ToolStripButton toolStripButton1;
     }
 }

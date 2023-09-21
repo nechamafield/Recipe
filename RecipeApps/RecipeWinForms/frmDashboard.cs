@@ -1,8 +1,11 @@
-﻿using CPUWindowsFormsFramework;
+﻿using CPUFramework;
+using CPUWindowsFormsFramework;
+using RecipeSystem;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.DirectoryServices.ActiveDirectory;
 using System.Drawing;
 using System.Linq;
@@ -31,7 +34,27 @@ namespace RecipeWinForms
 
         private void BindData()
         {
-            //txtRecipes.Text = //sql count of all recipes in list...same for meal & cookbook;
+            DataTable dt = DataMaintenance.GetDashboard();
+            SetTextBoxText(dt, "Recipe", txtRecipes);
+            SetTextBoxText(dt, "Meal", txtMeals);
+            SetTextBoxText(dt, "Cookbook", txtCookbooks);
+        }
+
+        private void SetTextBoxText(DataTable dt, string recordtype, TextBox txt)
+        {
+            var rows = dt.Select($"DashboardType = '{recordtype}'");
+            if (rows.Length > 0)
+            {
+                txt.Text = rows[0]["DashboardText"].ToString();
+            }
+        }
+
+        private void ShowForm()
+        {
+            if (this.MdiParent != null && this.MdiParent is frmMain)
+            {
+                ((frmMain)this.MdiParent).OpenForm(typeof(frmSearch));
+            }
         }
 
         private void BtnCookbookList_Click(object? sender, EventArgs e)
@@ -46,7 +69,7 @@ namespace RecipeWinForms
 
         private void BtnRecipeList_Click(object? sender, EventArgs e)
         {
-
+            ShowForm();
         }
     }
 }

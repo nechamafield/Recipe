@@ -185,6 +185,7 @@
             // txtRecipes
             // 
             txtRecipes.Dock = DockStyle.Fill;
+            txtRecipes.Enabled = false;
             txtRecipes.Location = new Point(277, 88);
             txtRecipes.Multiline = true;
             txtRecipes.Name = "txtRecipes";
@@ -195,6 +196,7 @@
             // txtMeals
             // 
             txtMeals.Dock = DockStyle.Fill;
+            txtMeals.Enabled = false;
             txtMeals.Location = new Point(277, 173);
             txtMeals.Multiline = true;
             txtMeals.Name = "txtMeals";
@@ -205,6 +207,7 @@
             // txtCookbooks
             // 
             txtCookbooks.Dock = DockStyle.Fill;
+            txtCookbooks.Enabled = false;
             txtCookbooks.Location = new Point(277, 258);
             txtCookbooks.Multiline = true;
             txtCookbooks.Name = "txtCookbooks";

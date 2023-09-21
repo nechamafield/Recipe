@@ -12,6 +12,7 @@ namespace RecipeWinForms
     {
         DataTable dtRecipe;
         BindingSource bindsource = new BindingSource();
+        DataTable dtIngredientRecipe = new();
         string deletecolname = "deletecol";
         int recipeid = 0;
 
@@ -21,6 +22,8 @@ namespace RecipeWinForms
             btnSave.Click += BtnSave_Click;
             btnDelete.Click += BtnDelete_Click;
             this.FormClosing += FrmRecipe_FormClosing;
+            btnIngredientsSave.Click += BtnIngredientsSave_Click;
+            btnStepsSave.Click += BtnStepsSave_Click;
         }
 
 
@@ -147,6 +150,28 @@ namespace RecipeWinForms
                         break;
                 }
             }
+        }
+
+        private void SaveRecipeIngredients()
+        {
+            try
+            {
+                IngredientRecipe.SaveTable(dtIngredientRecipe, recipeid);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, Application.ProductName);
+            }
+        }
+
+        private void BtnStepsSave_Click(object? sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnIngredientsSave_Click(object? sender, EventArgs e)
+        {
+            SaveRecipeIngredients();
         }
 
     }
