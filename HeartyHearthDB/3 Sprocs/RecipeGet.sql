@@ -15,8 +15,6 @@ begin
 
 	select r.Recipeid, r.Usersid, r.cousineid, r.RecipeName, r.Calories, r.DateDrafted, r.DatePublished, r.DateArchived, r.RecipeStatus, r.RecipePictureName
 >>>>>>> 61c6e13f224266ded1278f6d705534e118893636
-			RecipeDesc = dbo.RecipeDesc(r.recipeid),
-			--MealCalorieCount = dbo.MealCalorieCount(m.mealid)
 	from recipe r
 	where r.recipeid = @RecipeId
 	or @All = 1

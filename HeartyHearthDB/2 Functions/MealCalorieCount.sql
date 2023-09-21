@@ -1,8 +1,8 @@
 create or alter function dbo.MealCalorieCount(@MealId int)
-returns varchar (50)
+returns int 
 as
 begin
-	declare @value varchar (50) = ''
+	declare @value int  = 0
 
 		select @value =sum(r.calories) 
 		from CourseMealRecipe cmr
@@ -11,7 +11,6 @@ begin
 		join recipe r
 		on cmr.recipeid = r.recipeid
 		where cm.Mealid = @MealId
-		group by cm.Mealid
 
 	return @value
 end

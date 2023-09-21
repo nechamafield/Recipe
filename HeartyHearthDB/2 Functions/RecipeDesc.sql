@@ -6,7 +6,7 @@ begin
 
 	select @value = 
 			concat(r.RecipeName, ' (', c.CousineType, ') has ', 
-			count(i.ingredientid), ' ingredients and ',
+			count(ir.ingredientid), ' ingredients and ',
 			count(dr.DirectionRecipeid), ' steps.'
 			)
 	from recipe r
@@ -14,12 +14,10 @@ begin
 	on c.Cousineid = r.cousineid
 	join IngredientRecipe ir
 	on ir.Recipeid = r.Recipeid
-	join Ingredient i
-	on i.ingredientid = ir.Ingredientid
 	join DirectionRecipe dr
 	on r.Recipeid = dr.Recipeid
 	where r.Recipeid = @RecipeId
-	group by r.recipeid, r.RecipeName,c.CousineType 
+	group by r.RecipeName,c.CousineType 
 	
 
 	return @value
