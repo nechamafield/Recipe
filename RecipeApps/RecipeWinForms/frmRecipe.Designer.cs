@@ -54,10 +54,10 @@
             txtDateDrafted = new TextBox();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
-            tabPage2 = new TabPage();
             tblIngredients = new TableLayoutPanel();
             btnIngredientsSave = new Button();
             gIngredients = new DataGridView();
+            tabPage2 = new TabPage();
             tblSteps = new TableLayoutPanel();
             btnStepsSave = new Button();
             gSteps = new DataGridView();
@@ -65,9 +65,9 @@
             toolStrip1.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
-            tabPage2.SuspendLayout();
             tblIngredients.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gIngredients).BeginInit();
+            tabPage2.SuspendLayout();
             tblSteps.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gSteps).BeginInit();
             SuspendLayout();
@@ -111,7 +111,7 @@
             tblMain.RowStyles.Add(new RowStyle());
             tblMain.RowStyles.Add(new RowStyle());
             tblMain.RowStyles.Add(new RowStyle());
-            tblMain.Size = new Size(862, 373);
+            tblMain.Size = new Size(855, 373);
             tblMain.TabIndex = 0;
             // 
             // lblCaptionRecipeName
@@ -142,27 +142,27 @@
             // 
             txtRecipeName.Dock = DockStyle.Fill;
             txtRecipeName.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtRecipeName.Location = new Point(310, 38);
+            txtRecipeName.Location = new Point(307, 38);
             txtRecipeName.Name = "txtRecipeName";
-            txtRecipeName.Size = new Size(549, 30);
+            txtRecipeName.Size = new Size(545, 30);
             txtRecipeName.TabIndex = 2;
             // 
             // txtRecipePictureName
             // 
             txtRecipePictureName.Dock = DockStyle.Fill;
             txtRecipePictureName.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtRecipePictureName.Location = new Point(310, 74);
+            txtRecipePictureName.Location = new Point(307, 74);
             txtRecipePictureName.Name = "txtRecipePictureName";
-            txtRecipePictureName.Size = new Size(549, 30);
+            txtRecipePictureName.Size = new Size(545, 30);
             txtRecipePictureName.TabIndex = 4;
             // 
             // txtCalories
             // 
             txtCalories.Dock = DockStyle.Fill;
             txtCalories.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtCalories.Location = new Point(310, 110);
+            txtCalories.Location = new Point(307, 110);
             txtCalories.Name = "txtCalories";
-            txtCalories.Size = new Size(549, 30);
+            txtCalories.Size = new Size(545, 30);
             txtCalories.TabIndex = 6;
             // 
             // lblCaptionRecipePicName
@@ -183,7 +183,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { btnSave, toolStripSeparator1, btnDelete });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(307, 35);
+            toolStrip1.Size = new Size(304, 35);
             toolStrip1.TabIndex = 0;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -261,7 +261,7 @@
             // 
             lstUsername.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lstUsername.FormattingEnabled = true;
-            lstUsername.Location = new Point(310, 337);
+            lstUsername.Location = new Point(307, 337);
             lstUsername.Name = "lstUsername";
             lstUsername.Size = new Size(195, 33);
             lstUsername.TabIndex = 16;
@@ -270,7 +270,7 @@
             // 
             lstCousineType.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lstCousineType.FormattingEnabled = true;
-            lstCousineType.Location = new Point(310, 298);
+            lstCousineType.Location = new Point(307, 298);
             lstCousineType.Name = "lstCousineType";
             lstCousineType.Size = new Size(195, 33);
             lstCousineType.TabIndex = 14;
@@ -279,9 +279,9 @@
             // 
             txtRecipeStatus.Dock = DockStyle.Fill;
             txtRecipeStatus.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtRecipeStatus.Location = new Point(310, 262);
+            txtRecipeStatus.Location = new Point(307, 262);
             txtRecipeStatus.Name = "txtRecipeStatus";
-            txtRecipeStatus.Size = new Size(549, 30);
+            txtRecipeStatus.Size = new Size(545, 30);
             txtRecipeStatus.TabIndex = 12;
             // 
             // lblDatePublished
@@ -312,9 +312,9 @@
             // 
             txtDatePublished.Dock = DockStyle.Fill;
             txtDatePublished.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtDatePublished.Location = new Point(310, 186);
+            txtDatePublished.Location = new Point(307, 186);
             txtDatePublished.Name = "txtDatePublished";
-            txtDatePublished.Size = new Size(549, 34);
+            txtDatePublished.Size = new Size(545, 34);
             txtDatePublished.TabIndex = 19;
             // 
             // txtDateArchived
@@ -322,18 +322,18 @@
             txtDateArchived.Dock = DockStyle.Fill;
             txtDateArchived.Enabled = false;
             txtDateArchived.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtDateArchived.Location = new Point(310, 226);
+            txtDateArchived.Location = new Point(307, 226);
             txtDateArchived.Name = "txtDateArchived";
-            txtDateArchived.Size = new Size(549, 30);
+            txtDateArchived.Size = new Size(545, 30);
             txtDateArchived.TabIndex = 10;
             // 
             // txtDateDrafted
             // 
             txtDateDrafted.Dock = DockStyle.Fill;
             txtDateDrafted.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtDateDrafted.Location = new Point(310, 146);
+            txtDateDrafted.Location = new Point(307, 146);
             txtDateDrafted.Name = "txtDateDrafted";
-            txtDateDrafted.Size = new Size(549, 34);
+            txtDateDrafted.Size = new Size(545, 34);
             txtDateDrafted.TabIndex = 20;
             // 
             // tabControl1
@@ -345,7 +345,7 @@
             tabControl1.Location = new Point(3, 383);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(859, 382);
+            tabControl1.Size = new Size(852, 328);
             tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -358,17 +358,6 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Ingredients";
             tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            tabPage2.Controls.Add(tblSteps);
-            tabPage2.Location = new Point(4, 37);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(851, 341);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "Steps";
-            tabPage2.UseVisualStyleBackColor = true;
             // 
             // tblIngredients
             // 
@@ -407,6 +396,17 @@
             gIngredients.Size = new Size(839, 286);
             gIngredients.TabIndex = 1;
             // 
+            // tabPage2
+            // 
+            tabPage2.Controls.Add(tblSteps);
+            tabPage2.Location = new Point(4, 37);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(844, 287);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "Steps";
+            tabPage2.UseVisualStyleBackColor = true;
+            // 
             // tblSteps
             // 
             tblSteps.ColumnCount = 1;
@@ -419,7 +419,7 @@
             tblSteps.RowCount = 2;
             tblSteps.RowStyles.Add(new RowStyle());
             tblSteps.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tblSteps.Size = new Size(845, 335);
+            tblSteps.Size = new Size(838, 281);
             tblSteps.TabIndex = 0;
             // 
             // btnStepsSave
@@ -441,14 +441,14 @@
             gSteps.Name = "gSteps";
             gSteps.RowHeadersWidth = 51;
             gSteps.RowTemplate.Height = 29;
-            gSteps.Size = new Size(839, 283);
+            gSteps.Size = new Size(832, 229);
             gSteps.TabIndex = 1;
             // 
             // frmRecipe
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(869, 769);
+            ClientSize = new Size(862, 715);
             Controls.Add(tabControl1);
             Controls.Add(tblMain);
             Name = "frmRecipe";
@@ -459,9 +459,9 @@
             toolStrip1.PerformLayout();
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
-            tabPage2.ResumeLayout(false);
             tblIngredients.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)gIngredients).EndInit();
+            tabPage2.ResumeLayout(false);
             tblSteps.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)gSteps).EndInit();
             ResumeLayout(false);

@@ -158,7 +158,7 @@ namespace RecipeWinForms
             {
                 IngredientRecipe.SaveTable(dtIngredientRecipe, recipeid);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, Application.ProductName);
             }

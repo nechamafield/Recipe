@@ -57,6 +57,11 @@ namespace RecipeWinForms
                     frmDashboard f = new();
                     newfrm = f;
                 }
+                else if (frmtype == typeof(frmRecipeList))
+                {
+                    frmRecipeList f = new();
+                    newfrm = f;
+                }
 
                 if (newfrm != null)
                 {
@@ -127,7 +132,7 @@ namespace RecipeWinForms
 
         private void MnuRecipeList_Click(object? sender, EventArgs e)
         {
-
+            OpenForm(typeof(frmRecipeList));
         }
 
         private void MnuFileDashboard_Click(object? sender, EventArgs e)

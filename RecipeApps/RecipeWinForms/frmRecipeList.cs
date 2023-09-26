@@ -17,6 +17,8 @@ namespace RecipeWinForms
         public frmRecipeList()
         {
             InitializeComponent();
+            gRecipeList.CellDoubleClick += GRecipeList_CellDoubleClick;
+
             this.Activated += RecipeList_Activated;
         }
 
@@ -25,10 +27,32 @@ namespace RecipeWinForms
             BindData();
         }
 
+
         private void BindData()
         {
             gRecipeList.DataSource = Recipe.GetRecipeList();
             WindowsFormsUtility.FormatGridForSearchResults(gRecipeList, "Recipe");
         }
+
+        private void ShowRecipeForm(int rowindex)
+        {
+            int id = 0;
+            if (rowindex > -1)
+            {
+                id = WindowsFormsUtility.GetIdFromGrid(gRecipeList, rowindex, "RecipeId");
+            }
+            if (this.MdiParent != null && this.MdiParent is frmRecipeList)
+            {
+                ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), id);
+            }
+            frmRecipe frm = new();
+            frm.LoadForm(id);
+        }
+
+        private void GRecipeList_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)
+        {
+            ShowRecipeForm(e.RowIndex);
+        }
+
     }
 }

@@ -28,33 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             tsMain = new ToolStrip();
-            mnuMain = new ToolStrip();
-            mnuFile = new ToolStripDropDownButton();
+            mnuMain = new MenuStrip();
+            mnuFile = new ToolStripMenuItem();
             mnuFileDashboard = new ToolStripMenuItem();
-            toolStripSeparator1 = new ToolStripSeparator();
-            mnuRecipeNewRecipe = new ToolStripDropDownButton();
+            mnuRecipe = new ToolStripMenuItem();
             mnuRecipeList = new ToolStripMenuItem();
             mnuRecipeNew = new ToolStripMenuItem();
             mnuRecipeClone = new ToolStripMenuItem();
-            toolStripSeparator2 = new ToolStripSeparator();
-            mnuMeals = new ToolStripDropDownButton();
+            mnuMeals = new ToolStripMenuItem();
             mnuMealsList = new ToolStripMenuItem();
-            toolStripSeparator3 = new ToolStripSeparator();
-            mnuCookbookAutoCreate = new ToolStripDropDownButton();
+            cookbooksToolStripMenuItem = new ToolStripMenuItem();
             mnuCookbookList = new ToolStripMenuItem();
             mnuCookbooksNew = new ToolStripMenuItem();
-            autoCreateToolStripMenuItem = new ToolStripMenuItem();
-            toolStripSeparator4 = new ToolStripSeparator();
-            mnuDataMaintenanceEditData = new ToolStripDropDownButton();
-            editDataToolStripMenuItem = new ToolStripMenuItem();
-            toolStripSeparator5 = new ToolStripSeparator();
-            mnuWindows = new ToolStripDropDownButton();
+            mnuCookbookAutoCreate = new ToolStripMenuItem();
+            mnuDataMaintenance = new ToolStripMenuItem();
+            mnuDataMaintenanceEditData = new ToolStripMenuItem();
+            mnuWindows = new ToolStripMenuItem();
             mnuWindowsTile = new ToolStripMenuItem();
             mnuWindowsCascade = new ToolStripMenuItem();
-            toolStripSeparator6 = new ToolStripSeparator();
-            toolStripButton1 = new ToolStripButton();
             mnuMain.SuspendLayout();
             SuspendLayout();
             // 
@@ -62,7 +54,7 @@
             // 
             tsMain.Dock = DockStyle.None;
             tsMain.ImageScalingSize = new Size(20, 20);
-            tsMain.Location = new Point(-1, 34);
+            tsMain.Location = new Point(0, 36);
             tsMain.Name = "tsMain";
             tsMain.Size = new Size(112, 25);
             tsMain.TabIndex = 6;
@@ -70,20 +62,18 @@
             // 
             // mnuMain
             // 
-            mnuMain.Dock = DockStyle.None;
+            mnuMain.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             mnuMain.ImageScalingSize = new Size(20, 20);
-            mnuMain.Items.AddRange(new ToolStripItem[] { mnuFile, toolStripSeparator1, mnuRecipeNewRecipe, toolStripSeparator2, mnuMeals, toolStripSeparator3, mnuCookbookAutoCreate, toolStripSeparator4, mnuDataMaintenanceEditData, toolStripSeparator5, mnuWindows, toolStripSeparator6, toolStripButton1 });
-            mnuMain.Location = new Point(-1, -1);
+            mnuMain.Items.AddRange(new ToolStripItem[] { mnuFile, mnuRecipe, mnuMeals, cookbooksToolStripMenuItem, mnuDataMaintenance, mnuWindows });
+            mnuMain.Location = new Point(0, 0);
             mnuMain.Name = "mnuMain";
-            mnuMain.Size = new Size(753, 35);
-            mnuMain.TabIndex = 1;
-            mnuMain.Text = "toolStrip1";
+            mnuMain.Size = new Size(847, 36);
+            mnuMain.TabIndex = 8;
+            mnuMain.Text = "menuStrip1";
             // 
             // mnuFile
             // 
             mnuFile.DropDownItems.AddRange(new ToolStripItem[] { mnuFileDashboard });
-            mnuFile.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            mnuFile.ImageTransparentColor = Color.Magenta;
             mnuFile.Name = "mnuFile";
             mnuFile.Size = new Size(56, 32);
             mnuFile.Text = "File";
@@ -91,23 +81,15 @@
             // mnuFileDashboard
             // 
             mnuFileDashboard.Name = "mnuFileDashboard";
-            mnuFileDashboard.Size = new Size(193, 32);
-            mnuFileDashboard.Text = "DashBoard";
+            mnuFileDashboard.Size = new Size(194, 32);
+            mnuFileDashboard.Text = "Dashboard";
             // 
-            // toolStripSeparator1
+            // mnuRecipe
             // 
-            toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(6, 35);
-            // 
-            // mnuRecipeNewRecipe
-            // 
-            mnuRecipeNewRecipe.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            mnuRecipeNewRecipe.DropDownItems.AddRange(new ToolStripItem[] { mnuRecipeList, mnuRecipeNew, mnuRecipeClone });
-            mnuRecipeNewRecipe.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            mnuRecipeNewRecipe.ImageTransparentColor = Color.Magenta;
-            mnuRecipeNewRecipe.Name = "mnuRecipeNewRecipe";
-            mnuRecipeNewRecipe.Size = new Size(91, 32);
-            mnuRecipeNewRecipe.Text = "Recipes";
+            mnuRecipe.DropDownItems.AddRange(new ToolStripItem[] { mnuRecipeList, mnuRecipeNew, mnuRecipeClone });
+            mnuRecipe.Name = "mnuRecipe";
+            mnuRecipe.Size = new Size(83, 32);
+            mnuRecipe.Text = "Recipe";
             // 
             // mnuRecipeList
             // 
@@ -127,17 +109,9 @@
             mnuRecipeClone.Size = new Size(225, 32);
             mnuRecipeClone.Text = "Clone a Recipe";
             // 
-            // toolStripSeparator2
-            // 
-            toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(6, 35);
-            // 
             // mnuMeals
             // 
-            mnuMeals.DisplayStyle = ToolStripItemDisplayStyle.Text;
             mnuMeals.DropDownItems.AddRange(new ToolStripItem[] { mnuMealsList });
-            mnuMeals.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            mnuMeals.ImageTransparentColor = Color.Magenta;
             mnuMeals.Name = "mnuMeals";
             mnuMeals.Size = new Size(77, 32);
             mnuMeals.Text = "Meals";
@@ -148,20 +122,12 @@
             mnuMealsList.Size = new Size(127, 32);
             mnuMealsList.Text = "List";
             // 
-            // toolStripSeparator3
+            // cookbooksToolStripMenuItem
             // 
-            toolStripSeparator3.Name = "toolStripSeparator3";
-            toolStripSeparator3.Size = new Size(6, 35);
-            // 
-            // mnuCookbookAutoCreate
-            // 
-            mnuCookbookAutoCreate.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            mnuCookbookAutoCreate.DropDownItems.AddRange(new ToolStripItem[] { mnuCookbookList, mnuCookbooksNew, autoCreateToolStripMenuItem });
-            mnuCookbookAutoCreate.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            mnuCookbookAutoCreate.ImageTransparentColor = Color.Magenta;
-            mnuCookbookAutoCreate.Name = "mnuCookbookAutoCreate";
-            mnuCookbookAutoCreate.Size = new Size(126, 32);
-            mnuCookbookAutoCreate.Text = "Cookbooks";
+            cookbooksToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { mnuCookbookList, mnuCookbooksNew, mnuCookbookAutoCreate });
+            cookbooksToolStripMenuItem.Name = "cookbooksToolStripMenuItem";
+            cookbooksToolStripMenuItem.Size = new Size(126, 32);
+            cookbooksToolStripMenuItem.Text = "Cookbooks";
             // 
             // mnuCookbookList
             // 
@@ -175,44 +141,28 @@
             mnuCookbooksNew.Size = new Size(234, 32);
             mnuCookbooksNew.Text = "New Cookbook";
             // 
-            // autoCreateToolStripMenuItem
+            // mnuCookbookAutoCreate
             // 
-            autoCreateToolStripMenuItem.Name = "autoCreateToolStripMenuItem";
-            autoCreateToolStripMenuItem.Size = new Size(234, 32);
-            autoCreateToolStripMenuItem.Text = "Auto-Create";
+            mnuCookbookAutoCreate.Name = "mnuCookbookAutoCreate";
+            mnuCookbookAutoCreate.Size = new Size(234, 32);
+            mnuCookbookAutoCreate.Text = "Auto-Create";
             // 
-            // toolStripSeparator4
+            // mnuDataMaintenance
             // 
-            toolStripSeparator4.Name = "toolStripSeparator4";
-            toolStripSeparator4.Size = new Size(6, 35);
+            mnuDataMaintenance.DropDownItems.AddRange(new ToolStripItem[] { mnuDataMaintenanceEditData });
+            mnuDataMaintenance.Name = "mnuDataMaintenance";
+            mnuDataMaintenance.Size = new Size(184, 32);
+            mnuDataMaintenance.Text = "Data Maintenance";
             // 
             // mnuDataMaintenanceEditData
             // 
-            mnuDataMaintenanceEditData.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            mnuDataMaintenanceEditData.DropDownItems.AddRange(new ToolStripItem[] { editDataToolStripMenuItem });
-            mnuDataMaintenanceEditData.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            mnuDataMaintenanceEditData.ImageTransparentColor = Color.Magenta;
             mnuDataMaintenanceEditData.Name = "mnuDataMaintenanceEditData";
-            mnuDataMaintenanceEditData.Size = new Size(218, 32);
-            mnuDataMaintenanceEditData.Text = "mnuDataMaintenance";
-            // 
-            // editDataToolStripMenuItem
-            // 
-            editDataToolStripMenuItem.Name = "editDataToolStripMenuItem";
-            editDataToolStripMenuItem.Size = new Size(178, 32);
-            editDataToolStripMenuItem.Text = "Edit Data";
-            // 
-            // toolStripSeparator5
-            // 
-            toolStripSeparator5.Name = "toolStripSeparator5";
-            toolStripSeparator5.Size = new Size(6, 35);
+            mnuDataMaintenanceEditData.Size = new Size(178, 32);
+            mnuDataMaintenanceEditData.Text = "Edit Data";
             // 
             // mnuWindows
             // 
-            mnuWindows.DisplayStyle = ToolStripItemDisplayStyle.Text;
             mnuWindows.DropDownItems.AddRange(new ToolStripItem[] { mnuWindowsTile, mnuWindowsCascade });
-            mnuWindows.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            mnuWindows.ImageTransparentColor = Color.Magenta;
             mnuWindows.Name = "mnuWindows";
             mnuWindows.Size = new Size(107, 32);
             mnuWindows.Text = "Windows";
@@ -229,20 +179,6 @@
             mnuWindowsCascade.Size = new Size(169, 32);
             mnuWindowsCascade.Text = "Cascade";
             // 
-            // toolStripSeparator6
-            // 
-            toolStripSeparator6.Name = "toolStripSeparator6";
-            toolStripSeparator6.Size = new Size(6, 35);
-            // 
-            // toolStripButton1
-            // 
-            toolStripButton1.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton1.Image = (Image)resources.GetObject("toolStripButton1.Image");
-            toolStripButton1.ImageTransparentColor = Color.Magenta;
-            toolStripButton1.Name = "toolStripButton1";
-            toolStripButton1.Size = new Size(29, 32);
-            toolStripButton1.Text = "toolStripButton1";
-            // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -251,6 +187,7 @@
             Controls.Add(tsMain);
             Controls.Add(mnuMain);
             IsMdiContainer = true;
+            MainMenuStrip = mnuMain;
             Name = "frmMain";
             Text = "Hearty Hearth";
             mnuMain.ResumeLayout(false);
@@ -260,31 +197,24 @@
         }
 
         #endregion
-        private ToolStrip mnuMain;
-        private ToolStripDropDownButton mnuFile;
+        private ToolStrip tsMain;
+        private MenuStrip mnuMain;
+        private ToolStripMenuItem mnuFile;
         private ToolStripMenuItem mnuFileDashboard;
-        private ToolStripSeparator toolStripSeparator1;
-        private ToolStripDropDownButton mnuRecipeNewRecipe;
+        private ToolStripMenuItem mnuRecipe;
         private ToolStripMenuItem mnuRecipeList;
         private ToolStripMenuItem mnuRecipeNew;
         private ToolStripMenuItem mnuRecipeClone;
-        private ToolStripSeparator toolStripSeparator2;
-        private ToolStripDropDownButton mnuMeals;
+        private ToolStripMenuItem mnuMeals;
         private ToolStripMenuItem mnuMealsList;
-        private ToolStripSeparator toolStripSeparator3;
-        private ToolStripDropDownButton mnuCookbookAutoCreate;
+        private ToolStripMenuItem cookbooksToolStripMenuItem;
         private ToolStripMenuItem mnuCookbookList;
         private ToolStripMenuItem mnuCookbooksNew;
-        private ToolStripMenuItem autoCreateToolStripMenuItem;
-        private ToolStripSeparator toolStripSeparator4;
-        private ToolStripDropDownButton mnuDataMaintenanceEditData;
-        private ToolStripMenuItem editDataToolStripMenuItem;
-        private ToolStripSeparator toolStripSeparator5;
-        private ToolStripDropDownButton mnuWindows;
+        private ToolStripMenuItem mnuCookbookAutoCreate;
+        private ToolStripMenuItem mnuDataMaintenance;
+        private ToolStripMenuItem mnuDataMaintenanceEditData;
+        private ToolStripMenuItem mnuWindows;
         private ToolStripMenuItem mnuWindowsTile;
         private ToolStripMenuItem mnuWindowsCascade;
-        private ToolStripSeparator toolStripSeparator6;
-        private ToolStrip tsMain;
-        private ToolStripButton toolStripButton1;
     }
 }
