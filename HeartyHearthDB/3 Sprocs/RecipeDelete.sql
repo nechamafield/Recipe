@@ -6,6 +6,7 @@ as
 begin
 	declare @return int = 0
 
+		--AF 'having count > 1' is not necessary, you already wrote 'if exists', so it will only go into the 'if statement' if this select statement returns something
 		if exists(select * from Recipe r WHERE (DATEADD(DAY, 30, r.DateArchived) <= GETDATE() or r.RecipeStatus LIKE 'draft') and Recipeid = @RecipeId HAVING count(*) >= 1)
 		begin
 			select @return = 1, @Message = 'Cannot delete recipe that is not currently in draft or archived for over 30 days.'
