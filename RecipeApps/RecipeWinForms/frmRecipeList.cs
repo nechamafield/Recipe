@@ -18,7 +18,7 @@ namespace RecipeWinForms
         {
             InitializeComponent();
             gRecipeList.CellDoubleClick += GRecipeList_CellDoubleClick;
-
+            btnNewRecipe.Click += BtnNewRecipe_Click;
             this.Activated += RecipeList_Activated;
         }
 
@@ -52,6 +52,11 @@ namespace RecipeWinForms
         private void GRecipeList_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)
         {
             ShowRecipeForm(e.RowIndex);
+        }
+
+        private void BtnNewRecipe_Click(object? sender, EventArgs e)
+        {
+            ShowRecipeForm(-1);
         }
 
     }
