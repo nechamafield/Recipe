@@ -3,8 +3,8 @@ as
 begin
 
 	select @Mealname = nullif (@MealName, '')
-
-	select m.Mealid, m.MealName,  Users = concat(u.UserFirstName,' ', u.UserLastName), count( r.Calories)
+	
+	select m.MealName,Calories =  sum( r.Calories)
 	from meal m
 	join Users u
 	on m.usersid = u.UsersId
@@ -13,11 +13,25 @@ begin
 	where m.Mealid = @MealsId
 	or @All = 1
 	or m.MealName like '%' + @MealName+ '%'
-	group by m.Mealid, m.MealName,  u.UserFirstName, u.UserLastName, r.Calories
+	group by  m.MealName
 	order by m.MealName
 end
 go
-/*
+
+--	select m.Mealid, m.MealName,  Users = concat(u.UserFirstName,' ', u.UserLastName), Calories =  sum( r.Calories)
+--	from meal m
+--	join Users u
+--	on m.usersid = u.UsersId
+--	join Recipe r
+--	on r.Usersid = u.UsersId
+--	where m.Mealid = @MealsId
+--	or @All = 1
+--	or m.MealName like '%' + @MealName+ '%'
+--	group by m.Mealid, m.MealName,  u.UserFirstName, u.UserLastName, r.Calories
+--	order by m.MealName
+--end
+--go
+--/*
 exec MealsGet
 exec MealsGet  @All = 1
 
@@ -27,6 +41,11 @@ exec MealsGet  @mealname = 'a'
 declare @Id int
 select top 1 @id = m.mealid from meal m
 exec MealsGet @Mealsid = @Id
-*/
+--*/
 
---select * from Meal
+--select sum(r.calories), m.MealName
+--from Meal m 
+--join Users u on m.usersid = u.UsersId 
+--join Recipe r on r.Usersid = u.UsersId
+--group by m.mealname
+

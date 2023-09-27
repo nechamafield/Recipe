@@ -62,6 +62,15 @@ namespace RecipeSystem
             return dt;
         }
 
+        public static DataTable GetMealsList()
+        {
+            DataTable dt = new();
+            SqlCommand cmd = SQLUtility.GetSQLCommand("MealsGet");
+            cmd.Parameters["@All"].Value = 1;
+            dt = SQLUtility.GetDataTable(cmd);
+            return dt;
+        }
+
         public static void Save(DataTable dtRecipe)
         {
             if(dtRecipe.Rows.Count == 0)
