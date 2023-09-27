@@ -24,8 +24,37 @@ namespace RecipeWinForms
             this.FormClosing += FrmRecipe_FormClosing;
             btnIngredientsSave.Click += BtnIngredientsSave_Click;
             btnStepsSave.Click += BtnStepsSave_Click;
+            btnChangeStatus.Click += BtnChangeStatus_Click;
+            this.Activated += FrmRecipe_Activated;
         }
 
+        private void FrmRecipe_Activated(object? sender, EventArgs e)
+        {
+            BindData();
+        }
+
+        private void BindData()
+        {
+            gIngredients.DataSource = Recipe.GetIngredientListByRecipe(recipeid);
+            WindowsFormsUtility.FormatGridForSearchResults(gIngredients, "Ingredient");
+            gSteps.DataSource = Recipe.GetStepsListByRecipe(recipeid);
+            WindowsFormsUtility.FormatGridForSearchResults(gSteps, "Steps");
+        }
+
+        //private void ShowRecipeForm(int rowindex)
+        //{
+        //    int id = 0;
+        //    if (rowindex > -1)
+        //    {
+        //        id = WindowsFormsUtility.GetIdFromGrid(gIngredients, rowindex, "IngredientId");
+        //    }
+        //    if (this.MdiParent != null && this.MdiParent is frmMealsList)
+        //    {
+        //        ((frmMain)this.MdiParent).OpenForm(typeof(frmMealsList), id);
+        //    }
+        //    frmRecipe frm = new();
+        //    frm.LoadForm(id);
+        //}
 
         public void LoadForm(int recipeidval)
         {
@@ -39,15 +68,15 @@ namespace RecipeWinForms
             }
             DataTable dtcousine = Recipe.GetCousineList();
             WindowsFormsUtility.SetListBinding(lstCousineType, dtcousine, dtRecipe, "Cousine");
-            DataTable dtusername = Recipe.GetUsersList();
-            WindowsFormsUtility.SetListBinding(lstUsername, dtusername, dtRecipe, "Users");
+            //DataTable dtusername = Recipe.GetUsersList();
+            //WindowsFormsUtility.SetListBinding(lstUsername, dtusername, dtRecipe, "Users");
             WindowsFormsUtility.SetControlBinding(txtRecipeName, bindsource);
             WindowsFormsUtility.SetControlBinding(txtCalories, bindsource);
             WindowsFormsUtility.SetControlBinding(txtDateDrafted, bindsource);
             WindowsFormsUtility.SetControlBinding(txtDatePublished, bindsource);
             WindowsFormsUtility.SetControlBinding(txtDateArchived, bindsource);
             WindowsFormsUtility.SetControlBinding(txtRecipeStatus, bindsource);
-            WindowsFormsUtility.SetControlBinding(txtRecipePictureName, bindsource);
+            //WindowsFormsUtility.SetControlBinding(txtRecipePictureName, bindsource);
             this.Text = GetRecipeDesc();
 
             this.Show();
@@ -172,6 +201,11 @@ namespace RecipeWinForms
         private void BtnIngredientsSave_Click(object? sender, EventArgs e)
         {
             SaveRecipeIngredients();
+        }
+
+        private void BtnChangeStatus_Click(object? sender, EventArgs e)
+        {
+            //open the change status form
         }
 
     }

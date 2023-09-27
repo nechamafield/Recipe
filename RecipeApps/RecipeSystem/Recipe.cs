@@ -7,7 +7,6 @@ namespace RecipeSystem
 {
     public class Recipe
     {
-
         public static DataTable SearchRecipe(String recipename)
         {
             DataTable dt = new();
@@ -70,6 +69,38 @@ namespace RecipeSystem
             dt = SQLUtility.GetDataTable(cmd);
             return dt;
         }
+
+        public static DataTable GetIngredientListByRecipe(int recipeid)
+        {
+            DataTable dt = new();
+            SqlCommand cmd = SQLUtility.GetSQLCommand("IngredientGet");
+            cmd.Parameters["@recipeid"].Value = recipeid;
+            dt = SQLUtility.GetDataTable(cmd);
+            return dt;
+        }
+
+        //KEEP THIS!!
+        //make GetIngredientList for when need all ingredients
+        //dont pass in recipeid. should look exactly like this:
+        //public static DataTable GetIngredientList()
+        //{
+        //    DataTable dt = new();
+        //    SqlCommand cmd = SQLUtility.GetSQLCommand("IngredientGet");
+        //    cmd.Parameters["@All"].Value = 1;
+        //    dt = SQLUtility.GetDataTable(cmd);
+        //    return dt;
+        //}
+
+        public static DataTable GetStepsListByRecipe(int recipeid)
+        {
+            DataTable dt = new();
+            SqlCommand cmd = SQLUtility.GetSQLCommand("StepsGet");
+            cmd.Parameters["@recipeid"].Value = recipeid;
+            dt = SQLUtility.GetDataTable(cmd);
+            return dt;
+        }
+
+
 
         public static void Save(DataTable dtRecipe)
         {
