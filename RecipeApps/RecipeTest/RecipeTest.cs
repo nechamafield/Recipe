@@ -95,13 +95,11 @@ namespace RecipeTest
         [Test]
         public void DeleteRecipeInDraftOrArchive()
         {
-            //AF There is no need for the 'group by' or 'having' in this select statement
+            //--AF There is no need for the 'group by' or 'having' in this select statement
             string sql = @"select top 1 r.recipeid, r.RecipeName, r.calories 
                 from Recipe r 
                 where dateadd(day, 30, r.DateArchived) <= getdate() 
-                or r.RecipeStatus like 'draft' 
-                group by r.Recipeid, r.RecipeName, r.calories 
-                having count(*) >= 1";
+                or r.RecipeStatus like 'draft'";
             DataTable dt = SQLUtility.GetDataTable(sql);
             int recipeid = 0;
             string recipedesc = "";
@@ -112,8 +110,8 @@ namespace RecipeTest
             }
             Assume.That(recipeid > 0, "No recipe with status as draft or in archive for longer than 30 days in DB, can't run test");
             TestContext.WriteLine("existing recipe with status as draft or in archive for longer than 30 days, with id = " + recipeid + " " + recipedesc);
-            //AF This has the wrong message - you want to ensure that app cannot delete that recipe
-            TestContext.WriteLine("ensure that app can delete " + recipeid);
+            //--AF This has the wrong message - you want to ensure that app cannot delete that recipe
+            TestContext.WriteLine("ensure that app cannot delete " + recipeid);
 
             Exception ex = Assert.Throws<Exception>(() => Recipe.Delete(dt));
 
