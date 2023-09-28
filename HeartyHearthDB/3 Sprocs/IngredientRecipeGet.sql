@@ -20,11 +20,11 @@ begin
 end
 go
 
-/*
+--/*
 exec IngredientRecipeGet @All = 1
 
 exec IngredientRecipeGet @RecipeId = 7
-*/
+--*/
 
 
 

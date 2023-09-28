@@ -100,6 +100,14 @@ namespace RecipeSystem
             return dt;
         }
 
+        public static DataTable GetCookbooksList()
+        {
+            DataTable dt = new();
+            SqlCommand cmd = SQLUtility.GetSQLCommand("CookbookGet");
+            cmd.Parameters["@All"].Value = 1;
+            dt = SQLUtility.GetDataTable(cmd);
+            return dt;
+        }
 
 
         public static void Save(DataTable dtRecipe)

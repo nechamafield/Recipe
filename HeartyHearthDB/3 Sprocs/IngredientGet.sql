@@ -1,9 +1,6 @@
---create or alter procedure dbo.IngredientGet (@IngredientId int = 0, @RecipeName varchar (30) = '',  @All bit = 0)
 create or alter procedure dbo.IngredientGet (@IngredientId int = 0, @Recipeid int = 0,  @All bit = 0)
 as
 begin
-
-	--select @RecipeName = nullif (@RecipeName, '')
 
 	select r.Recipeid, i.ingredientname,m.Measurementname, ir.Amount,ir.IngredientSequence 
 	from recipe r
@@ -19,6 +16,7 @@ begin
 
 end
 go
+
 --/*
 exec IngredientGet
 exec IngredientGet @All = 1

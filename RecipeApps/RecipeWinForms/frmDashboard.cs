@@ -49,27 +49,43 @@ namespace RecipeWinForms
             }
         }
 
-        private void ShowForm()
+        private void ShowFormRecipe()
         {
             if (this.MdiParent != null && this.MdiParent is frmMain)
             {
-                ((frmMain)this.MdiParent).OpenForm(typeof(frmSearch));
+                ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipeList));
+            }
+        }
+
+        private void ShowFormMeal()
+        {
+            if (this.MdiParent != null && this.MdiParent is frmMain)
+            {
+                ((frmMain)this.MdiParent).OpenForm(typeof(frmMealsList));
+            }
+        }
+
+        private void ShowFormCookbook()
+        {
+            if (this.MdiParent != null && this.MdiParent is frmMain)
+            {
+                ((frmMain)this.MdiParent).OpenForm(typeof(frmCookbookList));
             }
         }
 
         private void BtnCookbookList_Click(object? sender, EventArgs e)
         {
-
+            ShowFormCookbook();
         }
 
         private void BtnMealList_Click(object? sender, EventArgs e)
         {
-
+            ShowFormMeal();
         }
 
         private void BtnRecipeList_Click(object? sender, EventArgs e)
         {
-            ShowForm();
+            ShowFormRecipe();
         }
     }
 }
