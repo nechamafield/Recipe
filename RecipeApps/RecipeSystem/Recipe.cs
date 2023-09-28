@@ -14,10 +14,6 @@ namespace RecipeSystem
             cmd.Parameters["@RecipeName"].Value = recipename;
             dt = SQLUtility.GetDataTable(cmd);
             return dt;
-
-            //string sql = "Select r.Recipeid, r.RecipeName, r.DateDrafted, r.DatePublished, r.DateArchived, r.RecipeStatus, r.RecipePictureName from Recipe r where r.RecipeName like '%" + recipename + "%'";
-            //DataTable dt = SQLUtility.GetDataTable(sql);
-            //return dt;
         }
 
         public static DataTable Load(int recipeid)
@@ -27,9 +23,6 @@ namespace RecipeSystem
             cmd.Parameters["@RecipeId"].Value = recipeid;
             dt = SQLUtility.GetDataTable(cmd);
             return dt;
-
-            //string sql = "select r.*, c.cousinetype, u.username from Recipe r join Cousine c on r.cousineid = c.Cousineid join Users u on u.UsersId = r.Usersid where r.recipeid = " + recipeid.ToString();
-            //return SQLUtility.GetDataTable(sql);
         }
 
         public static DataTable GetRecipeList()
@@ -81,7 +74,7 @@ namespace RecipeSystem
 
         //KEEP THIS!!
         //make GetIngredientList for when need all ingredients
-        //dont pass in recipeid. should look exactly like this:
+        //dont pass in recipeid. should look exactly like this just uncomment it:
         //public static DataTable GetIngredientList()
         //{
         //    DataTable dt = new();
@@ -100,15 +93,6 @@ namespace RecipeSystem
             return dt;
         }
 
-        public static DataTable GetCookbooksList()
-        {
-            DataTable dt = new();
-            SqlCommand cmd = SQLUtility.GetSQLCommand("CookbookGet");
-            cmd.Parameters["@All"].Value = 1;
-            dt = SQLUtility.GetDataTable(cmd);
-            return dt;
-        }
-
 
         public static void Save(DataTable dtRecipe)
         {
@@ -118,31 +102,6 @@ namespace RecipeSystem
             }
             DataRow r = dtRecipe.Rows[0];
             SQLUtility.SaveDataRow(r, "RecipeUpdate");
-
-            //SQLUtility.DebugPrintDataTable(dtRecipe);
-            //DataRow r = dtRecipe.Rows[0];
-            //int id = (int)r["RecipeId"];
-            //string sql = "";
-
-            //if (id > 0)
-            //{
-            //    sql = string.Join(Environment.NewLine, $"update recipe set",
-            //        $"RecipeName = '{r["RecipeName"]}',",
-            //        $"Calories = '{r["Calories"]}',",
-            //        $"DateDrafted = '{r["DateDrafted"]}',",
-            //        ////$"RecipeStatus = '{r["RecipeStatus"]}',",        --------- hardcoded so not changing
-            //        ////$"RecipePictureName = '{r["RecipePictureName"]}'",  //,",         --------- hardcoded so not changing
-            //        $"Usersid = '{r["usersid"]}',",
-            //        $"Cousineid = '{r["Cousineid"]}'",
-            //        $"where recipeId = {r["recipeId"]}");
-            //}
-            //else
-            //{
-            //    sql = "insert recipe(usersid, recipename, calories, datedrafted, Cousineid)";
-            //    sql += $"select '{r["usersid"]}', '{r["recipename"]}','{r["calories"]}', '{r["datedrafted"]}','{r["CousineId"]}'";
-            //}
-            //Debug.Print("---------------------");
-            //SQLUtility.ExecuteSQL(sql);
         }
 
         public static void Delete(DataTable dtRecipe)

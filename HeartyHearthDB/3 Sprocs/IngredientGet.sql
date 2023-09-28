@@ -2,7 +2,7 @@ create or alter procedure dbo.IngredientGet (@IngredientId int = 0, @Recipeid in
 as
 begin
 
-	select r.Recipeid, i.ingredientname,m.Measurementname, ir.Amount,ir.IngredientSequence 
+	select r.Recipeid, i.ingredientname,m.Measurementname,  ir.Amount,ir.IngredientSequence 
 	from recipe r
 	join IngredientRecipe ir
 	on ir.Recipeid = r.Recipeid
@@ -16,6 +16,8 @@ begin
 
 end
 go
+
+
 
 --/*
 exec IngredientGet

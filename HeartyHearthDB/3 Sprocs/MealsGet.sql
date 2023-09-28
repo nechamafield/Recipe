@@ -18,7 +18,7 @@ begin
 	on r.Usersid = u.UsersId
 
 	join CourseMeal cm on cm.Mealid = m.Mealid
-join Course c on c.Courseid = cm.Courseid
+	join Course c on c.Courseid = cm.Courseid
 
 	where m.Mealid = @MealsId
 	or @All = 1
@@ -40,11 +40,5 @@ select top 1 @id = m.mealid from meal m
 exec MealsGet @Mealsid = @Id
 --*/
 
-select sum(r.calories), m.MealName, numcourses = count(c.CourseType)
-from Meal m 
-join Users u on m.usersid = u.UsersId 
-join Recipe r on r.Usersid = u.UsersId
-join CourseMeal cm on cm.Mealid = m.Mealid
-join Course c on c.Courseid = cm.Courseid
-group by m.mealname, c.CourseType
+
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.Xml.Linq;
 using CPUFramework;
 using CPUWindowsFormsFramework;
 using RecipeSystem;
@@ -26,7 +27,10 @@ namespace RecipeWinForms
             btnStepsSave.Click += BtnStepsSave_Click;
             btnChangeStatus.Click += BtnChangeStatus_Click;
             this.Activated += FrmRecipe_Activated;
+            gIngredients.CellContentClick += GIngredients_CellContentClick;
+            gSteps.CellContentClick += GSteps_CellContentClick;
         }
+
 
         private void FrmRecipe_Activated(object? sender, EventArgs e)
         {
@@ -35,26 +39,17 @@ namespace RecipeWinForms
 
         private void BindData()
         {
+            gIngredients.Columns.Clear();
             gIngredients.DataSource = Recipe.GetIngredientListByRecipe(recipeid);
-            WindowsFormsUtility.FormatGridForSearchResults(gIngredients, "Ingredient");
+            WindowsFormsUtility.AddComboBoxToGridForRecipe(gIngredients, DataMaintenance.GetDataList("Ingredient"), "MeasurementName", "MeasurementName");
+            WindowsFormsUtility.AddComboBoxToGridForRecipe(gIngredients, DataMaintenance.GetDataList("Ingredient"), "IngredientName", "IngredientName");
+            WindowsFormsUtility.AddDeleteButtonToGrid(gIngredients, deletecolname);
+
             gSteps.DataSource = Recipe.GetStepsListByRecipe(recipeid);
             WindowsFormsUtility.FormatGridForSearchResults(gSteps, "Steps");
+            WindowsFormsUtility.AddDeleteButtonToGrid(gSteps, deletecolname);
+            WindowsFormsUtility.FormatGridForEdit(gIngredients, "Ingredient");
         }
-
-        //private void ShowRecipeForm(int rowindex)
-        //{
-        //    int id = 0;
-        //    if (rowindex > -1)
-        //    {
-        //        id = WindowsFormsUtility.GetIdFromGrid(gIngredients, rowindex, "IngredientId");
-        //    }
-        //    if (this.MdiParent != null && this.MdiParent is frmMealsList)
-        //    {
-        //        ((frmMain)this.MdiParent).OpenForm(typeof(frmMealsList), id);
-        //    }
-        //    frmRecipe frm = new();
-        //    frm.LoadForm(id);
-        //}
 
         public void LoadForm(int recipeidval)
         {
@@ -193,6 +188,27 @@ namespace RecipeWinForms
             }
         }
 
+        private void Delete(int rowindex, DataGridView dg, string tablename)
+        {
+            int id = WindowsFormsUtility.GetIdFromGrid(dg, rowindex, tablename + "Id");
+            if (id != 0)
+            {
+                try
+                {
+                    DataMaintenance.DeleteRow(tablename, id);
+                    BindData();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, Application.ProductName);
+                }
+            }
+            else if (id == 0 && rowindex < dg.Rows.Count)
+            {
+                dg.Rows.Remove(dg.Rows[rowindex]);
+            }
+        }
+
         private void BtnStepsSave_Click(object? sender, EventArgs e)
         {
 
@@ -203,9 +219,36 @@ namespace RecipeWinForms
             SaveRecipeIngredients();
         }
 
+        private void ShowChangeStatusForm()
+        {
+            int id = 0;
+            if (this.MdiParent != null && this.MdiParent is frmMain)
+            {
+                ((frmMain)this.MdiParent).OpenForm(typeof(frmChangeStatus), id);
+            }
+        }
+
         private void BtnChangeStatus_Click(object? sender, EventArgs e)
         {
-            //open the change status form
+            ShowChangeStatusForm();
+        }
+
+
+        //these 2 need help to delete line of ing or step - dix "Delete" procedure
+        private void GSteps_CellContentClick(object? sender, DataGridViewCellEventArgs e)
+        {
+            if (gIngredients.Columns[e.ColumnIndex].Name == deletecolname)
+            {
+                Delete(e.RowIndex, gSteps, "Steps");
+            }
+        }
+
+        private void GIngredients_CellContentClick(object? sender, DataGridViewCellEventArgs e)
+        {
+            if (gSteps.Columns[e.ColumnIndex].Name == deletecolname)
+            {
+                Delete(e.RowIndex, gIngredients, "IngredientName");
+            }
         }
 
     }
