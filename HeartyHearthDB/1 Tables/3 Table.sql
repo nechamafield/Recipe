@@ -11,7 +11,7 @@ drop table if exists directionrecipe
 drop table if exists ingredientrecipe
 drop table if exists measurement
 drop table if exists Recipe
-drop table if exists cousine
+drop table if exists Cuisine
 drop table if exists Users
 drop table if EXISTS Ingredient
 
@@ -35,17 +35,17 @@ CREATE TABLE dbo.Users(
         
 )
 
-create table dbo.Cousine(
-    Cousineid int not null IDENTITy PRIMARY KEY, 
-    CousineType VARCHAR(30) not null 
-        CONSTRAINT c_CousinetType_cannot_be_blank CHECK(cousinetype <> '')
-        CONSTRAINT u_Cousine_CousineType UNIQUE
+create table dbo.Cuisine(
+    Cuisineid int not null IDENTITy PRIMARY KEY, 
+    CuisineType VARCHAR(30) not null 
+        CONSTRAINT c_CuisinetType_cannot_be_blank CHECK(Cuisinetype <> '')
+        CONSTRAINT u_Cuisine_CuisineType UNIQUE
 )
 
 create table dbo.Recipe(
     Recipeid int not null IDENTITY PRIMARY KEY,
     Usersid int not null CONSTRAINT f_User_Usersid FOREIGN KEY REFERENCES users(UsersId),
-    cousineid int not null CONSTRAINT f_cousine_cousineid FOREIGN KEY REFERENCES cousine(cousineid),
+    Cuisineid int not null CONSTRAINT f_Cuisine_Cuisineid FOREIGN KEY REFERENCES Cuisine(Cuisineid),
     RecipeName VARCHAR(30) not NULL
         CONSTRAINT c_RecipeName_cannot_be_Blank CHECK (Recipename <> '')
         CONSTRAINT u_Recipe_RecipeName UNIQUE,

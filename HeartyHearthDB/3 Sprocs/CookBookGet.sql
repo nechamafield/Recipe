@@ -1,9 +1,9 @@
-create or alter procedure dbo.CookbookGet (@RecipeId int = 0, @CookbookName varchar (100) = '', @All bit = 0)
+create or alter procedure dbo.CookbookGet (@CookbookId int = 0, @IncludeBlank bit = 0, @All bit = 0)
 
 as
 begin
 
-		select @CookbookName = nullif (@CookbookName, '')
+	select @CookbookId = isnull(@CookbookId, 0), @IncludeBlank = isnull(@IncludeBlank, 0), @All = isnull(@All, 0)
 
 	select c.CookbookName, Author = concat(u.UserFirstName, ' ', u.UserLastName), NumRecipes = count(r.Recipeid), c.Price
 	from CookBook c
@@ -12,7 +12,7 @@ begin
 	join Recipe r
 	on r.Usersid = u.UsersId
 	or @All = 1
-	or c.CookbookName like '%' + @CookbookName + '%'
+	or c.CookbookId =  @CookbookId
 	group by c.CookbookName, u.UserFirstName, u.UserLastName, c.Price
 	order by c.CookbookName 
 

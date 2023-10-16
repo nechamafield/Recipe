@@ -1,4 +1,4 @@
-create or alter procedure dbo.IngredientGet (@IngredientId int = 0, @Recipeid int = 0,  @All bit = 0)
+create or alter procedure dbo.IngredientGetForRecipe (@IngredientId int = 0, @Recipeid int = 0,  @All bit = 0)
 as
 begin
 
@@ -19,9 +19,9 @@ go
 
 
 
---/*
+/*
 exec IngredientGet
-exec IngredientGet @All = 1
+exec IngredientGetForRecipe @All = 1
 
 exec IngredientGet @Recipeid = ' ' -- return no results
 exec IngredientGet @Recipeid = 3
@@ -29,7 +29,7 @@ exec IngredientGet @Recipeid = 3
 declare @Id int
 select top 1 @id = i.Ingredientid from Ingredient i
 exec IngredientGet @Ingredientid = @Id
---*/
+*/
 
 
 

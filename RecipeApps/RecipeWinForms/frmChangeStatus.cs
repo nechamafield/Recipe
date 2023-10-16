@@ -51,8 +51,8 @@ namespace RecipeWinForms
         ////    //    {
         ////    //        dtRecipe.Rows.Add();
         ////    //    }
-        ////    //    DataTable dtcousine = Recipe.GetCousineList();
-        ////    //    WindowsFormsUtility.SetListBinding(lstCousineType, dtcousine, dtRecipe, "Cousine");
+        ////    //    DataTable dtCuisine = Recipe.GetCuisineList();
+        ////    //    WindowsFormsUtility.SetListBinding(lstCuisineType, dtCuisine, dtRecipe, "Cuisine");
         ////    //    //DataTable dtusername = Recipe.GetUsersList();
         ////    //    //WindowsFormsUtility.SetListBinding(lstUsername, dtusername, dtRecipe, "Users");
         ////    //    WindowsFormsUtility.SetControlBinding(txtRecipeName, bindsource);

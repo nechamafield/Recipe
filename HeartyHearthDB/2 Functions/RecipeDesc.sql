@@ -5,19 +5,19 @@ begin
 	declare @value varchar (150) = ''
 
 	select @value = 
-			concat(r.RecipeName, ' (', c.CousineType, ') has ', 
+			concat(r.RecipeName, ' (', c.CuisineType, ') has ', 
 			count(ir.ingredientid), ' ingredients and ',
 			count(dr.DirectionRecipeid), ' steps.'
 			)
 	from recipe r
-	join Cousine c
-	on c.Cousineid = r.cousineid
+	join Cuisine c
+	on c.Cuisineid = r.Cuisineid
 	join IngredientRecipe ir
 	on ir.Recipeid = r.Recipeid
 	join DirectionRecipe dr
 	on r.Recipeid = dr.Recipeid
 	where r.Recipeid = @RecipeId
-	group by r.RecipeName,c.CousineType 
+	group by r.RecipeName,c.CuisineType 
 	
 
 	return @value

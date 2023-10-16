@@ -36,8 +36,8 @@
             btnSave = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
             btnDelete = new ToolStripButton();
-            lblCousineType = new Label();
-            lstCousineType = new ComboBox();
+            lblCuisineType = new Label();
+            lstCuisineType = new ComboBox();
             lblCaptionRecipeStatus = new Label();
             txtRecipeStatus = new TextBox();
             lblCaptionCalories = new Label();
@@ -82,8 +82,8 @@
             tblMain.Controls.Add(lblCaptionRecipeName, 0, 1);
             tblMain.Controls.Add(txtRecipeName, 1, 1);
             tblMain.Controls.Add(toolStrip1, 0, 0);
-            tblMain.Controls.Add(lblCousineType, 0, 2);
-            tblMain.Controls.Add(lstCousineType, 1, 2);
+            tblMain.Controls.Add(lblCuisineType, 0, 2);
+            tblMain.Controls.Add(lstCuisineType, 1, 2);
             tblMain.Controls.Add(lblCaptionRecipeStatus, 0, 4);
             tblMain.Controls.Add(txtRecipeStatus, 1, 4);
             tblMain.Controls.Add(lblCaptionCalories, 0, 3);
@@ -159,25 +159,25 @@
             btnDelete.Size = new Size(72, 32);
             btnDelete.Text = "Delete";
             // 
-            // lblCousineType
+            // lblCuisineType
             // 
-            lblCousineType.Anchor = AnchorStyles.Left;
-            lblCousineType.AutoSize = true;
-            lblCousineType.Font = new Font("Microsoft Tai Le", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblCousineType.Location = new Point(3, 89);
-            lblCousineType.Name = "lblCousineType";
-            lblCousineType.Size = new Size(81, 25);
-            lblCousineType.TabIndex = 13;
-            lblCousineType.Text = "Cousine";
+            lblCuisineType.Anchor = AnchorStyles.Left;
+            lblCuisineType.AutoSize = true;
+            lblCuisineType.Font = new Font("Microsoft Tai Le", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblCuisineType.Location = new Point(3, 89);
+            lblCuisineType.Name = "lblCuisineType";
+            lblCuisineType.Size = new Size(74, 25);
+            lblCuisineType.TabIndex = 13;
+            lblCuisineType.Text = "Cuisine";
             // 
-            // lstCousineType
+            // lstCuisineType
             // 
-            lstCousineType.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lstCousineType.FormattingEnabled = true;
-            lstCousineType.Location = new Point(307, 85);
-            lstCousineType.Name = "lstCousineType";
-            lstCousineType.Size = new Size(195, 33);
-            lstCousineType.TabIndex = 14;
+            lstCuisineType.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lstCuisineType.FormattingEnabled = true;
+            lstCuisineType.Location = new Point(307, 85);
+            lstCuisineType.Name = "lstCuisineType";
+            lstCuisineType.Size = new Size(195, 33);
+            lstCuisineType.TabIndex = 14;
             // 
             // lblCaptionRecipeStatus
             // 
@@ -469,8 +469,8 @@
         private TextBox txtRecipeStatus;
         private TextBox txtRecipeName;
         private TextBox txtCalories;
-        private Label lblCousineType;
-        private ComboBox lstCousineType;
+        private Label lblCuisineType;
+        private ComboBox lstCuisineType;
         private DateTimePicker dtpDateDrafted;
         private DateTimePicker dtpDatePublished;
         private ToolStrip toolStrip1;

@@ -9,7 +9,7 @@ namespace RecipeSystem
     {
         public static DataTable SearchRecipe(String recipename)
         {
-            DataTable dt = new();
+            DataTable dt;
             SqlCommand cmd = SQLUtility.GetSQLCommand("RecipeGet");
             cmd.Parameters["@RecipeName"].Value = recipename;
             dt = SQLUtility.GetDataTable(cmd);
@@ -18,7 +18,7 @@ namespace RecipeSystem
 
         public static DataTable Load(int recipeid)
         {
-            DataTable dt = new();
+            DataTable dt;
             SqlCommand cmd = SQLUtility.GetSQLCommand("RecipeGet");
             cmd.Parameters["@RecipeId"].Value = recipeid;
             dt = SQLUtility.GetDataTable(cmd);
@@ -27,7 +27,7 @@ namespace RecipeSystem
 
         public static DataTable GetRecipeList()
         {
-            DataTable dt = new();
+            DataTable dt;
             SqlCommand cmd = SQLUtility.GetSQLCommand("RecipeGet");
             cmd.Parameters["@All"].Value = 1;
             dt = SQLUtility.GetDataTable(cmd);
@@ -36,10 +36,10 @@ namespace RecipeSystem
             //return SQLUtility.GetDataTable("select recipeid, recipename from Recipe");
         }
 
-        public static DataTable GetCousineList()
+        public static DataTable GetCuisineList()
         {
-            DataTable dt = new();
-            SqlCommand cmd = SQLUtility.GetSQLCommand("CousineGet");
+            DataTable dt;
+            SqlCommand cmd = SQLUtility.GetSQLCommand("CuisineGet");
             cmd.Parameters["@All"].Value = 1;
             dt = SQLUtility.GetDataTable(cmd);
             return dt;
@@ -47,7 +47,7 @@ namespace RecipeSystem
 
         public static DataTable GetUsersList()
         {
-            DataTable dt = new();
+            DataTable dt;
             SqlCommand cmd = SQLUtility.GetSQLCommand("UsersGet");
             cmd.Parameters["@All"].Value = 1;
             dt = SQLUtility.GetDataTable(cmd);
@@ -56,7 +56,7 @@ namespace RecipeSystem
 
         public static DataTable GetMealsList()
         {
-            DataTable dt = new();
+            DataTable dt;
             SqlCommand cmd = SQLUtility.GetSQLCommand("MealsGet");
             cmd.Parameters["@All"].Value = 1;
             dt = SQLUtility.GetDataTable(cmd);
@@ -65,8 +65,8 @@ namespace RecipeSystem
 
         public static DataTable GetIngredientListByRecipe(int recipeid)
         {
-            DataTable dt = new();
-            SqlCommand cmd = SQLUtility.GetSQLCommand("IngredientGet");
+            DataTable dt;
+            SqlCommand cmd = SQLUtility.GetSQLCommand("IngredientForRecipeGet");
             cmd.Parameters["@recipeid"].Value = recipeid;
             dt = SQLUtility.GetDataTable(cmd);
             return dt;
@@ -77,7 +77,7 @@ namespace RecipeSystem
         //dont pass in recipeid. should look exactly like this just uncomment it:
         //public static DataTable GetIngredientList()
         //{
-        //    DataTable dt = new();
+        //    DataTable dt;
         //    SqlCommand cmd = SQLUtility.GetSQLCommand("IngredientGet");
         //    cmd.Parameters["@All"].Value = 1;
         //    dt = SQLUtility.GetDataTable(cmd);
@@ -86,7 +86,7 @@ namespace RecipeSystem
 
         public static DataTable GetStepsListByRecipe(int recipeid)
         {
-            DataTable dt = new();
+            DataTable dt;
             SqlCommand cmd = SQLUtility.GetSQLCommand("StepsGet");
             cmd.Parameters["@recipeid"].Value = recipeid;
             dt = SQLUtility.GetDataTable(cmd);
@@ -95,7 +95,7 @@ namespace RecipeSystem
 
         public static DataTable GetStatusList(string recipestatus)
         {
-            DataTable dt = new();
+            DataTable dt;
             SqlCommand cmd = SQLUtility.GetSQLCommand("RecipeGet");
             cmd.Parameters["@RecipeStatus"].Value = recipestatus;
             dt = SQLUtility.GetDataTable(cmd);

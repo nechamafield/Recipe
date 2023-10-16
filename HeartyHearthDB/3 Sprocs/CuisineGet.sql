@@ -1,25 +1,25 @@
-create or alter procedure dbo.CuisineGet (@CousineId int = 0, @CousineType varchar (30) = '',  @All bit = 0)
+create or alter procedure dbo.CuisineGet (@CuisineId int = 0, @CuisineType varchar (30) = '',  @All bit = 0)
 as
 begin
 
-	select @CousineType = nullif (@CousineType, '')
+	select @CuisineType = nullif (@CuisineType, '')
 
-	select c.Cousineid, c.CousineType
-	from Cousine c
-	where c.Cousineid = @CousineId
+	select c.CuisineId, c.CuisineType
+	from Cuisine c
+	where c.CuisineId = @CuisineId
 	or @All = 1
-	or c.CousineType like '%' + @CousineType + '%'
-	order by c.Cousineid, c.CousineType
+	or c.CuisineType like '%' + @CuisineType + '%'
+	order by c.CuisineId, c.CuisineType
 end
 go
 /*
-exec CousineGet
-exec CousineGet @All = 1
+exec CuisineGet
+exec CuisineGet @All = 1
 
-exec CousineGet @CousineType = ' ' -- return no results
-exec CousineGet @CousineType = 'a'
+exec CuisineGet @CuisineType = ' ' -- return no results
+exec CuisineGet @CuisineType = 'a'
 
 declare @Id int
-select top 1 @id = c.cousineid from cousine c
-exec CousineGet @Cousineid = @Id
+select top 1 @id = c.CuisineId from Cuisine c
+exec CuisineGet @CuisineId = @Id
 */

@@ -12,7 +12,7 @@ DELETE directionrecipe
 DELETE ingredientrecipe
 delete measurement
 delete recipe
-delete cousine
+delete Cuisine
 delete users
 delete ingredient
 go
@@ -63,18 +63,18 @@ union select 'Rivkah', 'Vorcher', 'rv3561%'
 
 SELECT * from users
 
-insert cousine(CousineType)
+insert Cuisine(CuisineType)
 SELECT 'American'
 union select 'French'
 union select 'English'
 union select 'Hungarian'
 union select 'Flemish'
 
-select * from cousine
+select * from Cuisine
 
 ;
 with x as(
-    select username = 'nf3003050', cousinetype = 'American' ,recipename = 'Chocolate Chip Cookies',calories = 100, datedrafted = '12/03/15', datepublished = '12/03/17 19:54:44.123', DateArchived = '12/03/22'
+    select username = 'nf3003050', Cuisinetype = 'American' ,recipename = 'Chocolate Chip Cookies',calories = 100, datedrafted = '12/03/15', datepublished = '12/03/17 19:54:44.123', DateArchived = '12/03/22'
     UNION select 'ca4256985', 'French', 'Apple Yogurt Smoothie', 150, '12/15/13', '11/11/19 06:56:36.562', '12/29/21'
     union select 'bf425!', 'English', 'Cheese Bread', 230,  '01/13/21', '10/26/21 12:45:32.125', null
     union select 'mh7770109', 'Hungarian', 'Butter Muffins', 190,  '06/28/03', null, '09/25/09'
@@ -83,13 +83,13 @@ with x as(
     union select 'nf3003050', 'Hungarian', 'Batter Dipped Chicken', 250, '08/21/16', '11/11/19 06:56:36.562', null
 )
 
-insert recipe(usersid, cousineid, recipename, calories,  datedrafted, datepublished, datearchived)
-select u.UsersId, c.cousineid, x.recipename,x.calories, x.datedrafted, x.datepublished, x.DateArchived
+insert recipe(usersid, Cuisineid, recipename, calories,  datedrafted, datepublished, datearchived)
+select u.UsersId, c.Cuisineid, x.recipename,x.calories, x.datedrafted, x.datepublished, x.DateArchived
 from x  
 join users u 
 on x.username = u.Username
-join cousine c 
-on c.cousinetype = x.cousinetype
+join Cuisine c 
+on c.Cuisinetype = x.Cuisinetype
 
 select * from Recipe r 
 

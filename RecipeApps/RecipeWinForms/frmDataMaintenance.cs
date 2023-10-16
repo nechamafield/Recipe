@@ -76,9 +76,25 @@ namespace RecipeWinForms
             return b;
         }
 
-
         private void Delete(int rowindex)
         {
+            if(currenttabletype == TableTypeEnum.Users)
+            {
+                var response = MessageBox.Show("Are you sure you want to delete this user and all related recipes, meals, and cookbooks?", "Hearty Hearth", MessageBoxButtons.YesNo);
+                if (response == DialogResult.No)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                var response = MessageBox.Show("Are you sure you want to delete this record?", "Hearty Hearth", MessageBoxButtons.YesNo);
+                if (response == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
             int id = WindowsFormsUtility.GetIdFromGrid(gData, rowindex, currenttabletype.ToString() + "Id");
             if (id != 0)
             {

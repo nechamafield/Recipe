@@ -29,8 +29,8 @@ namespace RecipeTest
 
             int usersid = SQLUtility.GetFirstColumnFirstRowValue("select top 1 UsersId from users");
             Assume.That(usersid > 0, "can't run test no users in db");
-            int cousineid = SQLUtility.GetFirstColumnFirstRowValue("select top 1 cousineid from cousine");
-            Assume.That(cousineid > 0, "can't run test no cousine in db");
+            int Cuisineid = SQLUtility.GetFirstColumnFirstRowValue("select top 1 Cuisineid from Cuisine");
+            Assume.That(Cuisineid > 0, "can't run test no Cuisine in db");
 
             DateTime datedrafted = DateTime.Now;
             recipename = recipename + DateTime.Now.ToString();
@@ -40,7 +40,7 @@ namespace RecipeTest
             r["RecipeName"] = recipename;
             r["Calories"] = calories;
             r["DateDrafted"] = datedrafted;
-            r["cousineid"] = cousineid;
+            r["Cuisineid"] = Cuisineid;
             Recipe.Save(dt);
 
             int maxid = SQLUtility.GetFirstColumnFirstRowValue("select max (recipeid) from recipe");
