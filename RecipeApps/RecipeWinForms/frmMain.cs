@@ -87,7 +87,16 @@ namespace RecipeWinForms
                     frmChangeStatus f = new();
                     newfrm = f;
                 }
-
+                else if (frmtype == typeof(frmDataMaintenance))
+                {
+                    frmDataMaintenance f = new();
+                    newfrm = f;
+                }
+                else if (frmtype == typeof(frmChangeStatus))
+                {
+                    frmChangeStatus f = new();
+                    newfrm = f;
+                }
                 if (newfrm != null)
                 {
                     newfrm.MdiParent = this;
@@ -122,7 +131,7 @@ namespace RecipeWinForms
 
         private void MnuDataMaintenanceEditData_Click(object? sender, EventArgs e)
         {
-
+            OpenForm(typeof(frmDataMaintenance));
         }
 
         private void MnuCookbookAutoCreate_Click(object? sender, EventArgs e)

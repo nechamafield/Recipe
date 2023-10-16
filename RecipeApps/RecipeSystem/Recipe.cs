@@ -93,6 +93,14 @@ namespace RecipeSystem
             return dt;
         }
 
+        public static DataTable GetStatusList(string recipestatus)
+        {
+            DataTable dt = new();
+            SqlCommand cmd = SQLUtility.GetSQLCommand("RecipeGet");
+            cmd.Parameters["@RecipeStatus"].Value = recipestatus;
+            dt = SQLUtility.GetDataTable(cmd);
+            return dt;
+        }
 
         public static void Save(DataTable dtRecipe)
         {

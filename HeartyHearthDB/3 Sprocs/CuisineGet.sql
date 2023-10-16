@@ -1,4 +1,4 @@
-create or alter procedure dbo.CousineGet (@CousineId int = 0, @CousineType varchar (30) = '',  @All bit = 0)
+create or alter procedure dbo.CuisineGet (@CousineId int = 0, @CousineType varchar (30) = '',  @All bit = 0)
 as
 begin
 

@@ -219,18 +219,10 @@ namespace RecipeWinForms
             SaveRecipeIngredients();
         }
 
-        private void ShowChangeStatusForm()
-        {
-            int id = 0;
-            if (this.MdiParent != null && this.MdiParent is frmMain)
-            {
-                ((frmMain)this.MdiParent).OpenForm(typeof(frmChangeStatus), id);
-            }
-        }
-
         private void BtnChangeStatus_Click(object? sender, EventArgs e)
         {
-            ShowChangeStatusForm();
+            var frm = new frmChangeStatus();
+            frm.Show();
         }
 
 

@@ -30,6 +30,11 @@ namespace RecipeSystem
             return dt;
         }
 
+        public static void SaveDataList(DataTable dt, string tablename)
+        {
+            SQLUtility.SaveDataTable(dt, tablename + "Update");
+        }
+
         public static void DeleteRow(string tablename, int id)
         {
             SqlCommand cmd = SQLUtility.GetSQLCommand(tablename + "Delete");
