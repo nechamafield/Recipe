@@ -31,14 +31,14 @@
             tblMain = new TableLayoutPanel();
             lblRecipeName = new Label();
             lblCurrrentStatus = new Label();
-            txtArchived = new TextBox();
-            txtPublished = new TextBox();
-            txtDrafted = new TextBox();
-            lblStatusDates = new Label();
-            lblArchived = new Label();
-            lblPublished = new Label();
-            lblDrafted = new Label();
             tblDates = new TableLayoutPanel();
+            lblDrafted = new Label();
+            lblPublished = new Label();
+            lblArchived = new Label();
+            lblStatusDates = new Label();
+            txtDateDrafted = new TextBox();
+            txtDatePublished = new TextBox();
+            txtDateArchived = new TextBox();
             tblButtons = new TableLayoutPanel();
             btnDraft = new Button();
             btnPublish = new Button();
@@ -94,68 +94,28 @@
             lblCurrrentStatus.Text = "Current Status: ";
             lblCurrrentStatus.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // txtArchived
+            // tblDates
             // 
-            txtArchived.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtArchived.Location = new Point(564, 57);
-            txtArchived.Margin = new Padding(15, 25, 3, 3);
-            txtArchived.Name = "txtArchived";
-            txtArchived.Size = new Size(154, 34);
-            txtArchived.TabIndex = 6;
-            // 
-            // txtPublished
-            // 
-            txtPublished.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtPublished.Location = new Point(381, 57);
-            txtPublished.Margin = new Padding(15, 25, 3, 3);
-            txtPublished.Name = "txtPublished";
-            txtPublished.Size = new Size(154, 34);
-            txtPublished.TabIndex = 5;
-            // 
-            // txtDrafted
-            // 
-            txtDrafted.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtDrafted.Location = new Point(198, 57);
-            txtDrafted.Margin = new Padding(15, 25, 3, 3);
-            txtDrafted.Name = "txtDrafted";
-            txtDrafted.Size = new Size(154, 34);
-            txtDrafted.TabIndex = 4;
-            // 
-            // lblStatusDates
-            // 
-            lblStatusDates.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            lblStatusDates.AutoSize = true;
-            lblStatusDates.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblStatusDates.Location = new Point(3, 57);
-            lblStatusDates.Name = "lblStatusDates";
-            lblStatusDates.Size = new Size(177, 28);
-            lblStatusDates.TabIndex = 3;
-            lblStatusDates.Text = "Status Dates";
-            lblStatusDates.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // lblArchived
-            // 
-            lblArchived.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            lblArchived.AutoSize = true;
-            lblArchived.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblArchived.Location = new Point(552, 2);
-            lblArchived.Name = "lblArchived";
-            lblArchived.Size = new Size(177, 28);
-            lblArchived.TabIndex = 2;
-            lblArchived.Text = "Archived";
-            lblArchived.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // lblPublished
-            // 
-            lblPublished.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            lblPublished.AutoSize = true;
-            lblPublished.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblPublished.Location = new Point(369, 2);
-            lblPublished.Name = "lblPublished";
-            lblPublished.Size = new Size(177, 28);
-            lblPublished.TabIndex = 1;
-            lblPublished.Text = "Published";
-            lblPublished.TextAlign = ContentAlignment.MiddleCenter;
+            tblDates.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tblDates.ColumnCount = 4;
+            tblDates.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tblDates.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tblDates.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tblDates.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tblDates.Controls.Add(lblDrafted, 1, 0);
+            tblDates.Controls.Add(lblPublished, 2, 0);
+            tblDates.Controls.Add(lblArchived, 3, 0);
+            tblDates.Controls.Add(lblStatusDates, 0, 1);
+            tblDates.Controls.Add(txtDateDrafted, 1, 1);
+            tblDates.Controls.Add(txtDatePublished, 2, 1);
+            tblDates.Controls.Add(txtDateArchived, 3, 1);
+            tblDates.Location = new Point(3, 279);
+            tblDates.Name = "tblDates";
+            tblDates.RowCount = 2;
+            tblDates.RowStyles.Add(new RowStyle(SizeType.Percent, 28.985508F));
+            tblDates.RowStyles.Add(new RowStyle(SizeType.Percent, 71.0144958F));
+            tblDates.Size = new Size(732, 111);
+            tblDates.TabIndex = 2;
             // 
             // lblDrafted
             // 
@@ -169,28 +129,68 @@
             lblDrafted.Text = "Drafted";
             lblDrafted.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // tblDates
+            // lblPublished
             // 
-            tblDates.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            tblDates.ColumnCount = 4;
-            tblDates.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tblDates.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tblDates.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tblDates.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tblDates.Controls.Add(lblDrafted, 1, 0);
-            tblDates.Controls.Add(lblPublished, 2, 0);
-            tblDates.Controls.Add(lblArchived, 3, 0);
-            tblDates.Controls.Add(lblStatusDates, 0, 1);
-            tblDates.Controls.Add(txtDrafted, 1, 1);
-            tblDates.Controls.Add(txtPublished, 2, 1);
-            tblDates.Controls.Add(txtArchived, 3, 1);
-            tblDates.Location = new Point(3, 279);
-            tblDates.Name = "tblDates";
-            tblDates.RowCount = 2;
-            tblDates.RowStyles.Add(new RowStyle(SizeType.Percent, 28.985508F));
-            tblDates.RowStyles.Add(new RowStyle(SizeType.Percent, 71.0144958F));
-            tblDates.Size = new Size(732, 111);
-            tblDates.TabIndex = 2;
+            lblPublished.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            lblPublished.AutoSize = true;
+            lblPublished.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblPublished.Location = new Point(369, 2);
+            lblPublished.Name = "lblPublished";
+            lblPublished.Size = new Size(177, 28);
+            lblPublished.TabIndex = 1;
+            lblPublished.Text = "Published";
+            lblPublished.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblArchived
+            // 
+            lblArchived.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            lblArchived.AutoSize = true;
+            lblArchived.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblArchived.Location = new Point(552, 2);
+            lblArchived.Name = "lblArchived";
+            lblArchived.Size = new Size(177, 28);
+            lblArchived.TabIndex = 2;
+            lblArchived.Text = "Archived";
+            lblArchived.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblStatusDates
+            // 
+            lblStatusDates.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            lblStatusDates.AutoSize = true;
+            lblStatusDates.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblStatusDates.Location = new Point(3, 57);
+            lblStatusDates.Name = "lblStatusDates";
+            lblStatusDates.Size = new Size(177, 28);
+            lblStatusDates.TabIndex = 3;
+            lblStatusDates.Text = "Status Dates";
+            lblStatusDates.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // txtDateDrafted
+            // 
+            txtDateDrafted.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtDateDrafted.Location = new Point(198, 57);
+            txtDateDrafted.Margin = new Padding(15, 25, 3, 3);
+            txtDateDrafted.Name = "txtDateDrafted";
+            txtDateDrafted.Size = new Size(154, 34);
+            txtDateDrafted.TabIndex = 4;
+            // 
+            // txtDatePublished
+            // 
+            txtDatePublished.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtDatePublished.Location = new Point(381, 57);
+            txtDatePublished.Margin = new Padding(15, 25, 3, 3);
+            txtDatePublished.Name = "txtDatePublished";
+            txtDatePublished.Size = new Size(154, 34);
+            txtDatePublished.TabIndex = 5;
+            // 
+            // txtDateArchived
+            // 
+            txtDateArchived.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtDateArchived.Location = new Point(564, 57);
+            txtDateArchived.Margin = new Padding(15, 25, 3, 3);
+            txtDateArchived.Name = "txtDateArchived";
+            txtDateArchived.Size = new Size(154, 34);
+            txtDateArchived.TabIndex = 6;
             // 
             // tblButtons
             // 
@@ -281,5 +281,8 @@
         private Button btnDraft;
         private Button btnPublish;
         private Button btnArchive;
+        private TextBox txtDateDrafted;
+        private TextBox txtDatePublished;
+        private TextBox txtDateArchived;
     }
 }

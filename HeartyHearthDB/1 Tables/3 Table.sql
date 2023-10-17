@@ -36,7 +36,7 @@ CREATE TABLE dbo.Users(
 )
 
 create table dbo.Cuisine(
-    Cuisineid int not null IDENTITy PRIMARY KEY, 
+    CuisineId int not null IDENTITy PRIMARY KEY, 
     CuisineType VARCHAR(30) not null 
         CONSTRAINT c_CuisinetType_cannot_be_blank CHECK(Cuisinetype <> '')
         CONSTRAINT u_Cuisine_CuisineType UNIQUE

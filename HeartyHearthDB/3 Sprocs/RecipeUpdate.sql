@@ -1,7 +1,7 @@
 create or alter proc dbo.RecipeUpdate(
 	@Recipeid int ,
 	@Usersid int ,
-	@cousineid int ,
+	@Cuisineid int ,
 	@RecipeName varchar (30),
 	@Calories int ,
 	@DateDrafted datetime ,
@@ -30,8 +30,8 @@ begin
 			select @Calories = max(r.calories) + 1 from Recipe r
 		end
 
-		insert Recipe(Usersid, cousineid, RecipeName, Calories, DateDrafted, DatePublished, DateArchived)
-		values(@Usersid, @cousineid, @RecipeName, @Calories, @DateDrafted, @DatePublished, @DateArchived)
+		insert Recipe(Usersid, Cuisineid, RecipeName, Calories, DateDrafted, DatePublished, DateArchived)
+		values(@Usersid, @Cuisineid, @RecipeName, @Calories, @DateDrafted, @DatePublished, @DateArchived)
 
 		select @Recipeid = SCOPE_IDENTITY()
 	end
@@ -40,7 +40,7 @@ begin
 		update Recipe
 		set
 			Usersid = @Usersid, 
-			cousineid = @cousineid, 
+			Cuisineid = @Cuisineid, 
 			RecipeName = @RecipeName, 
 			Calories = @Calories, 
 			DateDrafted = @DateDrafted, 

@@ -1,4 +1,4 @@
-create or alter procedure dbo.MeasurementsGet (@MeasurementId int = 0, @Measurementname varchar (30) = '',  @All bit = 0)
+create or alter procedure dbo.measurementGet (@MeasurementId int = 0, @Measurementname varchar (30) = '',  @All bit = 0)
 as
 begin
 
@@ -14,6 +14,6 @@ end
 go
 
 
---exec MeasurementsGet @All = 1
+--exec measurementGet @All = 1
 
 select * from Measurement

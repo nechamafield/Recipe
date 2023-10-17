@@ -1,19 +1,18 @@
-create or alter procedure dbo.IngredientsGet (@IngredientsId int = 0, @IngredientName varchar (30) = '',  @All bit = 0)
+create or alter procedure dbo.IngredientGet (@IngredientId int = 0,  @All bit = 0)
 as
 begin
 
-	select @IngredientName = nullif (@IngredientName, '')
+	select @IngredientId = nullif (@IngredientId, 0)
 
 	select i.ingredientid, i.ingredientname
 	from Ingredient i
-	where i.ingredientid = @IngredientsId
+	where i.ingredientid = @IngredientId
 	or @All = 1
-	or i.ingredientname like '%' + @IngredientName + '%'
 	order by i.ingredientid, i.ingredientname
 end
 go
  
 
 
---exec IngredientsGet @All = 1
+--exec IngredientGet @All = 1
 

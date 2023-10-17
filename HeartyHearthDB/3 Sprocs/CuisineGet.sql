@@ -1,8 +1,12 @@
-create or alter procedure dbo.CuisineGet (@CuisineId int = 0, @CuisineType varchar (30) = '',  @All bit = 0)
+create or alter procedure dbo.CuisineGet (
+@CuisineId int = 0, 
+@CuisineType varchar (30) = '',  
+@IncludeBlank bit = 0,
+@All bit = 0)
 as
 begin
 
-	select @CuisineType = nullif (@CuisineType, '')
+	select @CuisineType = nullif (@CuisineType, ''), @IncludeBlank = nullif(@IncludeBlank, 0)
 
 	select c.CuisineId, c.CuisineType
 	from Cuisine c

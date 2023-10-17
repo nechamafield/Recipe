@@ -87,17 +87,17 @@ namespace RecipeSystem
         public static DataTable GetStepsListByRecipe(int recipeid)
         {
             DataTable dt;
-            SqlCommand cmd = SQLUtility.GetSQLCommand("StepsGet");
+            SqlCommand cmd = SQLUtility.GetSQLCommand("DirectionGet");
             cmd.Parameters["@recipeid"].Value = recipeid;
             dt = SQLUtility.GetDataTable(cmd);
             return dt;
         }
 
-        public static DataTable GetStatusList(string recipestatus)
+        public static DataTable GetStatusList(int recipeid)
         {
             DataTable dt;
-            SqlCommand cmd = SQLUtility.GetSQLCommand("RecipeGet");
-            cmd.Parameters["@RecipeStatus"].Value = recipestatus;
+            SqlCommand cmd = SQLUtility.GetSQLCommand("StatusRecipeGet");
+            cmd.Parameters["@RecipeId"].Value = recipeid;
             dt = SQLUtility.GetDataTable(cmd);
             return dt;
         }

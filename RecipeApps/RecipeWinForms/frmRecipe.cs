@@ -13,7 +13,7 @@ namespace RecipeWinForms
     {
         DataTable dtRecipe;
         BindingSource bindsource = new BindingSource();
-        DataTable dtIngredientRecipe = new();
+        DataTable dt = new();
         string deletecolname = "deletecol";
         int recipeid = 0;
 
@@ -46,7 +46,7 @@ namespace RecipeWinForms
             WindowsFormsUtility.AddDeleteButtonToGrid(gIngredients, deletecolname);
 
             gSteps.DataSource = Recipe.GetStepsListByRecipe(recipeid);
-            WindowsFormsUtility.FormatGridForSearchResults(gSteps, "Steps");
+            WindowsFormsUtility.FormatGridForSearchResults(gSteps, "Direction");
             WindowsFormsUtility.AddDeleteButtonToGrid(gSteps, deletecolname);
             WindowsFormsUtility.FormatGridForEdit(gIngredients, "Ingredient");
         }
@@ -180,7 +180,20 @@ namespace RecipeWinForms
         {
             try
             {
-                IngredientRecipe.SaveTable(dtIngredientRecipe, recipeid);
+                IngredientRecipe.SaveTable(dt, recipeid);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Application.ProductName);
+            }
+        }
+
+        //????? - why doesnt it have a blank line to fill in the steps?
+        private void SaveRecipeSteps()
+        {
+            try
+            {
+                StepsRecipe.SaveTable(dt, recipeid);
             }
             catch (Exception ex)
             {
@@ -211,7 +224,7 @@ namespace RecipeWinForms
 
         private void BtnStepsSave_Click(object? sender, EventArgs e)
         {
-
+            SaveRecipeSteps();
         }
 
         private void BtnIngredientsSave_Click(object? sender, EventArgs e)
@@ -222,7 +235,8 @@ namespace RecipeWinForms
         private void BtnChangeStatus_Click(object? sender, EventArgs e)
         {
             var frm = new frmChangeStatus();
-            frm.Show();
+            frm.LoadForm(recipeid);
+
         }
 
 
@@ -231,7 +245,7 @@ namespace RecipeWinForms
         {
             if (gIngredients.Columns[e.ColumnIndex].Name == deletecolname)
             {
-                Delete(e.RowIndex, gSteps, "Steps");
+                Delete(e.RowIndex, gSteps, "Direction");
             }
         }
 
