@@ -102,6 +102,11 @@ namespace RecipeWinForms
                     frmCloneRecipe f = new();
                     newfrm = f;
                 }
+                else if (frmtype == typeof(frmAuto_CreateCookbook))
+                {
+                    frmAuto_CreateCookbook f = new();
+                    newfrm = f;
+                }
                 if (newfrm != null)
                 {
                     newfrm.MdiParent = this;
@@ -141,7 +146,7 @@ namespace RecipeWinForms
 
         private void MnuCookbookAutoCreate_Click(object? sender, EventArgs e)
         {
-
+            OpenForm(typeof(frmAuto_CreateCookbook));
         }
 
         private void MnuCookbooksNew_Click(object? sender, EventArgs e)

@@ -62,6 +62,7 @@ namespace RecipeWinForms
                 dtRecipe.Rows.Add();
             }
             DataTable dtCuisine = Recipe.GetCuisineList();
+
             WindowsFormsUtility.SetListBinding(lstCuisineType, dtCuisine, dtRecipe, "Cuisine");
             WindowsFormsUtility.SetControlBinding(txtRecipeName, bindsource);
             WindowsFormsUtility.SetControlBinding(txtCalories, bindsource);
@@ -70,6 +71,11 @@ namespace RecipeWinForms
             WindowsFormsUtility.SetControlBinding(txtDateArchived, bindsource);
             WindowsFormsUtility.SetControlBinding(txtRecipeStatus, bindsource);
             this.Text = GetRecipeDesc();
+
+            if (txtRecipeName.Text == "")
+            {
+                txtDateDrafted.Text = DateTime.Now.ToString();
+            }
 
             this.Show();
         }

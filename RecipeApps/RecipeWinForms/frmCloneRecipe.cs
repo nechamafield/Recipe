@@ -33,8 +33,6 @@ namespace RecipeWinForms
             BindData(recipeid);
         }
 
-
-        //???????? - the list is comming up in id not name
         private void BindData(int recipeidval)
         {
             recipeid = recipeidval;
