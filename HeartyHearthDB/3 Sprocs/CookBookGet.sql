@@ -5,15 +5,15 @@ begin
 
 	select @CookbookId = isnull(@CookbookId, 0), @IncludeBlank = isnull(@IncludeBlank, 0), @All = isnull(@All, 0)
 
-	select c.CookbookName, Author = concat(u.UserFirstName, ' ', u.UserLastName), NumRecipes = count(r.Recipeid), c.Price
+	select c.CookbookName, Author = concat(u.usersFirstName, ' ', u.usersLastName), NumRecipes = count(r.Recipeid), c.Price
 	from CookBook c
-	join Users u
-	on c.usersid = u.UsersId
+	join users u
+	on c.usersid = u.usersId
 	join Recipe r
-	on r.Usersid = u.UsersId
+	on r.usersid = u.usersId
 	or @All = 1
 	or c.CookbookId =  @CookbookId
-	group by c.CookbookName, u.UserFirstName, u.UserLastName, c.Price
+	group by c.CookbookName, u.usersFirstName, u.usersLastName, c.Price
 	order by c.CookbookName 
 
 end
@@ -30,10 +30,10 @@ select top 1 @id = r.Cookbookname from recipe r
 exec CookbookGet @CookbookName = @Id
 */
 
-select c.CookbookName, Author = concat(u.UserFirstName, ' ', u.UserLastName), NumRecipes = count(r.Recipeid), c.Price
+select c.CookbookName, Author = concat(u.usersFirstName, ' ', u.usersLastName), NumRecipes = count(r.Recipeid), c.Price
 from CookBook c
-join Users u
-on c.usersid = u.UsersId
+join users u
+on c.usersid = u.usersId
 join Recipe r
-on r.Usersid = u.UsersId
-group by c.CookbookName, u.UserFirstName, u.UserLastName, c.Price
+on r.usersid = u.usersId
+group by c.CookbookName, u.usersFirstName, u.usersLastName, c.Price

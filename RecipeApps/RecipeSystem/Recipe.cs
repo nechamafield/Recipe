@@ -36,6 +36,15 @@ namespace RecipeSystem
             //return SQLUtility.GetDataTable("select recipeid, recipename from Recipe");
         }
 
+        public static DataTable GetRecipeListForClone()
+        {
+            DataTable dt;
+            SqlCommand cmd = SQLUtility.GetSQLCommand("CloneRecipeGet");
+            cmd.Parameters["@All"].Value = 1;
+            dt = SQLUtility.GetDataTable(cmd);
+            return dt;
+        }
+
         public static DataTable GetCuisineList()
         {
             DataTable dt;
@@ -74,15 +83,15 @@ namespace RecipeSystem
 
         //KEEP THIS!!
         //make GetIngredientList for when need all ingredients
-        //dont pass in recipeid. should look exactly like this just uncomment it:
-        //public static DataTable GetIngredientList()
-        //{
-        //    DataTable dt;
-        //    SqlCommand cmd = SQLUtility.GetSQLCommand("IngredientGet");
-        //    cmd.Parameters["@All"].Value = 1;
-        //    dt = SQLUtility.GetDataTable(cmd);
-        //    return dt;
-        //}
+        //dont pass in recipeid.should look exactly like this just uncomment it:
+        public static DataTable GetIngredientList()
+        {
+            DataTable dt;
+            SqlCommand cmd = SQLUtility.GetSQLCommand("IngredientGet");
+            cmd.Parameters["@All"].Value = 1;
+            dt = SQLUtility.GetDataTable(cmd);
+            return dt;
+        }
 
         public static DataTable GetStepsListByRecipe(int recipeid)
         {

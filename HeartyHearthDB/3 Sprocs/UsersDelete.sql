@@ -1,14 +1,14 @@
-create or alter procedure dbo.UsersDelete(
-	@UsersId int = 0,
+create or alter procedure dbo.usersDelete(
+	@usersId int = 0,
 	@Message varchar(500) = ''  output
 )
 as
 begin
 	declare @return int = 0
 
-	select @UsersId = isnull(@UsersId,0)
+	select @usersId = isnull(@usersId,0)
 
-	delete users where UsersId = @UsersId
+	delete users where usersId = @usersId
 
 	return @return
 end

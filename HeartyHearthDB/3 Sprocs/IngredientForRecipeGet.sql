@@ -2,7 +2,7 @@ create or alter procedure dbo.IngredientForRecipeGet (@IngredientId int = 0, @Re
 as
 begin
 
-	select r.Recipeid, i.ingredientname,m.Measurementname,  ir.Amount,ir.IngredientSequence 
+	select distinct i.ingredientname, r.Recipeid,  m.Measurementname,  ir.Amount,ir.IngredientSequence 
 	from recipe r
 	join IngredientRecipe ir
 	on ir.Recipeid = r.Recipeid
@@ -31,7 +31,7 @@ select top 1 @id = i.Ingredientid from Ingredient i
 exec IngredientGet @Ingredientid = @Id
 */
 
-
-
+select distinct i.ingredientname from ingredient i 
+	
 
 

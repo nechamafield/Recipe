@@ -63,15 +63,12 @@ namespace RecipeWinForms
             }
             DataTable dtCuisine = Recipe.GetCuisineList();
             WindowsFormsUtility.SetListBinding(lstCuisineType, dtCuisine, dtRecipe, "Cuisine");
-            //DataTable dtusername = Recipe.GetUsersList();
-            //WindowsFormsUtility.SetListBinding(lstUsername, dtusername, dtRecipe, "Users");
             WindowsFormsUtility.SetControlBinding(txtRecipeName, bindsource);
             WindowsFormsUtility.SetControlBinding(txtCalories, bindsource);
             WindowsFormsUtility.SetControlBinding(txtDateDrafted, bindsource);
             WindowsFormsUtility.SetControlBinding(txtDatePublished, bindsource);
             WindowsFormsUtility.SetControlBinding(txtDateArchived, bindsource);
             WindowsFormsUtility.SetControlBinding(txtRecipeStatus, bindsource);
-            //WindowsFormsUtility.SetControlBinding(txtRecipePictureName, bindsource);
             this.Text = GetRecipeDesc();
 
             this.Show();
@@ -236,7 +233,6 @@ namespace RecipeWinForms
         {
             var frm = new frmChangeStatus();
             frm.LoadForm(recipeid);
-
         }
 
 

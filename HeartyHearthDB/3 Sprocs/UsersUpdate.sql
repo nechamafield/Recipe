@@ -1,31 +1,31 @@
-create or alter procedure dbo.UsersUpdate(
-		@UsersId int  output,
-		@UserFirstName varchar (50),
-		@UserLastName varchar (50),
-		@Username varchar (50),
+create or alter procedure dbo.usersUpdate(
+		@usersId int  output,
+		@usersFirstName varchar (50),
+		@usersLastName varchar (50),
+		@usersname varchar (50),
 		@Message varchar(500) = ''  output
 )
 as
 begin
 	declare @return int = 0
 
-	select @UsersId = isnull(@Usersid,0)
+	select @usersId = isnull(@usersid,0)
 	
-	if @UsersId = 0
+	if @usersId = 0
 	begin
-		insert Users(UserFirstName, UserLastName, Username)
-		values(@UserFirstName, @UserLastName, @Username)
+		insert users(usersFirstName, usersLastName, usersname)
+		values(@usersFirstName, @usersLastName, @usersname)
 
-		select @UsersId= scope_identity()
+		select @usersId= scope_identity()
 	end
 	else
 	begin
-		update Users
+		update users
 		set
-			UserFirstName = @UserFirstName,
-			UserLastName = @UserLastName,
-			Username = @Username
-		where UsersId = @UsersId
+			usersFirstName = @usersFirstName,
+			usersLastName = @usersLastName,
+			usersname = @usersname
+		where usersId = @usersId
 	end
 	
 	return @return

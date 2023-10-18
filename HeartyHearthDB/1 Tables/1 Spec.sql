@@ -42,14 +42,14 @@ pictures - we have pic of every ingredint, recipie, meal, and book
 
 meals and cookbooks are really just a collection of recipes so dont need major status like recipies. we just need active (on the site) or inactive (not on the site) dont need date 
 
-we have staff. each staff is a user
+we have staff. each staff is a users
 staff - first name
       - last name
-      - username
+      - usersname
     we are managing the password and login seperately so not gonna ask you to work on that now 
 
-anything that is created in the system, we have to know who the user is (who is the staff member - we call them users)
-    so, a recipie was created by a user, a meal was created by a user, and a book is created by a user - this wa y we can take a look at what everyone is working on, and this is sufficient
+anything that is created in the system, we have to know who the users is (who is the staff member - we call them users)
+    so, a recipie was created by a users, a meal was created by a users, and a book is created by a users - this wa y we can take a look at what everyone is working on, and this is sufficient
 
 we sometimes clone recipies. i am going to provide that later, so in database there should be a way to clone dif items.
 */

@@ -12,7 +12,7 @@ drop table if exists ingredientrecipe
 drop table if exists measurement
 drop table if exists Recipe
 drop table if exists Cuisine
-drop table if exists Users
+drop table if exists users
 drop table if EXISTS Ingredient
 
 create table dbo.Ingredient(
@@ -23,15 +23,15 @@ create table dbo.Ingredient(
     ingredientpicturename as concat('Ingredient-', replace(ingredientname, ' ', '_'), '.jpg') persisted
 )
 
-CREATE TABLE dbo.Users(
-    UsersId int not null IDENTITY PRIMARY KEY,
-    UserFirstName VARCHAR(30) not null
-        CONSTRAINT c_UserFirstName_cannot_be_Blank CHECK (userfirstname <> ''),
-    UserLastName VARCHAR(30) not null
-        CONSTRAINT c_UserLastName_cannot_be_Blank CHECK (userlastname <> ''),
-    Username VARCHAR(30) not NULL
-        CONSTRAINT c_UserName_cannot_be_Blank CHECK (username <> '')
-        CONSTRAINT u_User_UserName UNIQUE 
+CREATE TABLE dbo.users(
+    usersId int not null IDENTITY PRIMARY KEY,
+    usersFirstName VARCHAR(30) not null
+        CONSTRAINT c_usersFirstName_cannot_be_Blank CHECK (usersfirstname <> ''),
+    usersLastName VARCHAR(30) not null
+        CONSTRAINT c_usersLastName_cannot_be_Blank CHECK (userslastname <> ''),
+    usersname VARCHAR(30) not NULL
+        CONSTRAINT c_usersName_cannot_be_Blank CHECK (usersname <> '')
+        CONSTRAINT u_users_usersName UNIQUE 
         
 )
 
@@ -44,7 +44,7 @@ create table dbo.Cuisine(
 
 create table dbo.Recipe(
     Recipeid int not null IDENTITY PRIMARY KEY,
-    Usersid int not null CONSTRAINT f_User_Usersid FOREIGN KEY REFERENCES users(UsersId),
+    usersid int not null CONSTRAINT f_users_usersid FOREIGN KEY REFERENCES users(usersId),
     Cuisineid int not null CONSTRAINT f_Cuisine_Cuisineid FOREIGN KEY REFERENCES Cuisine(Cuisineid),
     RecipeName VARCHAR(30) not NULL
         CONSTRAINT c_RecipeName_cannot_be_Blank CHECK (Recipename <> '')
@@ -106,7 +106,7 @@ create table dbo.Course(
 
 create table dbo.Meal(
     Mealid int not null IDENTITY PRIMARY KEY,
-    usersid int not null CONSTRAINT f_Meal_Usersid FOREIGN KEY REFERENCES users(Usersid),
+    usersid int not null CONSTRAINT f_Meal_usersid FOREIGN KEY REFERENCES users(usersid),
     MealName VARCHAR(30)
         CONSTRAINT c_Meal_Name_cannot_be_Blank CHECK (mealname <> '')
         CONSTRAINT u_Meal_MealName UNIQUE,
@@ -132,7 +132,7 @@ create table dbo.CourseMealRecipe(
 
 create table dbo.CookBook(
     Cookbookid int not null IDENTITY PRIMARY KEY,
-    usersid int not null CONSTRAINT f_Cookbook_Usersid FOREIGN KEY REFERENCES users(Usersid),
+    usersid int not null CONSTRAINT f_Cookbook_usersid FOREIGN KEY REFERENCES users(usersid),
     CookbookName varchar(50) not null
         CONSTRAINT c_CookbookName_cannot_be_blank CHECK (cookbookname <> '')
         CONSTRAINT u_Cookbook_CookBookName UNIQUE,

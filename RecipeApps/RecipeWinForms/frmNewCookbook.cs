@@ -34,7 +34,7 @@ namespace RecipeWinForms
 
         private void BindData()
         {
-            gRecipe.DataSource = Cookbook.GetRecipeListForCookbooks(cookbookid);
+            gRecipe.DataSource = Cookbook.GetRecipeListForCookbooks();
             WindowsFormsUtility.FormatGridForSearchResults(gRecipe, "Cookbook");
         }
 
@@ -49,7 +49,7 @@ namespace RecipeWinForms
                 dtcookbook.Rows.Add();
             }
             DataTable dtUser = Cookbook.GetUsersList();
-            WindowsFormsUtility.SetListBinding(lstUser, dtUser, dtcookbook, "Users");
+            WindowsFormsUtility.SetListBinding(lstUsersCompleteName, dtUser, dtcookbook, "Users");
             WindowsFormsUtility.SetControlBinding(txtCookbookName, bindsource);
             WindowsFormsUtility.SetControlBinding(txtPrice, bindsource);
             WindowsFormsUtility.SetControlBinding(txtDateCreated, bindsource);

@@ -41,5 +41,7 @@ namespace RecipeSystem
             SQLUtility.SetParameterValue(cmd, $"@{tablename}Id", id);
             SQLUtility.ExecuteSQL(cmd);
         }
+
+        
     }
 }

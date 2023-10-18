@@ -97,6 +97,11 @@ namespace RecipeWinForms
                     frmChangeStatus f = new();
                     newfrm = f;
                 }
+                else if (frmtype == typeof(frmCloneRecipe))
+                {
+                    frmCloneRecipe f = new();
+                    newfrm = f;
+                }
                 if (newfrm != null)
                 {
                     newfrm.MdiParent = this;
@@ -156,7 +161,7 @@ namespace RecipeWinForms
 
         private void MnuRecipeClone_Click(object? sender, EventArgs e)
         {
-
+            OpenForm(typeof(frmCloneRecipe));
         }
 
         private void MnuRecipeNew_Click(object? sender, EventArgs e)

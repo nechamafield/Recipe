@@ -15,7 +15,7 @@ namespace RecipeWinForms
         {
             DataTable dt = new();
             SqlCommand cmd = SQLUtility.GetSQLCommand("CookbookGet");
-            cmd.Parameters["@RecipeId"].Value = cookbookid;
+            cmd.Parameters["@CookbookId"].Value = cookbookid;
             dt = SQLUtility.GetDataTable(cmd);
             return dt;
         }
@@ -38,7 +38,7 @@ namespace RecipeWinForms
             return dt;
         }
 
-        public static DataTable GetRecipeListForCookbooks(int cookbookid)
+        public static DataTable GetRecipeListForCookbooks()
         {
             DataTable dt = new();
             SqlCommand cmd = SQLUtility.GetSQLCommand("CookbookRecipeGet");

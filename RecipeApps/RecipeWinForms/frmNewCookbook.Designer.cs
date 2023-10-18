@@ -30,18 +30,18 @@
         {
             tblMain = new TableLayoutPanel();
             btnSave = new Button();
+            btnDelete = new Button();
             lblCookbookName = new Label();
             lblUser = new Label();
             lblPrice = new Label();
             lblActive = new Label();
-            lstUser = new ComboBox();
             txtCookbookName = new TextBox();
-            btnDelete = new Button();
-            txtPrice = new TextBox();
+            lstUsersCompleteName = new ComboBox();
             tblPrice = new TableLayoutPanel();
-            lblDateCreated = new Label();
-            tableLayoutPanel1 = new TableLayoutPanel();
+            txtPrice = new TextBox();
             txtDateCreated = new TextBox();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            lblDateCreated = new Label();
             chkActive = new CheckBox();
             tblRecipe = new TableLayoutPanel();
             btnSaveRecipe = new Button();
@@ -66,7 +66,7 @@
             tblMain.Controls.Add(lblPrice, 0, 4);
             tblMain.Controls.Add(lblActive, 0, 5);
             tblMain.Controls.Add(txtCookbookName, 1, 1);
-            tblMain.Controls.Add(lstUser, 1, 2);
+            tblMain.Controls.Add(lstUsersCompleteName, 1, 2);
             tblMain.Controls.Add(tblPrice, 1, 4);
             tblMain.Controls.Add(tableLayoutPanel1, 1, 3);
             tblMain.Controls.Add(chkActive, 1, 5);
@@ -92,6 +92,16 @@
             btnSave.TabIndex = 0;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = false;
+            // 
+            // btnDelete
+            // 
+            btnDelete.BackColor = SystemColors.ControlLight;
+            btnDelete.Location = new Point(218, 3);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(126, 48);
+            btnDelete.TabIndex = 1;
+            btnDelete.Text = "Delete";
+            btnDelete.UseVisualStyleBackColor = false;
             // 
             // lblCookbookName
             // 
@@ -137,14 +147,6 @@
             lblActive.Text = "Active";
             lblActive.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // lstUser
-            // 
-            lstUser.FormattingEnabled = true;
-            lstUser.Location = new Point(218, 97);
-            lstUser.Name = "lstUser";
-            lstUser.Size = new Size(203, 36);
-            lstUser.TabIndex = 7;
-            // 
             // txtCookbookName
             // 
             txtCookbookName.Dock = DockStyle.Fill;
@@ -153,22 +155,13 @@
             txtCookbookName.Size = new Size(568, 34);
             txtCookbookName.TabIndex = 6;
             // 
-            // btnDelete
+            // lstUsersCompleteName
             // 
-            btnDelete.BackColor = SystemColors.ControlLight;
-            btnDelete.Location = new Point(218, 3);
-            btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(126, 48);
-            btnDelete.TabIndex = 1;
-            btnDelete.Text = "Delete";
-            btnDelete.UseVisualStyleBackColor = false;
-            // 
-            // txtPrice
-            // 
-            txtPrice.Location = new Point(3, 3);
-            txtPrice.Name = "txtPrice";
-            txtPrice.Size = new Size(182, 34);
-            txtPrice.TabIndex = 9;
+            lstUsersCompleteName.FormattingEnabled = true;
+            lstUsersCompleteName.Location = new Point(218, 97);
+            lstUsersCompleteName.Name = "lstUsersCompleteName";
+            lstUsersCompleteName.Size = new Size(203, 36);
+            lstUsersCompleteName.TabIndex = 7;
             // 
             // tblPrice
             // 
@@ -187,16 +180,19 @@
             tblPrice.Size = new Size(568, 46);
             tblPrice.TabIndex = 10;
             // 
-            // lblDateCreated
+            // txtPrice
             // 
-            lblDateCreated.Anchor = AnchorStyles.Left;
-            lblDateCreated.AutoSize = true;
-            lblDateCreated.Location = new Point(287, 2);
-            lblDateCreated.Name = "lblDateCreated";
-            lblDateCreated.Size = new Size(130, 28);
-            lblDateCreated.TabIndex = 11;
-            lblDateCreated.Text = "Date Created:";
-            lblDateCreated.TextAlign = ContentAlignment.MiddleLeft;
+            txtPrice.Location = new Point(3, 3);
+            txtPrice.Name = "txtPrice";
+            txtPrice.Size = new Size(182, 34);
+            txtPrice.TabIndex = 9;
+            // 
+            // txtDateCreated
+            // 
+            txtDateCreated.Location = new Point(287, 3);
+            txtDateCreated.Name = "txtDateCreated";
+            txtDateCreated.Size = new Size(162, 34);
+            txtDateCreated.TabIndex = 10;
             // 
             // tableLayoutPanel1
             // 
@@ -212,12 +208,16 @@
             tableLayoutPanel1.Size = new Size(568, 33);
             tableLayoutPanel1.TabIndex = 12;
             // 
-            // txtDateCreated
+            // lblDateCreated
             // 
-            txtDateCreated.Location = new Point(287, 3);
-            txtDateCreated.Name = "txtDateCreated";
-            txtDateCreated.Size = new Size(162, 34);
-            txtDateCreated.TabIndex = 10;
+            lblDateCreated.Anchor = AnchorStyles.Left;
+            lblDateCreated.AutoSize = true;
+            lblDateCreated.Location = new Point(287, 2);
+            lblDateCreated.Name = "lblDateCreated";
+            lblDateCreated.Size = new Size(130, 28);
+            lblDateCreated.TabIndex = 11;
+            lblDateCreated.Text = "Date Created:";
+            lblDateCreated.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // chkActive
             // 
@@ -296,7 +296,7 @@
         private Label lblActive;
         private Button btnDelete;
         private TextBox txtCookbookName;
-        private ComboBox lstUser;
+        private ComboBox lstUsersCompleteName;
         private TableLayoutPanel tblPrice;
         private TextBox txtPrice;
         private TextBox txtDateCreated;

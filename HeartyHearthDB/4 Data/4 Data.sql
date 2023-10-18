@@ -54,7 +54,7 @@ union select 'Corn Starch'
 
 SELECT * from ingredient i 
 
-insert users(userfirstname, userlastname, username)
+insert users(usersfirstname, userslastname, usersname)
 SELECT 'Nechama', 'Field', 'nf3003050'
 union select 'Chana', 'Adler', 'ca4256985'
 union select 'Bracha', 'Fischer', 'bf425!'
@@ -74,7 +74,7 @@ select * from Cuisine
 
 ;
 with x as(
-    select username = 'nf3003050', Cuisinetype = 'American' ,recipename = 'Chocolate Chip Cookies',calories = 100, datedrafted = '12/03/15', datepublished = '12/03/17 19:54:44.123', DateArchived = '12/03/22'
+    select usersname = 'nf3003050', Cuisinetype = 'American' ,recipename = 'Chocolate Chip Cookies',calories = 100, datedrafted = '12/03/15', datepublished = '12/03/17 19:54:44.123', DateArchived = '12/03/22'
     UNION select 'ca4256985', 'French', 'Apple Yogurt Smoothie', 150, '12/15/13', '11/11/19 06:56:36.562', '12/29/21'
     union select 'bf425!', 'English', 'Cheese Bread', 230,  '01/13/21', '10/26/21 12:45:32.125', null
     union select 'mh7770109', 'Hungarian', 'Butter Muffins', 190,  '06/28/03', null, '09/25/09'
@@ -84,10 +84,10 @@ with x as(
 )
 
 insert recipe(usersid, Cuisineid, recipename, calories,  datedrafted, datepublished, datearchived)
-select u.UsersId, c.Cuisineid, x.recipename,x.calories, x.datedrafted, x.datepublished, x.DateArchived
+select u.usersId, c.Cuisineid, x.recipename,x.calories, x.datedrafted, x.datepublished, x.DateArchived
 from x  
 join users u 
-on x.username = u.Username
+on x.usersname = u.usersname
 join Cuisine c 
 on c.Cuisinetype = x.Cuisinetype
 
@@ -235,17 +235,17 @@ select * from course
 
 ;
 with x as(
-    select username = 'nf3003050', mealname = 'Breakfast Bash', isactive = 1 
+    select usersname = 'nf3003050', mealname = 'Breakfast Bash', isactive = 1 
     union select 'bf425!', 'Supper', 1
     union select 'mh7770109', 'Lunch', 1
     union select 'rv3561%', 'Brunch', 0
 )
 
 insert meal(usersid, mealname, isactive)
-select u.UsersId, x.mealname,  x.isactive
+select u.usersId, x.mealname,  x.isactive
 from x 
-join Users u 
-on u.Username = x.username
+join users u 
+on u.usersname = x.usersname
 
 SELECT * from meal m 
 
@@ -308,17 +308,17 @@ select * from coursemealrecipe
 
 ;
 with x as(
-    select username = 'nf3003050', cookbookname = 'Treats for two', price = 30, isactive = 1
+    select usersname = 'nf3003050', cookbookname = 'Treats for two', price = 30, isactive = 1
     union select 'ca4256985', 'The Bakers Taster', 39.99, 0
     union select 'rv3561%', 'The Cookbook', 25, 1
     union select 'mh7770109', 'Cookoo Cooks', 45.89, 1
 )
 
 insert cookbook(usersid, cookbookname, price, isactive)
-SELECT u.UsersId, x.cookbookname, x.price, x.isactive
+SELECT u.usersId, x.cookbookname, x.price, x.isactive
 from x 
 join users u 
-on u.Username = x.username
+on u.usersname = x.usersname
 
 select * from Cookbook cb 
 

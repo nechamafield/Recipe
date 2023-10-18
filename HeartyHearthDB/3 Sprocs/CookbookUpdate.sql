@@ -1,6 +1,6 @@
 create or alter proc dbo.CookbookUpdate(
 	@Cookbookid int ,
-	@Usersid int ,
+	@usersid int ,
 	@CookbookName varchar (30),
 	@Price int,
 	@DateCreated date,
@@ -17,7 +17,7 @@ begin
 
 		insert CookBook(usersid, CookbookName, Price, DateCreated, IsActive)
 
-		values(@Usersid, @CookbookName, @Price, @DateCreated, @IsAvtive)
+		values(@usersid, @CookbookName, @Price, @DateCreated, @IsAvtive)
 
 		select @Cookbookid = SCOPE_IDENTITY()
 	end
@@ -25,10 +25,10 @@ begin
 	begin
 		update CookBook
 		set
-			usersid = 	@Usersid,
+			usersid = @usersid,
 			cookbookname = 	@CookbookName,
 			price = @Price, 
-			datecreated = 	@DateCreated, 
+			datecreated = @DateCreated, 
 			isactive = @IsAvtive 
 		where CookBookId = @Cookbookid
 	end

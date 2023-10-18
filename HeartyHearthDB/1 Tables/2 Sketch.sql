@@ -4,12 +4,12 @@ ingredient
     ingredientid
     ingredientname varchar(30) - not null not blank, unique
     ingredientpicturename as default ('ingredient'-ingredientname.jpg)
-user
-    userid
-    userfirstname varchar(30) - not blank
-    userlastname varchar(30) - not blank
-    username varchar(30) - not blank, unique
-        unique - firstname, lastname, username
+users
+    usersid
+    usersfirstname varchar(30) - not blank
+    userslastname varchar(30) - not blank
+    usersname varchar(30) - not blank, unique
+        unique - firstname, lastname, usersname
 Cousine
     cousineid
     cousinetype varchar(30) - not blank
@@ -20,7 +20,7 @@ recipe
                             when > datepublished and < datearchived then 'published'
                             else 'archived'
                             end
-    userid
+    usersid
     cousineid
     recipename varchar(30) - not blank, unique
     recipepicturename as (recipe-recipename.jpg)
@@ -51,7 +51,7 @@ course
         unique - coursetype, coursesequence
 meal
     mealid
-    userid
+    usersid
     mealname varchar(30) - not blank, unique
     mealpicutename as (meal-mealname.jpg)
     mealstatus bit 
@@ -69,7 +69,7 @@ coursemealrecipe
         unique - recipeid, ismain 
 cookbook
     cookbookid
-    userid
+    usersid
     cookbookname varchar(50) - not blank, unique
     cookbookpicturename as (cookbooktype-cookbookname.jpg)
     price decimal - not blank
