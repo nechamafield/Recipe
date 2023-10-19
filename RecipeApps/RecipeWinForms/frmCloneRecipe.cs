@@ -45,8 +45,9 @@ namespace RecipeWinForms
             }
             DataTable dtselectrecipe = Recipe.GetRecipeListForOnlyRecipes();
             WindowsFormsUtility.SetListBinding(lstRecipeName, dtselectrecipe, dtRecipe, "Recipe");
-
-
+            
+            //add clone to recipename - this doesnt work
+            lstRecipeName.Text = lstRecipeName + " - Cloned";
         }
 
         private void ShowRecipeForm(int rowindex)
@@ -55,13 +56,12 @@ namespace RecipeWinForms
             if (rowindex > -1)
             {
                 id = WindowsFormsUtility.GetIdFromComboBox(lstRecipeName);
+                ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), id);
             }
-            if (this.MdiParent != null && this.MdiParent is frmRecipeList)
+            if (id == 0)   
             {
                 ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), id);
             }
-            frmRecipe frm = new();
-            frm.LoadForm(id);
         }
 
         private void BtnClone_Click(object? sender, EventArgs e)

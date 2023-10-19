@@ -39,6 +39,7 @@ namespace RecipeWinForms
             WindowsFormsUtility.AddComboBoxToGridForRecipe(gRecipe, DataMaintenance.GetDataList("CloneRecipe"), "RecipeName", "RecipeName");
             WindowsFormsUtility.AddDeleteButtonToGrid(gRecipe, deletecolname);
             WindowsFormsUtility.FormatGridForSearchResults(gRecipe, "Recipe");
+
             //foreach (DataGridViewColumn col in gRecipe.Columns)
             //{
             //    if (col.Name.EndsWith("name"))

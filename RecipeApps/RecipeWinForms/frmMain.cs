@@ -13,7 +13,6 @@ namespace RecipeWinForms
 {
     public partial class frmMain : Form
     {
-        Form? newfrm = null;
         public frmMain()
         {
             InitializeComponent();

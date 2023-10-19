@@ -48,13 +48,12 @@ namespace RecipeWinForms
             if (rowindex > -1)
             {
                 id = WindowsFormsUtility.GetIdFromGrid(gRecipeList, rowindex, "RecipeId");
+                ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), id);
             }
-            if (this.MdiParent != null && this.MdiParent is frmRecipeList)
+            if (id == 0)   //this.MdiParent != null && this.MdiParent is frmRecipeList)
             {
                 ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), id);
             }
-            frmRecipe frm = new();
-            frm.LoadForm(id);
         }
 
         private void GRecipeList_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)

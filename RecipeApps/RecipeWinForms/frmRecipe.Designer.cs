@@ -336,7 +336,7 @@
             tabControl1.Location = new Point(3, 289);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(852, 420);
+            tabControl1.Size = new Size(852, 427);
             tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -345,7 +345,7 @@
             tabPage1.Location = new Point(4, 37);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(844, 379);
+            tabPage1.Size = new Size(844, 386);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Ingredients";
             tabPage1.UseVisualStyleBackColor = true;
@@ -362,7 +362,7 @@
             tblIngredients.RowCount = 2;
             tblIngredients.RowStyles.Add(new RowStyle());
             tblIngredients.RowStyles.Add(new RowStyle(SizeType.Percent, 75.10917F));
-            tblIngredients.Size = new Size(838, 373);
+            tblIngredients.Size = new Size(838, 380);
             tblIngredients.TabIndex = 0;
             // 
             // btnIngredientsSave
@@ -384,7 +384,7 @@
             gIngredients.Name = "gIngredients";
             gIngredients.RowHeadersWidth = 51;
             gIngredients.RowTemplate.Height = 29;
-            gIngredients.Size = new Size(832, 324);
+            gIngredients.Size = new Size(832, 331);
             gIngredients.TabIndex = 1;
             // 
             // tabPage2
@@ -393,7 +393,7 @@
             tabPage2.Location = new Point(4, 37);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(844, 379);
+            tabPage2.Size = new Size(844, 386);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Steps";
             tabPage2.UseVisualStyleBackColor = true;
@@ -410,7 +410,7 @@
             tblSteps.RowCount = 2;
             tblSteps.RowStyles.Add(new RowStyle());
             tblSteps.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tblSteps.Size = new Size(838, 373);
+            tblSteps.Size = new Size(838, 380);
             tblSteps.TabIndex = 0;
             // 
             // btnStepsSave
@@ -432,14 +432,14 @@
             gSteps.Name = "gSteps";
             gSteps.RowHeadersWidth = 51;
             gSteps.RowTemplate.Height = 29;
-            gSteps.Size = new Size(832, 321);
+            gSteps.Size = new Size(832, 328);
             gSteps.TabIndex = 1;
             // 
             // frmRecipe
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(862, 713);
+            ClientSize = new Size(862, 720);
             Controls.Add(tabControl1);
             Controls.Add(tblMain);
             Name = "frmRecipe";

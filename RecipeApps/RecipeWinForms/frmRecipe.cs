@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.Windows.Forms;
 using System.Xml.Linq;
 using CPUFramework;
 using CPUWindowsFormsFramework;
@@ -16,7 +17,6 @@ namespace RecipeWinForms
         DataTable dt = new();
         string deletecolname = "deletecol";
         int recipeid = 0;
-
         public frmRecipe()
         {
             InitializeComponent();
@@ -77,6 +77,7 @@ namespace RecipeWinForms
             WindowsFormsUtility.SetControlBinding(txtDateArchived, bindsource);
             WindowsFormsUtility.SetControlBinding(txtRecipeStatus, bindsource);
             this.Text = GetRecipeDesc();
+
             this.Show();
         }
         private bool Save()
@@ -236,8 +237,25 @@ namespace RecipeWinForms
             SaveRecipeIngredients();
         }
 
+        private void ShowChangeStatusForm(int rowindex)
+        {
+            if (rowindex > -1)
+            {
+                recipeid = WindowsFormsUtility.GetIdFromGrid(gIngredients, rowindex, "RecipeId");
+                ((frmMain)this.MdiParent).OpenForm(typeof(frmChangeStatus), recipeid);
+            }
+            if (recipeid == 0)   //this.MdiParent != null && this.MdiParent is frmCookbookList)
+            {
+                ((frmMain)this.MdiParent).OpenForm(typeof(frmChangeStatus), recipeid);
+            }
+        }
+
         private void BtnChangeStatus_Click(object? sender, EventArgs e)
         {
+            //this open blank form inside mdiparent
+            ShowChangeStatusForm(recipeid);
+
+            //this opens correct form popped out
             var frm = new frmChangeStatus();
             frm.LoadForm(recipeid);
         }
