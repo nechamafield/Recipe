@@ -49,6 +49,12 @@ namespace RecipeWinForms
             WindowsFormsUtility.FormatGridForSearchResults(gSteps, "Direction");
             WindowsFormsUtility.AddDeleteButtonToGrid(gSteps, deletecolname);
             WindowsFormsUtility.FormatGridForEdit(gIngredients, "Ingredient");
+
+            if (txtRecipeName.Text == "")
+            {
+                txtDateDrafted.Text = DateTime.Now.ToString();
+                SetButtonsEnabledBasedOnNewRecord();
+            }
         }
 
         public void LoadForm(int recipeidval)
@@ -71,12 +77,6 @@ namespace RecipeWinForms
             WindowsFormsUtility.SetControlBinding(txtDateArchived, bindsource);
             WindowsFormsUtility.SetControlBinding(txtRecipeStatus, bindsource);
             this.Text = GetRecipeDesc();
-
-            if (txtRecipeName.Text == "")
-            {
-                txtDateDrafted.Text = DateTime.Now.ToString();
-            }
-
             this.Show();
         }
         private bool Save()
@@ -108,7 +108,8 @@ namespace RecipeWinForms
         {
             bool b = recipeid == 0 ? false : true;
             btnDelete.Enabled = b;
-            btnSave.Enabled = b;
+            btnIngredientsSave.Enabled = b;
+            btnStepsSave.Enabled = b;
         }
 
         private string GetRecipeDesc()

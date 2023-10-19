@@ -15,7 +15,7 @@ namespace RecipeWinForms
 {
     public partial class frmDataMaintenance : Form
     {
-        private enum TableTypeEnum { Users, Cuisine, Ingredients, Measurements, Courses }
+        private enum TableTypeEnum { Users, Cuisine, Ingredient, Measurement, Courses }
         DataTable dtlist = new();
         TableTypeEnum currenttabletype = TableTypeEnum.Users;
         string deletecolname = "deletecol";
@@ -42,11 +42,11 @@ namespace RecipeWinForms
             }
             else if (optIngredients.Checked == true)
             {
-                currenttabletype = TableTypeEnum.Ingredients;
+                currenttabletype = TableTypeEnum.Ingredient;
             }
             else if (optMeasurements.Checked == true)
             {
-                currenttabletype = TableTypeEnum.Measurements;
+                currenttabletype = TableTypeEnum.Measurement;
             }
             else if (optCourses.Checked == true)
             {
@@ -125,8 +125,8 @@ namespace RecipeWinForms
             }
             optUsers.Tag = TableTypeEnum.Users;
             optCuisines.Tag = TableTypeEnum.Cuisine;
-            optIngredients.Tag = TableTypeEnum.Ingredients;
-            optMeasurements.Tag = TableTypeEnum.Measurements;
+            optIngredients.Tag = TableTypeEnum.Ingredient;
+            optMeasurements.Tag = TableTypeEnum.Measurement;
             optCourses.Tag = TableTypeEnum.Courses;
         }
 

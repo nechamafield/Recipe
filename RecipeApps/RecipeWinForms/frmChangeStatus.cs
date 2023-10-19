@@ -57,17 +57,47 @@ namespace RecipeWinForms
                 btnArchive.Enabled = false;
             }
         }
-    
+
 
         //private void BtnStatus_Click(object? sender, EventArgs e)
         //{
-        //    Button btn = (Button)sender;
-        //    if (btn.Text == "Draft")
+        //    var response = MessageBox.Show("Are you sure you want to change this recipe status?", "Hearty Hearth", MessageBoxButtons.YesNo);
+        //    if (response == DialogResult.No)
         //    {
-        //        txtPublished.Text = "";
-        //        txtArchived.Text = "";
+        //        return;
         //    }
-        //    //?? LoadForm(recipeid); - to refresh
+        //    Application.UseWaitCursor = true;
+        //    Button btn = (Button)sender;
+        //    try
+        //    {
+        //        if (btn.Text == "Draft")
+        //        {
+        //            Recipe.SaveRecipeStatus(dtrecipe, "Drafted");
+        //        }
+        //        else if (btn.Text == "Publish")
+        //        {
+        //            Recipe.SaveRecipeStatus(dtrecipe, "Published");
+        //        }
+        //        else if (btn.Text == "Archive")
+        //        {
+        //            Recipe.SaveRecipeStatus(dtrecipe, "Archived");
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "Hearty Hearth");
+        //    }
+        //    finally
+        //    {
+        //        Application.UseWaitCursor = false;
+        //    }
+
+        //    //{
+        //    //    txtPublished.Text = "";
+        //    //    txtArchived.Text = "";
+        //    //}
+        //     LoadForm(recipeid);// - to refresh
         //}
 
         private void BtnDraft_Click(object? sender, EventArgs e)
@@ -80,9 +110,11 @@ namespace RecipeWinForms
             Application.UseWaitCursor = true;
             try
             {
-                txtDatePublished.Text = "";
-                txtDateArchived.Text = "";
-                btnDraft.Enabled = false;
+                Recipe.SaveRecipeStatus(dtrecipe, "Drafted");
+                
+                //txtDatePublished.Text = "";
+                //txtDateArchived.Text = "";
+                //btnDraft.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -92,6 +124,7 @@ namespace RecipeWinForms
             {
                 Application.UseWaitCursor = false;
             }
+            //?? LoadForm(recipeid);
         }
 
         private void BtnPublish_Click(object? sender, EventArgs e)
@@ -104,8 +137,9 @@ namespace RecipeWinForms
             Application.UseWaitCursor = true;
             try
             {
-                txtDateArchived.Text = "";
-                btnPublish.Enabled = false;
+                Recipe.SaveRecipeStatus(dtrecipe, "Published");
+                //txtDateArchived.Text = "";
+                //btnPublish.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -115,6 +149,7 @@ namespace RecipeWinForms
             {
                 Application.UseWaitCursor = false;
             }
+            //?? LoadForm(recipeid);
         }
 
         private void BtnArchive_Click(object? sender, EventArgs e)
@@ -127,7 +162,8 @@ namespace RecipeWinForms
             Application.UseWaitCursor = true;
             try
             {
-                btnArchive.Enabled = false;
+                Recipe.SaveRecipeStatus(dtrecipe, "Archived");
+                //btnArchive.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -137,6 +173,7 @@ namespace RecipeWinForms
             {
                 Application.UseWaitCursor = false;
             }
+            //?? LoadForm(recipeid);
         }
 
     }

@@ -34,8 +34,24 @@ namespace RecipeWinForms
 
         private void BindData()
         {
-            gRecipe.DataSource = Cookbook.GetRecipeListForCookbooks();
-            WindowsFormsUtility.FormatGridForSearchResults(gRecipe, "Cookbook");
+            gRecipe.Columns.Clear();
+            gRecipe.DataSource = Recipe.GetRecipeListForOnlyRecipes();
+            WindowsFormsUtility.AddComboBoxToGridForRecipe(gRecipe, DataMaintenance.GetDataList("CloneRecipe"), "RecipeName", "RecipeName");
+            WindowsFormsUtility.AddDeleteButtonToGrid(gRecipe, deletecolname);
+            WindowsFormsUtility.FormatGridForSearchResults(gRecipe, "Recipe");
+            //foreach (DataGridViewColumn col in gRecipe.Columns)
+            //{
+            //    if (col.Name.EndsWith("name"))
+            //    {
+            //        col.Visible = false;
+            //    }
+            //}
+
+            if (txtCookbookName.Text == "")
+            {
+                txtDateCreated.Text = DateTime.Now.ToString();
+                SetButtonsEnabledBasedOnNewRecord();
+            }
         }
 
         public void LoadForm(int cookbookidval)
@@ -53,15 +69,29 @@ namespace RecipeWinForms
             WindowsFormsUtility.SetControlBinding(txtCookbookName, bindsource);
             WindowsFormsUtility.SetControlBinding(txtPrice, bindsource);
             WindowsFormsUtility.SetControlBinding(txtDateCreated, bindsource);
+            WindowsFormsUtility.SetControlBinding(chkActive, bindsource);
+
+            this.Text = GetCookbookDesc();
 
             this.Show();
+        }
+
+        private string GetCookbookDesc()
+        {
+            string value = "New Cookbook";
+            int pkvalue = SQLUtility.GetValueFromFirstRowAsInt(dtcookbook, "CookbookId");
+            if (pkvalue > 0)
+            {
+                value = SQLUtility.GetValueFromFirstRowAsInt(dtcookbook, "NumRecipes") + " " + SQLUtility.GetValueFromFirstRowAsString(dtcookbook, "CookbookName");
+            }
+            return value;
         }
 
         private void SetButtonsEnabledBasedOnNewRecord()
         {
             bool b = cookbookid == 0 ? false : true;
             btnDelete.Enabled = b;
-            btnSave.Enabled = b;
+            btnSaveRecipe.Enabled = b;
         }
 
         private bool Save()

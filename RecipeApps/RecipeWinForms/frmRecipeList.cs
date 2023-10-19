@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.DirectoryServices.ActiveDirectory;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -32,6 +33,13 @@ namespace RecipeWinForms
         {
             gRecipeList.DataSource = Recipe.GetRecipeList();
             WindowsFormsUtility.FormatGridForSearchResults(gRecipeList, "Recipe");
+            foreach (DataGridViewColumn col in gRecipeList.Columns)
+            {
+                if (col.Name.StartsWith("Date"))
+                {
+                    col.Visible = false;
+                }
+            }
         }
 
         private void ShowRecipeForm(int rowindex)
@@ -56,6 +64,7 @@ namespace RecipeWinForms
 
         private void BtnNewRecipe_Click(object? sender, EventArgs e)
         {
+            
             ShowRecipeForm(-1);
         }
 

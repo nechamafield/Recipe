@@ -1,9 +1,12 @@
-﻿using CPUWindowsFormsFramework;
+﻿using CPUFramework;
+using CPUWindowsFormsFramework;
 using RecipeSystem;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -31,6 +34,13 @@ namespace RecipeWinForms
         {
             gCookbookList.DataSource = Cookbook.GetCookbooksList();
             WindowsFormsUtility.FormatGridForSearchResults(gCookbookList, "Cookbook");
+            foreach (DataGridViewColumn col in gCookbookList.Columns)
+            {
+                if (col.Name.EndsWith("Created") || col.Name.EndsWith("Active"))
+                {
+                    col.Visible = false;
+                }
+            }
         }
 
         private void ShowCookbookForm(int rowindex)

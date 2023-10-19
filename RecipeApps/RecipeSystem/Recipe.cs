@@ -36,7 +36,7 @@ namespace RecipeSystem
             //return SQLUtility.GetDataTable("select recipeid, recipename from Recipe");
         }
 
-        public static DataTable GetRecipeListForClone()
+        public static DataTable GetRecipeListForOnlyRecipes()
         {
             DataTable dt;
             SqlCommand cmd = SQLUtility.GetSQLCommand("CloneRecipeGet");
@@ -66,7 +66,7 @@ namespace RecipeSystem
         public static DataTable GetMealsList()
         {
             DataTable dt;
-            SqlCommand cmd = SQLUtility.GetSQLCommand("MealsGet");
+            SqlCommand cmd = SQLUtility.GetSQLCommand("MealGet");
             cmd.Parameters["@All"].Value = 1;
             dt = SQLUtility.GetDataTable(cmd);
             return dt;
@@ -127,6 +127,31 @@ namespace RecipeSystem
             SqlCommand cmd = SQLUtility.GetSQLCommand("RecipeDelete");
             SQLUtility.SetParameterValue(cmd, "@RecipeId", id);
             SQLUtility.ExecuteSQL(cmd);
+        }
+
+        //it only works in debug mode
+        public static void SaveRecipeStatus(DataTable dt, string DateType)
+        {
+            if(DateType == "Drafted")
+            {
+                dt.Rows[0]["DateDrafted"] = DateTime.Now;
+                dt.Rows[0]["DatePublished"] = DBNull.Value;
+                dt.Rows[0]["DateArchived"] = DBNull.Value;
+                Save(dt);
+            }
+            if (DateType == "Published")
+            {
+                dt.Rows[0]["DatePublished"] = DateTime.Now;
+                dt.Rows[0]["DateArchived"] = DBNull.Value; 
+                Save(dt);
+                ;
+            }
+            if (DateType == "Archived")
+            {
+                dt.Rows[0]["DateArchived"] = DateTime.Now; 
+                Save(dt);
+                
+            }
         }
     
     }

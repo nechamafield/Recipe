@@ -43,7 +43,7 @@ namespace RecipeWinForms
             {
                 dtRecipe.Rows.Add();
             }
-            DataTable dtselectrecipe = Recipe.GetRecipeListForClone();
+            DataTable dtselectrecipe = Recipe.GetRecipeListForOnlyRecipes();
             WindowsFormsUtility.SetListBinding(lstRecipeName, dtselectrecipe, dtRecipe, "Recipe");
 
 

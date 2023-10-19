@@ -13,6 +13,7 @@ namespace RecipeWinForms
 {
     public partial class frmMain : Form
     {
+        Form? newfrm = null;
         public frmMain()
         {
             InitializeComponent();
@@ -62,17 +63,17 @@ namespace RecipeWinForms
                     frmRecipeList f = new();
                     newfrm = f;
                 }
-                else if(frmtype == typeof(frmMealsList))
+                else if (frmtype == typeof(frmMealsList))
                 {
                     frmMealsList f = new();
                     newfrm = f;
                 }
-                else if(frmtype == typeof(frmRecipe))
+                else if (frmtype == typeof(frmRecipe))
                 {
                     frmRecipe f = new();
                     newfrm = f;
                 }
-                else if(frmtype == typeof(frmCookbookList))
+                else if (frmtype == typeof(frmCookbookList))
                 {
                     frmCookbookList f = new();
                     newfrm = f;
@@ -82,7 +83,7 @@ namespace RecipeWinForms
                     frmNewCookbook f = new();
                     newfrm = f;
                 }
-                else if(frmtype == typeof(frmChangeStatus))
+                else if (frmtype == typeof(frmChangeStatus))
                 {
                     frmChangeStatus f = new();
                     newfrm = f;
