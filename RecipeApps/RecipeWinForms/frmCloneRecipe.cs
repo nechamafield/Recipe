@@ -45,9 +45,11 @@ namespace RecipeWinForms
             }
             DataTable dtselectrecipe = Recipe.GetRecipeListForOnlyRecipes();
             WindowsFormsUtility.SetListBinding(lstRecipeName, dtselectrecipe, dtRecipe, "Recipe");
-            
-            //add clone to recipename - this doesnt work
-            lstRecipeName.Text = lstRecipeName + " - Cloned";
+
+            foreach(string name in lstRecipeName.Items)
+            {
+                
+            }
         }
 
         private void ShowRecipeForm(int rowindex)
@@ -62,6 +64,7 @@ namespace RecipeWinForms
             {
                 ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), id);
             }
+            //txtRecipeName.Text = txtRecipeName.Text + " - Cloned";
         }
 
         private void BtnClone_Click(object? sender, EventArgs e)

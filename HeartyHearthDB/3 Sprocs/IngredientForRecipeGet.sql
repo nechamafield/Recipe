@@ -21,7 +21,7 @@ go
 
 /*
 exec IngredientGet
-exec IngredientForRecipe Get @All = 1
+exec IngredientForRecipeGet @All = 1
 
 exec IngredientGet @Recipeid = ' ' -- return no results
 exec IngredientGet @Recipeid = 3

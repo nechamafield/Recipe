@@ -121,6 +121,16 @@ namespace RecipeSystem
             SQLUtility.SaveDataRow(r, "RecipeUpdate");
         }
 
+        public static void SaveStatus(DataTable dtRecipe)
+        {
+            if (dtRecipe.Rows.Count == 0)
+            {
+                throw new Exception("Cannot call RecipeSave Method because there are no rows in table");
+            }
+            DataRow r = dtRecipe.Rows[0];
+            SQLUtility.SaveDataRow(r, "RecipeStatusUpdate");
+        }
+
         public static void Delete(DataTable dtRecipe)
         {
             int id = (int)dtRecipe.Rows[0]["RecipeId"];
@@ -129,7 +139,6 @@ namespace RecipeSystem
             SQLUtility.ExecuteSQL(cmd);
         }
 
-        //it only works in debug mode
         public static void SaveRecipeStatus(DataTable dt, string DateType)
         {
             if(DateType == "Drafted")
@@ -137,20 +146,18 @@ namespace RecipeSystem
                 dt.Rows[0]["DateDrafted"] = DateTime.Now;
                 dt.Rows[0]["DatePublished"] = DBNull.Value;
                 dt.Rows[0]["DateArchived"] = DBNull.Value;
-                Save(dt);
+                SaveStatus(dt);
             }
             if (DateType == "Published")
             {
                 dt.Rows[0]["DatePublished"] = DateTime.Now;
                 dt.Rows[0]["DateArchived"] = DBNull.Value; 
-                Save(dt);
-                ;
+                SaveStatus(dt);
             }
             if (DateType == "Archived")
             {
                 dt.Rows[0]["DateArchived"] = DateTime.Now; 
-                Save(dt);
-                
+                SaveStatus(dt);
             }
         }
     

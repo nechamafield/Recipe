@@ -54,6 +54,7 @@ namespace RecipeWinForms
             {
                 ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), id);
             }
+
         }
 
         private void GRecipeList_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)

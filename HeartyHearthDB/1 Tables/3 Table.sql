@@ -46,7 +46,7 @@ create table dbo.Recipe(
     Recipeid int not null IDENTITY PRIMARY KEY,
     usersId int not null CONSTRAINT f_users_usersid FOREIGN KEY REFERENCES users(usersId),
     CuisineId int not null CONSTRAINT f_Cuisine_Cuisineid FOREIGN KEY REFERENCES Cuisine(Cuisineid),
-    RecipeName VARCHAR(30) not NULL
+    RecipeName VARCHAR(50) not NULL
         CONSTRAINT c_RecipeName_cannot_be_Blank CHECK (Recipename <> '')
         CONSTRAINT u_Recipe_RecipeName UNIQUE,
     Calories int not null

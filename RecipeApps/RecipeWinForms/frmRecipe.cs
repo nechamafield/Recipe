@@ -55,6 +55,9 @@ namespace RecipeWinForms
                 txtDateDrafted.Text = DateTime.Now.ToString();
                 SetButtonsEnabledBasedOnNewRecord();
             }
+            //if this is a clone then do this
+            
+            //txtRecipeName.Text = txtRecipeName.Text + " - Cloned";
         }
 
         public void LoadForm(int recipeidval)
@@ -253,7 +256,7 @@ namespace RecipeWinForms
         private void BtnChangeStatus_Click(object? sender, EventArgs e)
         {
             //this open blank form inside mdiparent
-            ShowChangeStatusForm(recipeid);
+            //ShowChangeStatusForm(recipeid);
 
             //this opens correct form popped out
             var frm = new frmChangeStatus();
