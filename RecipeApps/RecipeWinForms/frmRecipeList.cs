@@ -15,12 +15,14 @@ namespace RecipeWinForms
 {
     public partial class frmRecipeList : Form
     {
+        string recipename = "";
         public frmRecipeList()
         {
             InitializeComponent();
             gRecipeList.CellDoubleClick += GRecipeList_CellDoubleClick;
             btnNewRecipe.Click += BtnNewRecipe_Click;
             this.Activated += RecipeList_Activated;
+            Recipe.SearchRecipe(recipename);
         }
 
         private void RecipeList_Activated(object? sender, EventArgs e)
@@ -50,7 +52,7 @@ namespace RecipeWinForms
                 id = WindowsFormsUtility.GetIdFromGrid(gRecipeList, rowindex, "RecipeId");
                 ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), id);
             }
-            if (id == 0)   //this.MdiParent != null && this.MdiParent is frmRecipeList)
+            if (id == 0)  
             {
                 ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), id);
             }

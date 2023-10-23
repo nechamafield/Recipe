@@ -309,8 +309,8 @@ select * from coursemealrecipe
 ;
 with x as(
     select usersname = 'nf3003050', cookbookname = 'Treats for two', price = 30, isactive = 1
-    union select 'ca4256985', 'The Bakers Taster', 39.99, 0
-    union select 'rv3561%', 'The Cookbook', 25, 1
+    union select 'ca4256985', 'The Bakers Taster', 39.99, 1
+    union select 'rv3561%', 'The Cookbook', 25, 0
     union select 'mh7770109', 'Cookoo Cooks', 45.89, 1
 )
 

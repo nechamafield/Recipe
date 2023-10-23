@@ -42,10 +42,10 @@ begin
 			usersid = @usersid, 
 			Cuisineid = @Cuisineid, 
 			RecipeName = @RecipeName, 
-			Calories = @Calories, 
-			DateDrafted = @DateDrafted, 
-			DatePublished = @DatePublished, 
-			DateArchived = @DateArchived
+			Calories = @Calories--, 
+			--DateDrafted = @DateDrafted, 
+			--DatePublished = @DatePublished, 
+			--DateArchived = @DateArchived
 		where recipeid = @recipeid
 	end
 

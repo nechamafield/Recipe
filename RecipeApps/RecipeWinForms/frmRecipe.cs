@@ -15,6 +15,7 @@ namespace RecipeWinForms
         DataTable dtRecipe;
         BindingSource bindsource = new BindingSource();
         DataTable dt = new();
+        DataTable dtRecipeIng = new();
         string deletecolname = "deletecol";
         int recipeid = 0;
         public frmRecipe()
@@ -40,24 +41,28 @@ namespace RecipeWinForms
         private void BindData()
         {
             gIngredients.Columns.Clear();
-            gIngredients.DataSource = Recipe.GetIngredientListByRecipe(recipeid);
-            WindowsFormsUtility.AddComboBoxToGridForRecipe(gIngredients, DataMaintenance.GetDataList("IngredientForRecipe"), "MeasurementName", "MeasurementName");
-            WindowsFormsUtility.AddComboBoxToGridForRecipe(gIngredients, DataMaintenance.GetDataList("IngredientForRecipe"), "IngredientName", "IngredientName");
+
+            //paas this datable into SAVE ingrdts
+
+            dtRecipeIng = Recipe.GetIngredientListByRecipe(recipeid);
+            gIngredients.DataSource = dtRecipeIng;
+
+
+            WindowsFormsUtility.AddComboBoxToGrid(gIngredients, DataMaintenance.GetDataList("IngredientForRecipe"), "Measurement", "MeasurementName");
+            WindowsFormsUtility.AddComboBoxToGrid(gIngredients, DataMaintenance.GetDataList("IngredientForRecipe"), "Ingredient", "IngredientName");
             WindowsFormsUtility.AddDeleteButtonToGrid(gIngredients, deletecolname);
 
             gSteps.DataSource = Recipe.GetStepsListByRecipe(recipeid);
-            WindowsFormsUtility.FormatGridForSearchResults(gSteps, "Direction");
+            WindowsFormsUtility.FormatGridForSearchResults(gSteps, "DirectionRecipe");
             WindowsFormsUtility.AddDeleteButtonToGrid(gSteps, deletecolname);
             WindowsFormsUtility.FormatGridForEdit(gIngredients, "Ingredient");
+            WindowsFormsUtility.FormatGridForEdit(gSteps, "DirectionRecipe");
 
             if (txtRecipeName.Text == "")
             {
                 txtDateDrafted.Text = DateTime.Now.ToString();
                 SetButtonsEnabledBasedOnNewRecord();
             }
-            //if this is a clone then do this
-            
-            //txtRecipeName.Text = txtRecipeName.Text + " - Cloned";
         }
 
         public void LoadForm(int recipeidval)
@@ -188,7 +193,7 @@ namespace RecipeWinForms
         {
             try
             {
-                IngredientRecipe.SaveTable(dt, recipeid);
+                IngredientRecipe.SaveTable(dtRecipeIng, recipeid);
             }
             catch (Exception ex)
             {

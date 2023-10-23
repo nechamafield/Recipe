@@ -29,11 +29,11 @@ namespace RecipeSystem
             SQLUtility.SaveDataTable(dt, "DirectionRecipeUpdate");
         }
 
-        //public static void Delete(int IngredientRecipeid)
-        //{
-        //    SqlCommand cmd = SQLUtility.GetSQLCommand("IngredientRecipeDelete");
-        //    cmd.Parameters["@IngredientRecipeId"].Value = IngredientRecipeid;
-        //    SQLUtility.ExecuteSQL(cmd);
-        //}
+        public static void Delete(int StepRecipeid)
+        {
+            SqlCommand cmd = SQLUtility.GetSQLCommand("DirectionRecipeDelete");
+            cmd.Parameters["@DirectionRecipeId"].Value = StepRecipeid;
+            SQLUtility.ExecuteSQL(cmd);
+        }
     }
 }

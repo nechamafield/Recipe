@@ -9,7 +9,7 @@ begin
 
 	select @IncludeBlank = isnull(@IncludeBlank, 0), @RecipeName = isnull(@RecipeName, 0)
 
-	select r.Recipeid, r.RecipeName
+	select r.Recipeid, RecipeName = (r.RecipeName + ' - Cloned')
 	from recipe r
 	where r.recipeid = @RecipeId
 	or @All = 1

@@ -24,8 +24,11 @@ namespace RecipeWinForms
             InitializeComponent();
             this.Activated += FrmNewCookbook_Activated;
             gRecipe.CellContentClick += GRecipe_CellContentClick;
+            this.FormClosing += FrmNewCookbook_FormClosing;
             btnSave.Click += BtnSave_Click;
+            btnDelete.Click += BtnDelete_Click;
         }
+
 
         private void FrmNewCookbook_Activated(object? sender, EventArgs e)
         {
@@ -36,17 +39,13 @@ namespace RecipeWinForms
         {
             gRecipe.Columns.Clear();
             gRecipe.DataSource = Recipe.GetRecipeListForOnlyRecipes();
-            WindowsFormsUtility.AddComboBoxToGridForRecipe(gRecipe, DataMaintenance.GetDataList("CloneRecipe"), "RecipeName", "RecipeName");
+
+            DataTable dtUser = Cookbook.GetUsersList();
+            WindowsFormsUtility.SetListBinding(lstUsersCompleteName, dtUser, dtcookbook, "Users");
+
+            WindowsFormsUtility.AddComboBoxToGrid(gRecipe, DataMaintenance.GetDataList("CloneRecipe"), "Recipe", "RecipeName");
             WindowsFormsUtility.AddDeleteButtonToGrid(gRecipe, deletecolname);
             WindowsFormsUtility.FormatGridForSearchResults(gRecipe, "Recipe");
-
-            //foreach (DataGridViewColumn col in gRecipe.Columns)
-            //{
-            //    if (col.Name.EndsWith("name"))
-            //    {
-            //        col.Visible = false;
-            //    }
-            //}
 
             if (txtCookbookName.Text == "")
             {
@@ -65,13 +64,20 @@ namespace RecipeWinForms
             {
                 dtcookbook.Rows.Add();
             }
-            DataTable dtUser = Cookbook.GetUsersList();
-            WindowsFormsUtility.SetListBinding(lstUsersCompleteName, dtUser, dtcookbook, "Users");
+
             WindowsFormsUtility.SetControlBinding(txtCookbookName, bindsource);
             WindowsFormsUtility.SetControlBinding(txtPrice, bindsource);
             WindowsFormsUtility.SetControlBinding(txtDateCreated, bindsource);
             WindowsFormsUtility.SetControlBinding(chkActive, bindsource);
 
+            if (dtcookbook.Rows[0]["active"].ToString() == "1")
+            {
+                chkActive.Checked = true;
+            }
+            else if (dtcookbook.Rows[0]["active"].ToString() == "0")
+            {
+                chkActive.Checked = false;
+            }
             this.Text = GetCookbookDesc();
 
             this.Show();
@@ -86,6 +92,29 @@ namespace RecipeWinForms
                 value = SQLUtility.GetValueFromFirstRowAsInt(dtcookbook, "NumRecipes") + " " + SQLUtility.GetValueFromFirstRowAsString(dtcookbook, "CookbookName");
             }
             return value;
+        }
+
+        private void Delete()
+        {
+            var response = MessageBox.Show("Are you sure you want to delete this cookbook?", "Hearty Hearth", MessageBoxButtons.YesNo);
+            if (response == DialogResult.No)
+            {
+                return;
+            }
+            Application.UseWaitCursor = true;
+            try
+            {
+                Recipe.Delete(dtcookbook);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Hearty Hearth");
+            }
+            finally
+            {
+                Application.UseWaitCursor = false;
+            }
         }
 
         private void SetButtonsEnabledBasedOnNewRecord()
@@ -104,9 +133,10 @@ namespace RecipeWinForms
                 Cookbook.Save(dtcookbook);
                 b = true;
                 bindsource.ResetBindings(false);
-                cookbookid = SQLUtility.GetValueFromFirstRowAsInt(dtcookbook, "CookbookId");
+                cookbookid = SQLUtility.GetValueFromFirstRowAsInt(dtcookbook, "RecipeId");
                 this.Tag = cookbookid;
                 SetButtonsEnabledBasedOnNewRecord();
+                this.Text = GetCookbookDesc();
             }
             catch (Exception ex)
             {
@@ -124,8 +154,36 @@ namespace RecipeWinForms
             Save();
         }
 
+        private void BtnDelete_Click(object? sender, EventArgs e)
+        {
+            Delete();
+        }
 
-        //this (Delete and GRecipe_Cell...) should add column of x's near the recipes bu tit doesnt
+
+        private void FrmNewCookbook_FormClosing(object? sender, FormClosingEventArgs e)
+        {
+            bindsource.EndEdit();
+            if (SQLUtility.TableHasChanges(dtcookbook))
+            {
+                var response = MessageBox.Show($"Do you want to save changes to {this.Text} before closing?", Application.ProductName, MessageBoxButtons.YesNoCancel);
+                switch (response)
+                {
+                    case DialogResult.Yes:
+                        bool b = Save();
+                        if (b == false)
+                        {
+                            e.Cancel = true;
+                            this.Activate();
+                        }
+                        break;
+                    case DialogResult.Cancel:
+                        e.Cancel = true;
+                        this.Activate();
+                        break;
+                }
+            }
+        }
+
         private void Delete(int rowindex, DataGridView dg, string tablename)
         {
             int id = WindowsFormsUtility.GetIdFromGrid(dg, rowindex, tablename + "Id");

@@ -47,11 +47,13 @@ namespace RecipeWinForms
             return dt;
         }
 
+
+
         public static void Save(DataTable dtcookbook)
         {
             if (dtcookbook.Rows.Count == 0)
             {
-                throw new Exception("Cannot call RecipeSave Method because there are no rows in table");
+                throw new Exception("Cannot call CookbookSave Method because there are no rows in table");
             }
             DataRow r = dtcookbook.Rows[0];
             SQLUtility.SaveDataRow(r, "CookbookUpdate");

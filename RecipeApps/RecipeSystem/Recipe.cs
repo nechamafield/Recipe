@@ -39,7 +39,27 @@ namespace RecipeSystem
         public static DataTable GetRecipeListForOnlyRecipes()
         {
             DataTable dt;
-            SqlCommand cmd = SQLUtility.GetSQLCommand("CloneRecipeGet");
+            SqlCommand cmd = SQLUtility.GetSQLCommand("CloneRecipeListGet");
+            cmd.Parameters["@All"].Value = 1;
+            dt = SQLUtility.GetDataTable(cmd);
+            return dt;
+        }
+
+        public static void UpdateClonedRecipeInfo(DataTable dtRecipe)
+        {
+            if (dtRecipe.Rows.Count == 0)
+            {
+                throw new Exception("Cannot call RecipeSave Method because there are no rows in table");
+            }
+            DataRow r = dtRecipe.Rows[0];
+            SQLUtility.SaveDataRow(r, "ClonedRecipeUpdate");
+        }
+
+        public static DataTable GetClonedRecipeInfo()
+        {
+
+            DataTable dt;
+            SqlCommand cmd = SQLUtility.GetSQLCommand("ClonedRecipeGet");
             cmd.Parameters["@All"].Value = 1;
             dt = SQLUtility.GetDataTable(cmd);
             return dt;
@@ -96,7 +116,7 @@ namespace RecipeSystem
         public static DataTable GetStepsListByRecipe(int recipeid)
         {
             DataTable dt;
-            SqlCommand cmd = SQLUtility.GetSQLCommand("DirectionGet");
+            SqlCommand cmd = SQLUtility.GetSQLCommand("DirectionRecipeGet");
             cmd.Parameters["@recipeid"].Value = recipeid;
             dt = SQLUtility.GetDataTable(cmd);
             return dt;

@@ -36,11 +36,12 @@ namespace RecipeWinForms
             WindowsFormsUtility.FormatGridForSearchResults(gCookbookList, "Cookbook");
             foreach (DataGridViewColumn col in gCookbookList.Columns)
             {
-                if (col.Name.EndsWith("Created") || col.Name.EndsWith("Active"))
+                if (col.Name.EndsWith("Created") || col.Name.EndsWith("active"))
                 {
                     col.Visible = false;
                 }
             }
+
         }
 
         private void ShowCookbookForm(int rowindex)
@@ -48,31 +49,31 @@ namespace RecipeWinForms
             /////this works but pops out the form
 
 
-            //int id = 0;
-            //if (rowindex > -1)
-            //{
-            //    id = WindowsFormsUtility.GetIdFromGrid(gCookbookList, rowindex, "RecipeId");
-            //}
-            //if (this.MdiParent != null && this.MdiParent is frmCookbookList)
-            //{
-            //    ((frmMain)this.MdiParent).OpenForm(typeof(frmNewCookbook), id);
-            //}
-            //frmNewCookbook frm = new();
-            //frm.LoadForm(id);
+            int id = 0;
+            if (rowindex > -1)
+            {
+                id = WindowsFormsUtility.GetIdFromGrid(gCookbookList, rowindex, "CookbookId");
+            }
+            if (this.MdiParent != null && this.MdiParent is frmCookbookList)
+            {
+                ((frmMain)this.MdiParent).OpenForm(typeof(frmNewCookbook), id);
+            }
+            frmNewCookbook frm = new();
+            frm.LoadForm(id);
 
 
             ////this puts the form in without the details filled out
 
-            int id = 0;
-            if (rowindex > -1)
-            {
-                id = WindowsFormsUtility.GetIdFromGrid(gCookbookList, rowindex, "RecipeId");
-                ((frmMain)this.MdiParent).OpenForm(typeof(frmNewCookbook), id);
-            }
-            if (id == 0)   //this.MdiParent != null && this.MdiParent is frmCookbookList)
-            {
-                ((frmMain)this.MdiParent).OpenForm(typeof(frmNewCookbook), id);
-            }
+            //int id = 0;
+            //if (rowindex > -1)
+            //{
+            //    id = WindowsFormsUtility.GetIdFromGrid(gCookbookList, rowindex, "RecipeId");
+            //    ((frmMain)this.MdiParent).OpenForm(typeof(frmNewCookbook), id);
+            //}
+            //if (id == 0)   //this.MdiParent != null && this.MdiParent is frmCookbookList)
+            //{
+            //    ((frmMain)this.MdiParent).OpenForm(typeof(frmNewCookbook), id);
+            //}
         }
 
         private void GCookbookList_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)

@@ -43,28 +43,26 @@ namespace RecipeWinForms
             {
                 dtRecipe.Rows.Add();
             }
-            DataTable dtselectrecipe = Recipe.GetRecipeListForOnlyRecipes();
+            DataTable dtselectrecipe = Recipe.GetClonedRecipeInfo();
             WindowsFormsUtility.SetListBinding(lstRecipeName, dtselectrecipe, dtRecipe, "Recipe");
-
-            foreach(string name in lstRecipeName.Items)
-            {
-                
-            }
+            this.Show();
         }
 
-        private void ShowRecipeForm(int rowindex)
+
+        private void ShowRecipeForm(int recipeidval)
         {
-            int id = 0;
-            if (rowindex > -1)
+            //sproc should work. i just have to work on that crashing becuse recipename must be unique - it not adding " - clone"
+            Recipe.UpdateClonedRecipeInfo(dtRecipe);
+            //bindsource.DataSource = dtRecipe;
+            //if (recipeid > 0)
+            //{
+            //    Recipe.Load(recipeid);
+
+            //}
+            if (recipeid == 0)
             {
-                id = WindowsFormsUtility.GetIdFromComboBox(lstRecipeName);
-                ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), id);
+                ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), recipeid);
             }
-            if (id == 0)   
-            {
-                ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), id);
-            }
-            //txtRecipeName.Text = txtRecipeName.Text + " - Cloned";
         }
 
         private void BtnClone_Click(object? sender, EventArgs e)

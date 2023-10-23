@@ -2,7 +2,7 @@ create or alter procedure dbo.IngredientForRecipeGet (@IngredientId int = 0, @Re
 as
 begin
 
-	select distinct i.ingredientname, r.Recipeid,  m.Measurementname,  ir.Amount,ir.IngredientSequence 
+	select distinct i.ingredientname, r.Recipeid,  m.Measurementname,  ir.Amount,ir.IngredientSequence, ir.IngredientRecipeid, i.ingredientid, m.Measurementid
 	from recipe r
 	join IngredientRecipe ir
 	on ir.Recipeid = r.Recipeid
