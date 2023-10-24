@@ -42,7 +42,7 @@
             txtDateCreated = new TextBox();
             tableLayoutPanel1 = new TableLayoutPanel();
             lblDateCreated = new Label();
-            chkActive = new CheckBox();
+            chkIsActive = new CheckBox();
             tblRecipe = new TableLayoutPanel();
             btnSaveRecipe = new Button();
             gRecipe = new DataGridView();
@@ -69,7 +69,7 @@
             tblMain.Controls.Add(lstUsersCompleteName, 1, 2);
             tblMain.Controls.Add(tblPrice, 1, 4);
             tblMain.Controls.Add(tableLayoutPanel1, 1, 3);
-            tblMain.Controls.Add(chkActive, 1, 5);
+            tblMain.Controls.Add(chkIsActive, 1, 5);
             tblMain.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             tblMain.Location = new Point(2, 2);
             tblMain.Name = "tblMain";
@@ -219,15 +219,15 @@
             lblDateCreated.Text = "Date Created:";
             lblDateCreated.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // chkActive
+            // chkIsActive
             // 
-            chkActive.Anchor = AnchorStyles.Left;
-            chkActive.AutoSize = true;
-            chkActive.Location = new Point(218, 240);
-            chkActive.Name = "chkActive";
-            chkActive.Size = new Size(18, 17);
-            chkActive.TabIndex = 13;
-            chkActive.UseVisualStyleBackColor = true;
+            chkIsActive.Anchor = AnchorStyles.Left;
+            chkIsActive.AutoSize = true;
+            chkIsActive.Location = new Point(218, 240);
+            chkIsActive.Name = "chkIsActive";
+            chkIsActive.Size = new Size(18, 17);
+            chkIsActive.TabIndex = 13;
+            chkIsActive.UseVisualStyleBackColor = true;
             // 
             // tblRecipe
             // 
@@ -302,7 +302,7 @@
         private TextBox txtDateCreated;
         private TableLayoutPanel tableLayoutPanel1;
         private Label lblDateCreated;
-        private CheckBox chkActive;
+        private CheckBox chkIsActive;
         private TableLayoutPanel tblRecipe;
         private Button btnSaveRecipe;
         private DataGridView gRecipe;

@@ -36,7 +36,7 @@ namespace RecipeWinForms
             WindowsFormsUtility.FormatGridForSearchResults(gCookbookList, "Cookbook");
             foreach (DataGridViewColumn col in gCookbookList.Columns)
             {
-                if (col.Name.EndsWith("Created") || col.Name.EndsWith("active"))
+                if (col.Name.EndsWith("Created") || col.Name.EndsWith("Active"))
                 {
                     col.Visible = false;
                 }

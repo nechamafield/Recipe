@@ -78,17 +78,18 @@ namespace RecipeWinForms
             WindowsFormsUtility.SetControlBinding(txtCookbookName, bindsource);
             WindowsFormsUtility.SetControlBinding(txtPrice, bindsource);
             WindowsFormsUtility.SetControlBinding(txtDateCreated, bindsource);
-            WindowsFormsUtility.SetControlBinding(chkActive, bindsource);
+            WindowsFormsUtility.SetControlBinding(chkIsActive, bindsource);
 
-            if (dtcookbook.Rows[0]["active"].ToString() == "1")
+            if (dtcookbook.Rows[0]["IsActive"].ToString() == "1")
             {
-                chkActive.Checked = true;
+                chkIsActive.Checked = true;
             }
-            else if (dtcookbook.Rows[0]["active"].ToString() == "0")
+            else if (dtcookbook.Rows[0]["IsActive"].ToString() == "0")
             {
-                chkActive.Checked = false;
+                chkIsActive.Checked = false;
             }
             this.Text = GetCookbookDesc();
+
 
             this.Show();
         }

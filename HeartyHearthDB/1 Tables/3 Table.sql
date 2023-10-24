@@ -139,7 +139,7 @@ create table dbo.CookBook(
     Price decimal(7,2) not null
         CONSTRAINT c_Price_cannot_be_negative CHECK (price > 0),
     DateCreated date not null DEFAULT GETDATE(),
-    IsActive bit not null Default 1,
+    IsActive bit null Default 1,
     CookbookPictureName as concat('Cookbook-', replace(cookbookname, ' ', '_'), '.jpg') persisted
 )
 
