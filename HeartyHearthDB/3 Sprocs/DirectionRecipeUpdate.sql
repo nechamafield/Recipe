@@ -9,7 +9,7 @@ as
 begin
 	declare @return int = 0
 
-	select @RecipeId = isnull(@RecipeId,0), @StepNumber = isnull(@StepNumber,0), @Direction = isnull(@Direction,'')
+	select @RecipeId = isnull(@RecipeId,0)
 
 	if @DirectionRecipeId = 0
 	begin
@@ -28,8 +28,10 @@ begin
 		where DirectionRecipeid = @DirectionRecipeId
 	end
 
+	finished:
 	return @return
 end
 go
 
 --select * from DirectionRecipe
+

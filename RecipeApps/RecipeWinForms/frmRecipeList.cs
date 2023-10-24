@@ -52,11 +52,10 @@ namespace RecipeWinForms
                 id = WindowsFormsUtility.GetIdFromGrid(gRecipeList, rowindex, "RecipeId");
                 ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), id);
             }
-            if (id == 0)  
+            if (id == 0)
             {
                 ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), id);
             }
-
         }
 
         private void GRecipeList_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)

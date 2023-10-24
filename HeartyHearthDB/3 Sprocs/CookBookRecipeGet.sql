@@ -10,7 +10,7 @@ begin
 
 	select @All = isnull(@All,0), @CookbookRecipeId = isnull(@CookbookRecipeId,0), @CookbookId = isnull (@CookbookId, 0)
 
-	select distinct r.RecipeName, cr.RecipeSequence
+	select  c.CookbookName, r.RecipeName, cr.RecipeSequence, r.Recipeid
 	from CookBook c
 	join CookBookRecipe cr
 	on c.Cookbookid = cr.Cookbookid
@@ -18,7 +18,7 @@ begin
 	on r.Recipeid = cr.Recipeid
 	where c.Cookbookid = @CookbookId
 	or @All = 1
-	order by cr.RecipeSequence
+	order by c.CookbookName, cr.RecipeSequence
 
 	return @return
 end
@@ -27,7 +27,7 @@ go
 --/*
 exec CookbookRecipeGet @All = 1
 
-exec CookbookRecipeGet @cookbookid = 2
+exec CookbookRecipeGet @cookbookid = 3
 --*/
 
 

@@ -101,9 +101,6 @@ namespace RecipeSystem
             return dt;
         }
 
-        //KEEP THIS!!
-        //make GetIngredientList for when need all ingredients
-        //dont pass in recipeid.should look exactly like this just uncomment it:
         public static DataTable GetIngredientList()
         {
             DataTable dt;

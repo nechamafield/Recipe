@@ -41,10 +41,18 @@ namespace RecipeWinForms
             gRecipe.Columns.Clear();
             gRecipe.DataSource = Cookbook.GetRecipeListForCookbooks(cookbookid);
 
-            WindowsFormsUtility.AddComboBoxToGrid(gRecipe, DataMaintenance.GetDataList("CloneRecipe"), "Recipe", "RecipeName");
+            WindowsFormsUtility.AddComboBoxToGrid(gRecipe, DataMaintenance.GetDataList("CookbookRecipe"), "Recipe", "RecipeName");
             WindowsFormsUtility.AddDeleteButtonToGrid(gRecipe, deletecolname);
             //WindowsFormsUtility.FormatGridForSearchResults(gRecipe, "Recipe");
             WindowsFormsUtility.FormatGridForEdit(gRecipe, "CookbookRecipe");
+
+            foreach (DataGridViewColumn col in gRecipe.Columns)
+            {
+                if (col.Name.EndsWith("Name"))
+                {
+                    col.Visible = false;
+                }
+            }
 
             if (txtCookbookName.Text == "")
             {

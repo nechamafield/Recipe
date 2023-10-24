@@ -46,18 +46,17 @@ namespace RecipeWinForms
 
         private void ShowCookbookForm(int rowindex)
         {
+            //the id's are off so it opens a random cookbook
             int id = 0;
             if (rowindex > -1)
             {
                 id = WindowsFormsUtility.GetIdFromComboBox(lstUsersCompleteName);
+                ((frmMain)this.MdiParent).OpenForm(typeof(frmNewCookbook), id);
             }
             if (this.MdiParent != null && this.MdiParent is frmCookbookList)
             {
                 ((frmMain)this.MdiParent).OpenForm(typeof(frmNewCookbook), id);
             }
-            frmNewCookbook frm = new();
-            frm.LoadForm(id);
-            //change the cookbook to be the correct info
         }
 
         private void BtnCreateCookbook_Click(object? sender, EventArgs e)

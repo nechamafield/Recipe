@@ -16,6 +16,7 @@ namespace RecipeWinForms
         BindingSource bindsource = new BindingSource();
         DataTable dt = new();
         DataTable dtRecipeIng = new();
+        DataTable dtRecipeSteps = new();
         string deletecolname = "deletecol";
         int recipeid = 0;
         public frmRecipe()
@@ -42,25 +43,34 @@ namespace RecipeWinForms
         {
             gIngredients.Columns.Clear();
 
-            //paas this datable into SAVE ingrdts
-
             dtRecipeIng = Recipe.GetIngredientListByRecipe(recipeid);
             gIngredients.DataSource = dtRecipeIng;
 
+            dtRecipeSteps = Recipe.GetStepsListByRecipe(recipeid);
+            gSteps.DataSource = dtRecipeSteps;
+
             WindowsFormsUtility.AddComboBoxToGrid(gIngredients, DataMaintenance.GetDataList("IngredientForRecipe"), "Measurement", "MeasurementName");
             WindowsFormsUtility.AddComboBoxToGrid(gIngredients, DataMaintenance.GetDataList("IngredientForRecipe"), "Ingredient", "IngredientName");
+            WindowsFormsUtility.FormatGridForEdit(gIngredients, "Ingredient");
             WindowsFormsUtility.AddDeleteButtonToGrid(gIngredients, deletecolname);
 
-            gSteps.DataSource = Recipe.GetStepsListByRecipe(recipeid);
-            WindowsFormsUtility.AddDeleteButtonToGrid(gSteps, deletecolname);
-            WindowsFormsUtility.FormatGridForEdit(gIngredients, "Ingredient");
             WindowsFormsUtility.FormatGridForEdit(gSteps, "DirectionRecipe");
+            WindowsFormsUtility.AddDeleteButtonToGrid(gSteps, deletecolname);
+
+            foreach (DataGridViewColumn col in gIngredients.Columns)
+            {
+                if (col.Name.EndsWith("name"))
+                {
+                    col.Visible = false;
+                }
+            }
 
             if (txtRecipeName.Text == "")
             {
                 txtDateDrafted.Text = DateTime.Now.ToString();
                 SetButtonsEnabledBasedOnNewRecord();
             }
+
         }
 
         public void LoadForm(int recipeidval)
@@ -74,18 +84,23 @@ namespace RecipeWinForms
                 dtRecipe.Rows.Add();
             }
             DataTable dtCuisine = Recipe.GetCuisineList();
-
             WindowsFormsUtility.SetListBinding(lstCuisineType, dtCuisine, dtRecipe, "Cuisine");
+
+            DataTable dtuser = Recipe.GetUsersList();
+            WindowsFormsUtility.SetListBinding(lstUsersCompleteName, dtuser, dtRecipe, "Users");
+
             WindowsFormsUtility.SetControlBinding(txtRecipeName, bindsource);
             WindowsFormsUtility.SetControlBinding(txtCalories, bindsource);
             WindowsFormsUtility.SetControlBinding(txtDateDrafted, bindsource);
             WindowsFormsUtility.SetControlBinding(txtDatePublished, bindsource);
             WindowsFormsUtility.SetControlBinding(txtDateArchived, bindsource);
             WindowsFormsUtility.SetControlBinding(txtRecipeStatus, bindsource);
+
             this.Text = GetRecipeDesc();
 
             this.Show();
         }
+
         private bool Save()
         {
             bool b = false;
@@ -199,12 +214,11 @@ namespace RecipeWinForms
             }
         }
 
-        //????? - why doesnt it have a blank line to fill in the steps?
         private void SaveRecipeSteps()
         {
             try
             {
-                StepsRecipe.SaveTable(dt, recipeid);
+                StepsRecipe.SaveTable(dtRecipeSteps, recipeid);
             }
             catch (Exception ex)
             {
@@ -266,21 +280,19 @@ namespace RecipeWinForms
             frm.LoadForm(recipeid);
         }
 
-
-        //these 2 need help to delete line of ing or step - dix "Delete" procedure
         private void GSteps_CellContentClick(object? sender, DataGridViewCellEventArgs e)
         {
-            if (gIngredients.Columns[e.ColumnIndex].Name == deletecolname)
+            if (gSteps.Columns[e.ColumnIndex].Name == deletecolname)
             {
-                Delete(e.RowIndex, gSteps, "Direction");
+                Delete(e.RowIndex, gSteps, "DirectionRecipe");
             }
         }
 
         private void GIngredients_CellContentClick(object? sender, DataGridViewCellEventArgs e)
         {
-            if (gSteps.Columns[e.ColumnIndex].Name == deletecolname)
+            if (gIngredients.Columns[e.ColumnIndex].Name == deletecolname)
             {
-                Delete(e.RowIndex, gIngredients, "IngredientName");
+                Delete(e.RowIndex, gIngredients, "Ingredient");
             }
         }
 

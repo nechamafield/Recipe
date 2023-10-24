@@ -43,7 +43,7 @@ create table dbo.Cuisine(
 )
 
 create table dbo.Recipe(
-    Recipeid int not null IDENTITY PRIMARY KEY,
+    RecipeId int not null IDENTITY PRIMARY KEY,
     usersId int not null CONSTRAINT f_users_usersid FOREIGN KEY REFERENCES users(usersId),
     CuisineId int not null CONSTRAINT f_Cuisine_Cuisineid FOREIGN KEY REFERENCES Cuisine(Cuisineid),
     RecipeName VARCHAR(50) not NULL
@@ -73,9 +73,9 @@ create table dbo.Measurement(
 )
 
 create table dbo.IngredientRecipe(
-    IngredientRecipeid int not null IDENTITY PRIMARY KEY,
-    Ingredientid int not null CONSTRAINT f_IngredientRecipe_Ingredient FOREIGN KEY REFERENCES ingredient(ingredientid),
-    Recipeid int not null CONSTRAINT f_IngredientRecipe_Recipe FOREIGN KEY REFERENCES recipe(Recipeid),
+    IngredientRecipeId int not null IDENTITY PRIMARY KEY,
+    IngredientId int not null CONSTRAINT f_IngredientRecipe_Ingredient FOREIGN KEY REFERENCES ingredient(ingredientid),
+    RecipeId int not null CONSTRAINT f_IngredientRecipe_Recipe FOREIGN KEY REFERENCES recipe(Recipeid),
     Measurementid int null CONSTRAINT f_IngredientRecipe_Measurement FOREIGN KEY REFERENCES measurement(measurementid), 
     Amount decimal(3,2) not null CONSTRAINT c_Amount_must_be_greater_than_0 CHECK(amount > 0),
     IngredientSequence int not null CONSTRAINT c_IngredientSequence_must_be_greater_than_0 CHECK(IngredientSequence > 0),
@@ -84,8 +84,8 @@ create table dbo.IngredientRecipe(
 )
 
 create table dbo.DirectionRecipe(
-    DirectionRecipeid int not null IDENTITY PRIMARY KEY,
-    Recipeid int not null CONSTRAINT f_DirectionRecipe_Recipe foreign KEY REFERENCES recipe(Recipeid),
+    DirectionRecipeId int not null IDENTITY PRIMARY KEY,
+    RecipeId int not null CONSTRAINT f_DirectionRecipe_Recipe foreign KEY REFERENCES recipe(Recipeid),
     StepNumber int not null 
         CONSTRAINT c_StepNumber_must_be_greater_than_0 CHECK(stepnumber > 0),
     Direction varchar(200) 
