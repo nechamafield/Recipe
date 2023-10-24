@@ -17,6 +17,7 @@ namespace RecipeWinForms
     {
         int cookbookid = 0;
         DataTable dtcookbook = new();
+        DataTable dtcookbookrecipe = new();
         BindingSource bindsource = new BindingSource();
         string deletecolname = "deletecol";
         public frmNewCookbook()
@@ -27,8 +28,8 @@ namespace RecipeWinForms
             this.FormClosing += FrmNewCookbook_FormClosing;
             btnSave.Click += BtnSave_Click;
             btnDelete.Click += BtnDelete_Click;
+            btnSaveRecipe.Click += BtnSaveRecipe_Click;
         }
-
 
         private void FrmNewCookbook_Activated(object? sender, EventArgs e)
         {
@@ -38,14 +39,12 @@ namespace RecipeWinForms
         private void BindData()
         {
             gRecipe.Columns.Clear();
-            gRecipe.DataSource = Recipe.GetRecipeListForOnlyRecipes();
-
-            DataTable dtUser = Cookbook.GetUsersList();
-            WindowsFormsUtility.SetListBinding(lstUsersCompleteName, dtUser, dtcookbook, "Users");
+            gRecipe.DataSource = Cookbook.GetRecipeListForCookbooks(cookbookid);
 
             WindowsFormsUtility.AddComboBoxToGrid(gRecipe, DataMaintenance.GetDataList("CloneRecipe"), "Recipe", "RecipeName");
             WindowsFormsUtility.AddDeleteButtonToGrid(gRecipe, deletecolname);
-            WindowsFormsUtility.FormatGridForSearchResults(gRecipe, "Recipe");
+            //WindowsFormsUtility.FormatGridForSearchResults(gRecipe, "Recipe");
+            WindowsFormsUtility.FormatGridForEdit(gRecipe, "CookbookRecipe");
 
             if (txtCookbookName.Text == "")
             {
@@ -64,6 +63,9 @@ namespace RecipeWinForms
             {
                 dtcookbook.Rows.Add();
             }
+
+            DataTable dtUser = Cookbook.GetUsersList();
+            WindowsFormsUtility.SetListBinding(lstUsersCompleteName, dtUser, dtcookbook, "Users");
 
             WindowsFormsUtility.SetControlBinding(txtCookbookName, bindsource);
             WindowsFormsUtility.SetControlBinding(txtPrice, bindsource);
@@ -211,6 +213,23 @@ namespace RecipeWinForms
             {
                 Delete(e.RowIndex, gRecipe, "RecipeName");
             }
+        }
+
+        private void SaveRecipes()
+        {
+            try
+            {
+                CookbookRecipe.SaveTable(dtcookbookrecipe, cookbookid);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Application.ProductName);
+            }
+        }
+
+        private void BtnSaveRecipe_Click(object? sender, EventArgs e)
+        {
+            SaveRecipes();
         }
 
     }

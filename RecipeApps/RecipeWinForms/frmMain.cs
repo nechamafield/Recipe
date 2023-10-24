@@ -81,6 +81,7 @@ namespace RecipeWinForms
                 {
                     frmNewCookbook f = new();
                     newfrm = f;
+                    f.LoadForm(pkvalue);
                 }
                 else if (frmtype == typeof(frmChangeStatus))
                 {

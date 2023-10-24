@@ -18,7 +18,7 @@ begin
 		insert IngredientRecipe(ingredientid, recipeid, measurementid, amount, ingredientsequence)
 		values(@IngredientId, @RecipeId, @MeasurementId, @Amount, @IngredientSequence)
 
-		select @IngredientRecipeId= scope_identity()
+		select @IngredientRecipeId= SCOPE_IDENTITY()
 	end
 	else
 	begin
@@ -32,6 +32,7 @@ begin
 		where IngredientRecipeid = @IngredientRecipeId
 	end
 
+	finished:
 	return @return
 end
 go

@@ -46,34 +46,16 @@ namespace RecipeWinForms
 
         private void ShowCookbookForm(int rowindex)
         {
-            /////this works but pops out the form
-
-
             int id = 0;
             if (rowindex > -1)
             {
                 id = WindowsFormsUtility.GetIdFromGrid(gCookbookList, rowindex, "CookbookId");
+                ((frmMain)this.MdiParent).OpenForm(typeof(frmNewCookbook), id);
             }
-            if (this.MdiParent != null && this.MdiParent is frmCookbookList)
+            if (id == 0)
             {
                 ((frmMain)this.MdiParent).OpenForm(typeof(frmNewCookbook), id);
             }
-            frmNewCookbook frm = new();
-            frm.LoadForm(id);
-
-
-            ////this puts the form in without the details filled out
-
-            //int id = 0;
-            //if (rowindex > -1)
-            //{
-            //    id = WindowsFormsUtility.GetIdFromGrid(gCookbookList, rowindex, "RecipeId");
-            //    ((frmMain)this.MdiParent).OpenForm(typeof(frmNewCookbook), id);
-            //}
-            //if (id == 0)   //this.MdiParent != null && this.MdiParent is frmCookbookList)
-            //{
-            //    ((frmMain)this.MdiParent).OpenForm(typeof(frmNewCookbook), id);
-            //}
         }
 
         private void GCookbookList_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)

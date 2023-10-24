@@ -1,4 +1,4 @@
-create or alter procedure dbo.CloneRecipeGet (
+create or alter procedure dbo.CloneRecipeListGet (
 @RecipeId int = 0, 
 @RecipeName varchar(30) = '',
 @IncludeBlank bit = 0,
@@ -9,7 +9,7 @@ begin
 
 	select @IncludeBlank = isnull(@IncludeBlank, 0), @RecipeName = isnull(@RecipeName, 0)
 
-	select r.Recipeid, RecipeName = (r.RecipeName + ' - Cloned')
+	select r.Recipeid, r.RecipeName 
 	from recipe r
 	where r.recipeid = @RecipeId
 	or @All = 1

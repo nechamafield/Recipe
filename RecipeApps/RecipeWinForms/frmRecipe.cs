@@ -47,13 +47,11 @@ namespace RecipeWinForms
             dtRecipeIng = Recipe.GetIngredientListByRecipe(recipeid);
             gIngredients.DataSource = dtRecipeIng;
 
-
             WindowsFormsUtility.AddComboBoxToGrid(gIngredients, DataMaintenance.GetDataList("IngredientForRecipe"), "Measurement", "MeasurementName");
             WindowsFormsUtility.AddComboBoxToGrid(gIngredients, DataMaintenance.GetDataList("IngredientForRecipe"), "Ingredient", "IngredientName");
             WindowsFormsUtility.AddDeleteButtonToGrid(gIngredients, deletecolname);
 
             gSteps.DataSource = Recipe.GetStepsListByRecipe(recipeid);
-            WindowsFormsUtility.FormatGridForSearchResults(gSteps, "DirectionRecipe");
             WindowsFormsUtility.AddDeleteButtonToGrid(gSteps, deletecolname);
             WindowsFormsUtility.FormatGridForEdit(gIngredients, "Ingredient");
             WindowsFormsUtility.FormatGridForEdit(gSteps, "DirectionRecipe");
