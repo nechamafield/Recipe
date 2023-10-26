@@ -46,10 +46,10 @@ namespace RecipeWinForms
 
         private void ShowCookbookForm(int rowindex)
         {
-            //the id's are off so it opens a random cookbook
             int id = 0;
             if (rowindex > -1)
             {
+                Cookbook.GetAutoCreateCookbook(dtusers);
                 id = WindowsFormsUtility.GetIdFromComboBox(lstUsersCompleteName);
                 ((frmMain)this.MdiParent).OpenForm(typeof(frmNewCookbook), id);
             }

@@ -5,7 +5,7 @@ begin
 
 	select @CookbookId = isnull(@CookbookId, 0), @IncludeBlank = isnull(@IncludeBlank, 0), @All = isnull(@All, 0)
 
-	select c.Cookbookid, c.CookbookName, UsersCompleteName = concat(u.usersFirstName, ' ', u.usersLastName), NumRecipes = count(r.Recipeid), c.Price, u.usersId, c.DateCreated, active = c.IsActive
+	select distinct c.CookbookName, c.Cookbookid, UsersCompleteName = concat(u.usersFirstName, ' ', u.usersLastName), NumRecipes = count(r.Recipeid), c.Price, u.usersId, c.DateCreated, c.IsActive, r.Recipeid
 	from CookBook c
 	join users u
 	on c.usersid = u.usersId
@@ -13,7 +13,8 @@ begin
 	on r.usersid = u.usersId
 	where  c.CookbookId =  @CookbookId
 	or @All = 1
-	group by  c.Cookbookid, c.CookbookName, u.usersFirstName, u.usersLastName, c.Price, u.usersId, c.DateCreated, c.IsActive
+	group by  c.Cookbookid, c.CookbookName, u.usersFirstName, u.usersLastName, c.Price, u.usersId, c.DateCreated, c.IsActive, r.Recipeid
+	order by c.CookbookName
 
 end
 go

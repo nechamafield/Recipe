@@ -7,7 +7,7 @@ namespace RecipeSystem
 {
     public class Recipe
     {
-        public static DataTable SearchRecipe(String recipename)
+        public static DataTable SearchRecipe(string recipename)
         {
             DataTable dt;
             SqlCommand cmd = SQLUtility.GetSQLCommand("RecipeGet");
@@ -32,8 +32,6 @@ namespace RecipeSystem
             cmd.Parameters["@All"].Value = 1;
             dt = SQLUtility.GetDataTable(cmd);
             return dt;
-
-            //return SQLUtility.GetDataTable("select recipeid, recipename from Recipe");
         }
 
         public static DataTable GetRecipeListForOnlyRecipes()
@@ -47,22 +45,17 @@ namespace RecipeSystem
 
         public static void UpdateClonedRecipeInfo(DataTable dtRecipe)
         {
+            //int newid = 0;
+            //string idtext = "";
             if (dtRecipe.Rows.Count == 0)
             {
                 throw new Exception("Cannot call RecipeSave Method because there are no rows in table");
             }
             DataRow r = dtRecipe.Rows[0];
+            //idtext = dtRecipe.Rows[0]["RecipeId"].ToString();
+            //bool b = int.TryParse(idtext, out newid);
             SQLUtility.SaveDataRow(r, "ClonedRecipeUpdate");
-        }
-
-        public static DataTable GetClonedRecipeInfo()
-        {
-
-            DataTable dt;
-            SqlCommand cmd = SQLUtility.GetSQLCommand("ClonedRecipeGet");
-            cmd.Parameters["@All"].Value = 1;
-            dt = SQLUtility.GetDataTable(cmd);
-            return dt;
+            //return newid;
         }
 
         public static DataTable GetCuisineList()

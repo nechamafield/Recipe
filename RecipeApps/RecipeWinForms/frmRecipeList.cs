@@ -22,12 +22,13 @@ namespace RecipeWinForms
             gRecipeList.CellDoubleClick += GRecipeList_CellDoubleClick;
             btnNewRecipe.Click += BtnNewRecipe_Click;
             this.Activated += RecipeList_Activated;
-            Recipe.SearchRecipe(recipename);
+            
         }
 
         private void RecipeList_Activated(object? sender, EventArgs e)
         {
-            BindData();
+            Recipe.SearchRecipe(recipename);
+            BindData();    
         }
 
 

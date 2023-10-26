@@ -36,16 +36,16 @@ namespace RecipeWinForms
             BindData();
         }
 
-        private void BindData()
+            private void BindData()
         {
             gRecipe.Columns.Clear();
-            gRecipe.DataSource = Cookbook.GetRecipeListForCookbooks(cookbookid);
+            dtcookbookrecipe = Cookbook.GetRecipeListForCookbooks(cookbookid);
+            gRecipe.DataSource = dtcookbookrecipe;
 
             WindowsFormsUtility.AddComboBoxToGrid(gRecipe, DataMaintenance.GetDataList("CookbookRecipe"), "Recipe", "RecipeName");
             WindowsFormsUtility.AddDeleteButtonToGrid(gRecipe, deletecolname);
-            //WindowsFormsUtility.FormatGridForSearchResults(gRecipe, "Recipe");
             WindowsFormsUtility.FormatGridForEdit(gRecipe, "CookbookRecipe");
-
+            SetButtonsEnabledBasedOnNewRecord();
             foreach (DataGridViewColumn col in gRecipe.Columns)
             {
                 if (col.Name.EndsWith("Name"))
@@ -57,7 +57,7 @@ namespace RecipeWinForms
             if (txtCookbookName.Text == "")
             {
                 txtDateCreated.Text = DateTime.Now.ToString();
-                SetButtonsEnabledBasedOnNewRecord();
+                SetButtonsEnabledBasedOnNewRecord(false);
             }
         }
 
@@ -128,9 +128,8 @@ namespace RecipeWinForms
             }
         }
 
-        private void SetButtonsEnabledBasedOnNewRecord()
+        private void SetButtonsEnabledBasedOnNewRecord(bool b = true)
         {
-            bool b = cookbookid == 0 ? false : true;
             btnDelete.Enabled = b;
             btnSaveRecipe.Enabled = b;
         }
@@ -145,8 +144,7 @@ namespace RecipeWinForms
                 b = true;
                 bindsource.ResetBindings(false);
                 cookbookid = SQLUtility.GetValueFromFirstRowAsInt(dtcookbook, "RecipeId");
-                this.Tag = cookbookid;
-                SetButtonsEnabledBasedOnNewRecord();
+                this.Tag = cookbookid; 
                 this.Text = GetCookbookDesc();
             }
             catch (Exception ex)
@@ -157,6 +155,7 @@ namespace RecipeWinForms
             {
                 Application.UseWaitCursor = false;
             }
+            SetButtonsEnabledBasedOnNewRecord();
             return b;
         }
 

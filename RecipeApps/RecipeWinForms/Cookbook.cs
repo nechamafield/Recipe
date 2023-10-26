@@ -47,7 +47,15 @@ namespace RecipeWinForms
             return dt;
         }
 
-
+        public static void GetAutoCreateCookbook(DataTable dtusers)
+        {
+            if (dtusers.Rows.Count == 0)
+            {
+                throw new Exception("Cannot call AutoCreateCookbook Method because there are no rows in table");
+            }
+            DataRow r = dtusers.Rows[0];
+            SQLUtility.SaveDataRow(r, "AutoCreateCookbookGet");
+        }
 
         public static void Save(DataTable dtcookbook)
         {

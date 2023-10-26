@@ -56,6 +56,7 @@ namespace RecipeWinForms
 
             WindowsFormsUtility.FormatGridForEdit(gSteps, "DirectionRecipe");
             WindowsFormsUtility.AddDeleteButtonToGrid(gSteps, deletecolname);
+            SetButtonsEnabledBasedOnNewRecord();
 
             foreach (DataGridViewColumn col in gIngredients.Columns)
             {
@@ -68,7 +69,7 @@ namespace RecipeWinForms
             if (txtRecipeName.Text == "")
             {
                 txtDateDrafted.Text = DateTime.Now.ToString();
-                SetButtonsEnabledBasedOnNewRecord();
+                SetButtonsEnabledBasedOnNewRecord(false);
             }
 
         }
@@ -112,7 +113,6 @@ namespace RecipeWinForms
                 bindsource.ResetBindings(false);
                 recipeid = SQLUtility.GetValueFromFirstRowAsInt(dtRecipe, "RecipeId");
                 this.Tag = recipeid;
-                SetButtonsEnabledBasedOnNewRecord();
                 this.Text = GetRecipeDesc();
             }
             catch (Exception ex)
@@ -123,15 +123,16 @@ namespace RecipeWinForms
             {
                 Application.UseWaitCursor = false;
             }
+            SetButtonsEnabledBasedOnNewRecord();
             return b;
         }
 
-        private void SetButtonsEnabledBasedOnNewRecord()
+        private void SetButtonsEnabledBasedOnNewRecord(bool b = true)
         {
-            bool b = recipeid == 0 ? false : true;
             btnDelete.Enabled = b;
             btnIngredientsSave.Enabled = b;
             btnStepsSave.Enabled = b;
+            btnChangeStatus.Enabled = b;
         }
 
         private string GetRecipeDesc()

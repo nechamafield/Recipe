@@ -12,9 +12,9 @@ begin
 
 	select r.Recipeid, r.RecipeName,  r.RecipeStatus, users = concat(u.usersFirstName , ' ', u.usersLastName), r.Calories,  NumIngredients = count(ir.Ingredientid), r.CuisineId, r.usersId, r.DateDrafted, r.DatePublished, r.DateArchived
 	from recipe r
-	join users u
+	left join users u
 	on u.usersId = r.usersid
-	join IngredientRecipe ir
+	left join IngredientRecipe ir
 	on ir.Recipeid = r.Recipeid
 	where r.recipeid = @RecipeId
 	or @All = 1
@@ -39,4 +39,4 @@ exec RecipeGet @Recipeid = @Id
 */
 
 
-select r.recipename, r.recipestatus from Recipe r
+select * from Recipe
