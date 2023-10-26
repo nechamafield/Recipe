@@ -50,13 +50,15 @@ namespace RecipeWinForms
 
         private void ShowRecipeForm(int rowindex)
         {
-            //sproc should work. i just have to work on that crashing becuse recipename must be unique - it not adding " - clone"
+            int id = 0;
             if (rowindex > -1)
             {
                 recipeid = WindowsFormsUtility.GetIdFromComboBox(lstRecipeName);
                 Recipe.UpdateClonedRecipeInfo(dtRecipe);
-                //open the new recipe not the old one
-                ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), recipeid);
+                string newid = "";
+                newid = dtRecipe.Rows[0][0].ToString();
+                bool b = int.TryParse(newid, out id);
+                ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), id);
             }
             if (recipeid == 0)
             {

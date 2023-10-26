@@ -45,17 +45,13 @@ namespace RecipeSystem
 
         public static void UpdateClonedRecipeInfo(DataTable dtRecipe)
         {
-            //int newid = 0;
-            //string idtext = "";
+
             if (dtRecipe.Rows.Count == 0)
             {
                 throw new Exception("Cannot call RecipeSave Method because there are no rows in table");
             }
             DataRow r = dtRecipe.Rows[0];
-            //idtext = dtRecipe.Rows[0]["RecipeId"].ToString();
-            //bool b = int.TryParse(idtext, out newid);
             SQLUtility.SaveDataRow(r, "ClonedRecipeUpdate");
-            //return newid;
         }
 
         public static DataTable GetCuisineList()
