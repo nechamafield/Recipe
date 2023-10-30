@@ -12,6 +12,8 @@ begin
     insert Recipe(usersid, CuisineId, RecipeName, Calories, DateDrafted, DatePublished, DateArchived)
     select x.usersid, x.Cuisineid, concat(x.RecipeName, ' - cloned') , x.Calories, x.DateDrafted, x.DatePublished, x.DateArchived
     from x
+		
+		select @RecipeId = SCOPE_IDENTITY()
 	
 	;with x as(
 		select RecipeName = concat(r.RecipeName,' - cloned'), ir.Amount, ir.IngredientId, ir.MeasurementId, ir.IngredientSequence
@@ -38,10 +40,6 @@ begin
 	from x
 	join Recipe r
 	on r.RecipeName = x.RecipeName
-
-		
-		select @RecipeId = SCOPE_IDENTITY()
-
 
 end
 
