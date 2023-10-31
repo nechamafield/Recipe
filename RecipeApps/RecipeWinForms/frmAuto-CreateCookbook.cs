@@ -16,6 +16,7 @@ namespace RecipeWinForms
     {
         DataTable dtusers = new();
         int recipeid = 0;
+        int userid = 0;
         string recipename = "";
         BindingSource bindsource = new BindingSource();
         public frmAuto_CreateCookbook()
@@ -68,7 +69,7 @@ namespace RecipeWinForms
             int id = 0;
             if (rowindex > -1)
             {
-                recipeid = WindowsFormsUtility.GetIdFromComboBox(lstUsersCompleteName);
+                userid = WindowsFormsUtility.GetIdFromComboBox(lstUsersCompleteName);
                 Cookbook.GetAutoCreateCookbook(dtusers);
                 string newid = "";
                 newid = dtusers.Rows[0][0].ToString();
