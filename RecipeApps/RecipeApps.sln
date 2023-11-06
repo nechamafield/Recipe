@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CPUFramework", "..\..\CPUFr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CPUWindowsFormsFramework", "..\..\CPUWindowsFormsFramework\CPUWindowsFormsFramework.csproj", "{685845BB-40EC-4A1F-8CBD-4464DCC4127A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeMAUI", "RecipeMAUI\RecipeMAUI.csproj", "{6210DBBF-C811-4AF7-A497-717FF7D4F02B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,12 @@ Global
 		{685845BB-40EC-4A1F-8CBD-4464DCC4127A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{685845BB-40EC-4A1F-8CBD-4464DCC4127A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{685845BB-40EC-4A1F-8CBD-4464DCC4127A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6210DBBF-C811-4AF7-A497-717FF7D4F02B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6210DBBF-C811-4AF7-A497-717FF7D4F02B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6210DBBF-C811-4AF7-A497-717FF7D4F02B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{6210DBBF-C811-4AF7-A497-717FF7D4F02B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6210DBBF-C811-4AF7-A497-717FF7D4F02B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6210DBBF-C811-4AF7-A497-717FF7D4F02B}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

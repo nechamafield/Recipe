@@ -1,4 +1,4 @@
-create or alter procedure dbo.AutoCreateCookbookGet (
+create or alter procedure dbo.AutoCreateCookbookUpdate(
 	@CookbookId int = 0 output, 
 	@UsersId int = 0 output,
 	@IncludeBlank bit = 0, 
