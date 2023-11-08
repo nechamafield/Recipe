@@ -198,6 +198,7 @@
             // txtRecipeStatus
             // 
             txtRecipeStatus.Dock = DockStyle.Fill;
+            txtRecipeStatus.Enabled = false;
             txtRecipeStatus.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtRecipeStatus.Location = new Point(307, 206);
             txtRecipeStatus.Name = "txtRecipeStatus";
@@ -308,6 +309,7 @@
             // txtDateDrafted
             // 
             txtDateDrafted.Dock = DockStyle.Fill;
+            txtDateDrafted.Enabled = false;
             txtDateDrafted.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtDateDrafted.Location = new Point(3, 54);
             txtDateDrafted.Name = "txtDateDrafted";
@@ -317,6 +319,7 @@
             // txtDatePublished
             // 
             txtDatePublished.Dock = DockStyle.Fill;
+            txtDatePublished.Enabled = false;
             txtDatePublished.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtDatePublished.Location = new Point(180, 54);
             txtDatePublished.Name = "txtDatePublished";
@@ -326,6 +329,7 @@
             // txtDateArchived
             // 
             txtDateArchived.Dock = DockStyle.Fill;
+            txtDateArchived.Enabled = false;
             txtDateArchived.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtDateArchived.Location = new Point(357, 54);
             txtDateArchived.Name = "txtDateArchived";

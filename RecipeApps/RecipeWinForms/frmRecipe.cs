@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using CPUFramework;
 using CPUWindowsFormsFramework;
+using Microsoft.VisualBasic.ApplicationServices;
 using RecipeSystem;
 
 
@@ -49,8 +50,8 @@ namespace RecipeWinForms
             dtRecipeSteps = Recipe.GetStepsListByRecipe(recipeid);
             gSteps.DataSource = dtRecipeSteps;
 
-            WindowsFormsUtility.AddComboBoxToGrid(gIngredients, DataMaintenance.GetDataList("IngredientForRecipe"), "Measurement", "MeasurementName");
-            WindowsFormsUtility.AddComboBoxToGrid(gIngredients, DataMaintenance.GetDataList("IngredientForRecipe"), "Ingredient", "IngredientName");
+            WindowsFormsUtility.AddComboBoxToGrid(gIngredients, DataMaintenance.GetDataList("Measurement"), "Measurement", "MeasurementName");
+            WindowsFormsUtility.AddComboBoxToGrid(gIngredients, DataMaintenance.GetDataList("Ingredient"), "Ingredient", "IngredientName");
             WindowsFormsUtility.FormatGridForEdit(gIngredients, "Ingredient");
             WindowsFormsUtility.AddDeleteButtonToGrid(gIngredients, deletecolname);
 
@@ -257,6 +258,7 @@ namespace RecipeWinForms
         {
             SaveRecipeIngredients();
         }
+
 
         private void ShowChangeStatusForm(int rowindex)
         {

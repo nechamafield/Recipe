@@ -81,7 +81,7 @@
             // mnuFileDashboard
             // 
             mnuFileDashboard.Name = "mnuFileDashboard";
-            mnuFileDashboard.Size = new Size(194, 32);
+            mnuFileDashboard.Size = new Size(224, 32);
             mnuFileDashboard.Text = "Dashboard";
             // 
             // mnuRecipe
@@ -183,7 +183,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(847, 556);
+            ClientSize = new Size(847, 651);
             Controls.Add(tsMain);
             Controls.Add(mnuMain);
             IsMdiContainer = true;

@@ -53,12 +53,20 @@ namespace RecipeWinForms
             int id = 0;
             if (rowindex > -1)
             {
-                recipeid = WindowsFormsUtility.GetIdFromComboBox(lstRecipeName);
-                Recipe.UpdateClonedRecipeInfo(dtRecipe);
-                string newid = "";
-                newid = dtRecipe.Rows[0][0].ToString();
-                bool b = int.TryParse(newid, out id);
-                ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), id);
+                var response = MessageBox.Show("This recipe already exists.", "Hearty Hearth", MessageBoxButtons.OKCancel);
+                try
+                {
+                    recipeid = WindowsFormsUtility.GetIdFromComboBox(lstRecipeName);
+                    Recipe.UpdateClonedRecipeInfo(dtRecipe);
+                    string newid = "";
+                    newid = dtRecipe.Rows[0][0].ToString();
+                    bool b = int.TryParse(newid, out id);
+                    ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), id);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Hearty Hearth");
+                }
             }
             if (recipeid == 0)
             {
