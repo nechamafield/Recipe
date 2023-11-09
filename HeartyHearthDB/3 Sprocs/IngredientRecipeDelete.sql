@@ -8,17 +8,10 @@ begin
 
 	select @IngredientId = isnull(@IngredientId,0)
 
-	delete Ingredient where IngredientId = @IngredientId
+	delete Ingredientrecipe where IngredientId = @IngredientId
 
 	return @return
 end
 go
 
-select * from Ingredient
-
-
-
-
-
-
-
+select * from IngredientRecipe

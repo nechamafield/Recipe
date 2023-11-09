@@ -296,7 +296,7 @@ namespace RecipeWinForms
         {
             if (gIngredients.Columns[e.ColumnIndex].Name == deletecolname)
             {
-                Delete(e.RowIndex, gIngredients, "Ingredient");
+                Delete(e.RowIndex, gIngredients, "IngredientRecipe");
             }
         }
 

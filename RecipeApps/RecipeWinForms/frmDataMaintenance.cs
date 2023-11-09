@@ -40,7 +40,7 @@ namespace RecipeWinForms
             {
                 currenttabletype = TableTypeEnum.Cuisine;
             }
-            else if (optIngredients.Checked == true)
+            else if (optIngredient.Checked == true)
             {
                 currenttabletype = TableTypeEnum.Ingredient;
             }
@@ -78,7 +78,7 @@ namespace RecipeWinForms
 
         private void Delete(int rowindex)
         {
-            if(currenttabletype == TableTypeEnum.Users)
+            if (currenttabletype == TableTypeEnum.Users)
             {
                 var response = MessageBox.Show("Are you sure you want to delete this user and all related recipes, meals, and cookbooks?", "Hearty Hearth", MessageBoxButtons.YesNo);
                 if (response == DialogResult.No)
@@ -125,7 +125,7 @@ namespace RecipeWinForms
             }
             optUsers.Tag = TableTypeEnum.Users;
             optCuisines.Tag = TableTypeEnum.Cuisine;
-            optIngredients.Tag = TableTypeEnum.Ingredient;
+            optIngredient.Tag = TableTypeEnum.Ingredient;
             optMeasurements.Tag = TableTypeEnum.Measurement;
             optCourses.Tag = TableTypeEnum.Courses;
         }

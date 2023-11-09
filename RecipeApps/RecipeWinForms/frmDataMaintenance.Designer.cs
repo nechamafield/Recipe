@@ -34,7 +34,7 @@
             pnlOptionButtons = new FlowLayoutPanel();
             optUsers = new RadioButton();
             optCuisines = new RadioButton();
-            optIngredients = new RadioButton();
+            optIngredient = new RadioButton();
             optMeasurements = new RadioButton();
             optCourses = new RadioButton();
             tblMain.SuspendLayout();
@@ -86,7 +86,7 @@
             // 
             pnlOptionButtons.Controls.Add(optUsers);
             pnlOptionButtons.Controls.Add(optCuisines);
-            pnlOptionButtons.Controls.Add(optIngredients);
+            pnlOptionButtons.Controls.Add(optIngredient);
             pnlOptionButtons.Controls.Add(optMeasurements);
             pnlOptionButtons.Controls.Add(optCourses);
             pnlOptionButtons.Dock = DockStyle.Fill;
@@ -117,15 +117,15 @@
             optCuisines.Text = "Cuisines";
             optCuisines.UseVisualStyleBackColor = true;
             // 
-            // optIngredients
+            // optIngredient
             // 
-            optIngredients.AutoSize = true;
-            optIngredients.Location = new Point(3, 79);
-            optIngredients.Name = "optIngredients";
-            optIngredients.Size = new Size(131, 32);
-            optIngredients.TabIndex = 2;
-            optIngredients.Text = "Ingredients";
-            optIngredients.UseVisualStyleBackColor = true;
+            optIngredient.AutoSize = true;
+            optIngredient.Location = new Point(3, 79);
+            optIngredient.Name = "optIngredient";
+            optIngredient.Size = new Size(131, 32);
+            optIngredient.TabIndex = 2;
+            optIngredient.Text = "Ingredients";
+            optIngredient.UseVisualStyleBackColor = true;
             // 
             // optMeasurements
             // 
@@ -170,7 +170,7 @@
         private FlowLayoutPanel pnlOptionButtons;
         private RadioButton optUsers;
         private RadioButton optCuisines;
-        private RadioButton optIngredients;
+        private RadioButton optIngredient;
         private RadioButton optMeasurements;
         private RadioButton optCourses;
     }
