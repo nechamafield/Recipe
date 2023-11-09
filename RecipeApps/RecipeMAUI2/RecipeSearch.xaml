@@ -11,10 +11,12 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid RowDefinitions="Auto" ColumnDefinitions="Auto, Auto, *" ColumnSpacing="10">
-                            <!--<Image Grid.Row="0" Grid.Column="0" HeightRequest="75" Source="{Binding Path=[Num], StringFormat='p{0}p.jpeg'}"/>-->
-                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Path=[Calories]}"/>
-                            <Label Grid.Row="0" Grid.Column="2" Text="{Binding Path=[RecipeName]}"/>
+                        <Grid RowDefinitions="Auto" ColumnDefinitions="Auto, Auto, Auto, Auto, Auto, Auto" ColumnSpacing="10">
+                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Path=[RecipeName]}"/>
+                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Path=[RecipeStatus]}"/>
+                            <Label Grid.Row="0" Grid.Column="2" Text="{Binding Path=[users]}"/>
+                            <Label Grid.Row="0" Grid.Column="3" Text="{Binding Path=[NumIngredients]}"/>
+                            <Label Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2" Text="{Binding Path=[RecipePictureName]}"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

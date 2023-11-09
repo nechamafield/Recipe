@@ -10,14 +10,14 @@ public partial class RecipeSearch : ContentPage
 		InitializeComponent();
 	}
 
-    private void SearchRecipes()
+    private void SearchRecipes(string recipename)
     {
-        DataTable dt = Recipe.SearchRecipe(RecipeNameTxt.Text);
+        DataTable dt = Recipe.SearchRecipe(recipename);
         RecipeLst.ItemsSource = dt.Rows;
     }
 
     private void SearchBtn_Clicked(object sender, EventArgs e)
     {
-        SearchRecipes();
+        SearchRecipes(RecipeNameTxt.Text);
     }
 }

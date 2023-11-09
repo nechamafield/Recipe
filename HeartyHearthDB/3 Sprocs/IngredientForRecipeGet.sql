@@ -1,4 +1,9 @@
-create or alter procedure dbo.IngredientForRecipeGet (@IngredientId int = 0, @Recipeid int = 0,  @All bit = 0)
+create or alter procedure dbo.IngredientForRecipeGet (
+	@IngredientId int = 0, 
+	@Recipeid int = 0,  
+	@All bit = 0
+)
+
 as
 begin
 

@@ -35,7 +35,7 @@ namespace RecipeMAUI2
             //var settingsval = configval.GetRequiredSection("Settings").Get<Settings>();
 
             //App.ConnStringSetting = settingsval.devconn.ToString();
-            App.ConnStringSetting = "Server=.\\SQLExpress;Database=RecordKeeperDB; Trusted_Connection=True;";
+            App.ConnStringSetting = "Server=.\\SQLExpress;Database=HeartyHearthDB; Trusted_Connection=True;";
             return app;
         }
     }

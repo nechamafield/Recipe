@@ -42,6 +42,10 @@ namespace RecipeWinForms
                 {
                     col.Visible = false;
                 }
+                if (col.Name.EndsWith("PictureName"))
+                {
+                    col.Visible = false;
+                }
             }
         }
 
