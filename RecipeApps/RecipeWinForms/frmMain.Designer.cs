@@ -67,7 +67,7 @@
             mnuMain.Items.AddRange(new ToolStripItem[] { mnuFile, mnuRecipe, mnuMeals, cookbooksToolStripMenuItem, mnuDataMaintenance, mnuWindows });
             mnuMain.Location = new Point(0, 0);
             mnuMain.Name = "mnuMain";
-            mnuMain.Size = new Size(847, 36);
+            mnuMain.Size = new Size(844, 36);
             mnuMain.TabIndex = 8;
             mnuMain.Text = "menuStrip1";
             // 
@@ -183,7 +183,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(847, 651);
+            ClientSize = new Size(844, 616);
             Controls.Add(tsMain);
             Controls.Add(mnuMain);
             IsMdiContainer = true;

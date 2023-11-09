@@ -62,13 +62,11 @@
             tblMain.Margin = new Padding(3, 25, 3, 3);
             tblMain.Name = "tblMain";
             tblMain.RowCount = 4;
-            tblMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 86F));
-            tblMain.RowStyles.Add(new RowStyle());
-            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tblMain.RowStyles.Add(new RowStyle());
-            tblMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tblMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tblMain.Size = new Size(867, 612);
+            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 13.7417221F));
+            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 24.1721859F));
+            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 47.18543F));
+            tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 14.8496237F));
+            tblMain.Size = new Size(762, 639);
             tblMain.TabIndex = 1;
             // 
             // lblDashboard
@@ -76,9 +74,9 @@
             lblDashboard.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblDashboard.AutoSize = true;
             lblDashboard.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            lblDashboard.Location = new Point(3, 45);
+            lblDashboard.Location = new Point(3, 46);
             lblDashboard.Name = "lblDashboard";
-            lblDashboard.Size = new Size(861, 41);
+            lblDashboard.Size = new Size(756, 41);
             lblDashboard.TabIndex = 1;
             lblDashboard.Text = "Hearty Hearth Desktop App";
             lblDashboard.TextAlign = ContentAlignment.BottomCenter;
@@ -88,10 +86,10 @@
             lblDashBoardWelcome.AutoSize = true;
             lblDashBoardWelcome.Dock = DockStyle.Fill;
             lblDashBoardWelcome.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblDashBoardWelcome.Location = new Point(100, 111);
+            lblDashBoardWelcome.Location = new Point(100, 112);
             lblDashBoardWelcome.Margin = new Padding(100, 25, 100, 25);
             lblDashBoardWelcome.Name = "lblDashBoardWelcome";
-            lblDashBoardWelcome.Size = new Size(667, 56);
+            lblDashBoardWelcome.Size = new Size(562, 104);
             lblDashBoardWelcome.TabIndex = 2;
             lblDashBoardWelcome.Text = "Welcome to the Hearty Hearth desktop app. In this app you can create recipes and cookbooks. You can also edit or update existing items.\r\n";
             // 
@@ -110,14 +108,14 @@
             tableLayoutPanel2.Controls.Add(txtMeals, 1, 2);
             tableLayoutPanel2.Controls.Add(txtCookbooks, 1, 3);
             tableLayoutPanel2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            tableLayoutPanel2.Location = new Point(159, 195);
+            tableLayoutPanel2.Location = new Point(107, 244);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 4;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tableLayoutPanel2.Size = new Size(548, 341);
+            tableLayoutPanel2.Size = new Size(548, 295);
             tableLayoutPanel2.TabIndex = 3;
             // 
             // lblType
@@ -128,7 +126,7 @@
             lblType.Location = new Point(3, 0);
             lblType.Margin = new Padding(3, 0, 3, 5);
             lblType.Name = "lblType";
-            lblType.Size = new Size(268, 80);
+            lblType.Size = new Size(268, 68);
             lblType.TabIndex = 0;
             lblType.Text = "Type";
             lblType.TextAlign = ContentAlignment.MiddleCenter;
@@ -141,7 +139,7 @@
             lblNumber.Location = new Point(277, 0);
             lblNumber.Margin = new Padding(3, 0, 3, 5);
             lblNumber.Name = "lblNumber";
-            lblNumber.Size = new Size(268, 80);
+            lblNumber.Size = new Size(268, 68);
             lblNumber.TabIndex = 1;
             lblNumber.Text = "Number";
             lblNumber.TextAlign = ContentAlignment.MiddleCenter;
@@ -150,10 +148,10 @@
             // 
             lblRecipes.AutoSize = true;
             lblRecipes.Dock = DockStyle.Fill;
-            lblRecipes.Location = new Point(3, 90);
+            lblRecipes.Location = new Point(3, 78);
             lblRecipes.Margin = new Padding(3, 5, 3, 5);
             lblRecipes.Name = "lblRecipes";
-            lblRecipes.Size = new Size(268, 75);
+            lblRecipes.Size = new Size(268, 63);
             lblRecipes.TabIndex = 2;
             lblRecipes.Text = "Recipes";
             lblRecipes.TextAlign = ContentAlignment.MiddleCenter;
@@ -162,10 +160,10 @@
             // 
             lblMeals.AutoSize = true;
             lblMeals.Dock = DockStyle.Fill;
-            lblMeals.Location = new Point(3, 175);
+            lblMeals.Location = new Point(3, 151);
             lblMeals.Margin = new Padding(3, 5, 3, 5);
             lblMeals.Name = "lblMeals";
-            lblMeals.Size = new Size(268, 75);
+            lblMeals.Size = new Size(268, 63);
             lblMeals.TabIndex = 3;
             lblMeals.Text = "Meals";
             lblMeals.TextAlign = ContentAlignment.MiddleCenter;
@@ -174,10 +172,10 @@
             // 
             lblCookbooks.AutoSize = true;
             lblCookbooks.Dock = DockStyle.Fill;
-            lblCookbooks.Location = new Point(3, 260);
+            lblCookbooks.Location = new Point(3, 224);
             lblCookbooks.Margin = new Padding(3, 5, 3, 5);
             lblCookbooks.Name = "lblCookbooks";
-            lblCookbooks.Size = new Size(268, 76);
+            lblCookbooks.Size = new Size(268, 66);
             lblCookbooks.TabIndex = 4;
             lblCookbooks.Text = "Cookbooks";
             lblCookbooks.TextAlign = ContentAlignment.MiddleCenter;
@@ -186,10 +184,10 @@
             // 
             txtRecipes.Dock = DockStyle.Fill;
             txtRecipes.Enabled = false;
-            txtRecipes.Location = new Point(277, 88);
+            txtRecipes.Location = new Point(277, 76);
             txtRecipes.Multiline = true;
             txtRecipes.Name = "txtRecipes";
-            txtRecipes.Size = new Size(268, 79);
+            txtRecipes.Size = new Size(268, 67);
             txtRecipes.TabIndex = 5;
             txtRecipes.TextAlign = HorizontalAlignment.Center;
             // 
@@ -197,10 +195,10 @@
             // 
             txtMeals.Dock = DockStyle.Fill;
             txtMeals.Enabled = false;
-            txtMeals.Location = new Point(277, 173);
+            txtMeals.Location = new Point(277, 149);
             txtMeals.Multiline = true;
             txtMeals.Name = "txtMeals";
-            txtMeals.Size = new Size(268, 79);
+            txtMeals.Size = new Size(268, 67);
             txtMeals.TabIndex = 6;
             txtMeals.TextAlign = HorizontalAlignment.Center;
             // 
@@ -208,10 +206,10 @@
             // 
             txtCookbooks.Dock = DockStyle.Fill;
             txtCookbooks.Enabled = false;
-            txtCookbooks.Location = new Point(277, 258);
+            txtCookbooks.Location = new Point(277, 222);
             txtCookbooks.Multiline = true;
             txtCookbooks.Name = "txtCookbooks";
-            txtCookbooks.Size = new Size(268, 80);
+            txtCookbooks.Size = new Size(268, 70);
             txtCookbooks.TabIndex = 7;
             txtCookbooks.TextAlign = HorizontalAlignment.Center;
             // 
@@ -226,7 +224,7 @@
             tblLists.Controls.Add(btnMealList, 1, 0);
             tblLists.Controls.Add(btnCookbookList, 2, 0);
             tblLists.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            tblLists.Location = new Point(187, 542);
+            tblLists.Location = new Point(134, 545);
             tblLists.Name = "tblLists";
             tblLists.RowCount = 1;
             tblLists.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
@@ -265,7 +263,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(867, 612);
+            ClientSize = new Size(762, 639);
             Controls.Add(tblMain);
             Name = "frmDashboard";
             Text = "Dashboard";
