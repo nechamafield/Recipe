@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            tsMain = new ToolStrip();
-            mnuMain = new MenuStrip();
+            miniToolStrip = new MenuStrip();
             mnuFile = new ToolStripMenuItem();
             mnuFileDashboard = new ToolStripMenuItem();
             mnuRecipe = new ToolStripMenuItem();
@@ -47,29 +46,23 @@
             mnuWindows = new ToolStripMenuItem();
             mnuWindowsTile = new ToolStripMenuItem();
             mnuWindowsCascade = new ToolStripMenuItem();
+            tsMain = new ToolStrip();
+            mnuMain = new MenuStrip();
             mnuMain.SuspendLayout();
             SuspendLayout();
             // 
-            // tsMain
+            // miniToolStrip
             // 
-            tsMain.Dock = DockStyle.None;
-            tsMain.ImageScalingSize = new Size(20, 20);
-            tsMain.Location = new Point(0, 36);
-            tsMain.Name = "tsMain";
-            tsMain.Size = new Size(112, 25);
-            tsMain.TabIndex = 6;
-            tsMain.Text = "toolStrip1";
-            // 
-            // mnuMain
-            // 
-            mnuMain.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            mnuMain.ImageScalingSize = new Size(20, 20);
-            mnuMain.Items.AddRange(new ToolStripItem[] { mnuFile, mnuRecipe, mnuMeals, cookbooksToolStripMenuItem, mnuDataMaintenance, mnuWindows });
-            mnuMain.Location = new Point(0, 0);
-            mnuMain.Name = "mnuMain";
-            mnuMain.Size = new Size(844, 36);
-            mnuMain.TabIndex = 8;
-            mnuMain.Text = "menuStrip1";
+            miniToolStrip.AccessibleName = "New item selection";
+            miniToolStrip.AccessibleRole = AccessibleRole.ComboBox;
+            miniToolStrip.AutoSize = false;
+            miniToolStrip.Dock = DockStyle.None;
+            miniToolStrip.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            miniToolStrip.ImageScalingSize = new Size(20, 20);
+            miniToolStrip.Location = new Point(0, 0);
+            miniToolStrip.Name = "miniToolStrip";
+            miniToolStrip.Size = new Size(641, 36);
+            miniToolStrip.TabIndex = 8;
             // 
             // mnuFile
             // 
@@ -179,6 +172,26 @@
             mnuWindowsCascade.Size = new Size(169, 32);
             mnuWindowsCascade.Text = "Cascade";
             // 
+            // tsMain
+            // 
+            tsMain.ImageScalingSize = new Size(20, 20);
+            tsMain.Location = new Point(0, 36);
+            tsMain.Name = "tsMain";
+            tsMain.Size = new Size(844, 25);
+            tsMain.TabIndex = 6;
+            tsMain.Text = "toolStrip1";
+            // 
+            // mnuMain
+            // 
+            mnuMain.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            mnuMain.ImageScalingSize = new Size(20, 20);
+            mnuMain.Items.AddRange(new ToolStripItem[] { mnuFile, mnuRecipe, mnuMeals, cookbooksToolStripMenuItem, mnuDataMaintenance, mnuWindows });
+            mnuMain.Location = new Point(0, 0);
+            mnuMain.Name = "mnuMain";
+            mnuMain.Size = new Size(844, 36);
+            mnuMain.TabIndex = 8;
+            mnuMain.Text = "menuStrip1";
+            // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -187,7 +200,7 @@
             Controls.Add(tsMain);
             Controls.Add(mnuMain);
             IsMdiContainer = true;
-            MainMenuStrip = mnuMain;
+            MainMenuStrip = miniToolStrip;
             Name = "frmMain";
             Text = "Hearty Hearth";
             mnuMain.ResumeLayout(false);
@@ -197,8 +210,8 @@
         }
 
         #endregion
-        private ToolStrip tsMain;
-        private MenuStrip mnuMain;
+
+        private MenuStrip miniToolStrip;
         private ToolStripMenuItem mnuFile;
         private ToolStripMenuItem mnuFileDashboard;
         private ToolStripMenuItem mnuRecipe;
@@ -216,5 +229,7 @@
         private ToolStripMenuItem mnuWindows;
         private ToolStripMenuItem mnuWindowsTile;
         private ToolStripMenuItem mnuWindowsCascade;
+        private ToolStrip tsMain;
+        private MenuStrip mnuMain;
     }
 }
