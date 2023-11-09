@@ -1,5 +1,6 @@
 ﻿using CPUFramework;
 using CPUWindowsFormsFramework;
+using Microsoft.VisualBasic.ApplicationServices;
 using RecipeSystem;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace RecipeWinForms
         int recipeid = 0;
         string recipename = "";
         BindingSource bindsource = new BindingSource();
+        int userid = 0;
         public frmCloneRecipe()
         {
             InitializeComponent();
@@ -48,12 +50,12 @@ namespace RecipeWinForms
             this.Show();
         }
 
+
         private void ShowRecipeForm(int rowindex)
         {
             int id = 0;
             if (rowindex > -1)
             {
-                var response = MessageBox.Show("This recipe already exists.", "Hearty Hearth", MessageBoxButtons.OKCancel);
                 try
                 {
                     recipeid = WindowsFormsUtility.GetIdFromComboBox(lstRecipeName);
@@ -63,9 +65,9 @@ namespace RecipeWinForms
                     bool b = int.TryParse(newid, out id);
                     ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), id);
                 }
-                catch (Exception ex)
+                catch
                 {
-                    MessageBox.Show(ex.Message, "Hearty Hearth");
+                    MessageBox.Show("This recipe already exists.", "Hearty Hearth", MessageBoxButtons.OKCancel);
                 }
             }
             if (recipeid == 0)

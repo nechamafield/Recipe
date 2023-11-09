@@ -36,13 +36,13 @@ namespace RecipeWinForms
             BindData();
         }
 
-            private void BindData()
+        private void BindData()
         {
             gRecipe.Columns.Clear();
             dtcookbookrecipe = Cookbook.GetRecipeListForCookbooks(cookbookid);
             gRecipe.DataSource = dtcookbookrecipe;
 
-            WindowsFormsUtility.AddComboBoxToGrid(gRecipe, DataMaintenance.GetDataList("CookbookRecipe"), "Recipe", "RecipeName");
+            WindowsFormsUtility.AddComboBoxToGrid(gRecipe, DataMaintenance.GetDataList("Recipe"), "Recipe", "RecipeName");
             WindowsFormsUtility.AddDeleteButtonToGrid(gRecipe, deletecolname);
             WindowsFormsUtility.FormatGridForEdit(gRecipe, "CookbookRecipe");
             SetButtonsEnabledBasedOnNewRecord();
@@ -144,8 +144,9 @@ namespace RecipeWinForms
                 b = true;
                 bindsource.ResetBindings(false);
                 cookbookid = SQLUtility.GetValueFromFirstRowAsInt(dtcookbook, "RecipeId");
-                this.Tag = cookbookid; 
+                this.Tag = cookbookid;
                 this.Text = GetCookbookDesc();
+                SaveRecipes();
             }
             catch (Exception ex)
             {

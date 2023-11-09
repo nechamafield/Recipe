@@ -22,13 +22,13 @@ namespace RecipeWinForms
             gRecipeList.CellDoubleClick += GRecipeList_CellDoubleClick;
             btnNewRecipe.Click += BtnNewRecipe_Click;
             this.Activated += RecipeList_Activated;
-            
+
         }
 
         private void RecipeList_Activated(object? sender, EventArgs e)
         {
             Recipe.SearchRecipe(recipename);
-            BindData();    
+            BindData();
         }
 
 
@@ -56,6 +56,7 @@ namespace RecipeWinForms
             {
                 id = WindowsFormsUtility.GetIdFromGrid(gRecipeList, rowindex, "RecipeId");
                 ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), id);
+
             }
             if (id == 0)
             {
@@ -70,7 +71,7 @@ namespace RecipeWinForms
 
         private void BtnNewRecipe_Click(object? sender, EventArgs e)
         {
-            
+
             ShowRecipeForm(-1);
         }
 
