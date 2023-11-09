@@ -43,6 +43,7 @@ namespace RecipeWinForms
         private void BindData()
         {
             gIngredients.Columns.Clear();
+            gSteps.Columns.Clear();
 
             dtRecipeIng = Recipe.GetIngredientListByRecipe(recipeid);
             gIngredients.DataSource = dtRecipeIng;

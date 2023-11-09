@@ -10,7 +10,7 @@ begin
 
 		select @RecipeName = nullif (@RecipeName, ''), @RecipeStatus = nullif (@RecipeStatus, '')
 
-	select r.Recipeid, r.RecipeName,  r.RecipeStatus, users = concat(u.usersFirstName , ' ', u.usersLastName), r.Calories,  NumIngredients = count(ir.Ingredientid), r.CuisineId, r.usersId, r.DateDrafted, r.DatePublished, r.DateArchived
+	select r.Recipeid, r.RecipeName,  r.RecipeStatus, users = concat(u.usersFirstName , ' ', u.usersLastName), r.Calories,  NumIngredients = count(ir.Ingredientid), r.CuisineId, r.usersId, r.DateDrafted, r.DatePublished, r.DateArchived, r.RecipePictureName
 	from recipe r
 	left join users u
 	on u.usersId = r.usersid
@@ -20,7 +20,7 @@ begin
 	or @All = 1
 	or r.RecipeName like '%' + @RecipeName + '%'
 	or r.RecipeStatus like '%' + @RecipeStatus + '%'
-	group by r.RecipeName, r.RecipeStatus, r.Calories, u.usersFirstName, u.usersLastName, r.Recipeid, r.CuisineId, r.usersId, r.DateDrafted, r.DatePublished, r.DateArchived
+	group by r.RecipeName, r.RecipeStatus, r.Calories, u.usersFirstName, u.usersLastName, r.Recipeid, r.CuisineId, r.usersId, r.DateDrafted, r.DatePublished, r.DateArchived, r.RecipePictureName
 	order by r.RecipeStatus desc 
 
 end
