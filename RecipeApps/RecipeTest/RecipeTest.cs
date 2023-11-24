@@ -41,7 +41,8 @@ namespace RecipeTest
             r["Calories"] = calories;
             r["DateDrafted"] = datedrafted;
             r["Cuisineid"] = Cuisineid;
-            Recipe.Save(dt);
+            bizRecipe rec = new();
+            rec.Save(dt);
 
             int maxid = SQLUtility.GetFirstColumnFirstRowValue("select max (recipeid) from recipe");
             maxid = maxid + 1;
@@ -85,7 +86,8 @@ namespace RecipeTest
             Assume.That(recipeid > 0, "No recipe wihtout date archived in DB, can't run test");
             TestContext.WriteLine("existing recipe without date archived, with id = " + recipeid + " " + recipedesc);
             TestContext.WriteLine("ensure that app can delete " + recipeid);
-            Recipe.Delete(dt);
+            bizRecipe rec = new();
+            rec.Delete(dt);
             
             DataTable dtafterdelete = SQLUtility.GetDataTable("delete IngredientRecipe delete DirectionRecipe delete CourseMealRecipe delete CookBookRecipe delete Recipe where recipeid = " + recipeid);
             Assert.IsTrue(dtafterdelete.Rows.Count == 0, "record with recipeid " + recipeid + " exists in DB");
@@ -123,7 +125,8 @@ namespace RecipeTest
             Assume.That(recipeid > 0, "No recipies in DB, can't run test");
             TestContext.WriteLine("existing recipe with id = " + recipeid);
             TestContext.WriteLine("Ensure that app loads recipe " + recipeid);
-            DataTable dt = Recipe.Load(recipeid);
+            bizRecipe rec = new();
+            DataTable dt = rec.Load(recipeid);
             int loadedid = (int)dt.Rows[0]["recipeid"];
             Assert.IsTrue(loadedid == recipeid, (int)dt.Rows[0]["recipeid"] + " <> " + recipeid);
             TestContext.WriteLine("loaded recipe (" + loadedid + ")" + recipeid);

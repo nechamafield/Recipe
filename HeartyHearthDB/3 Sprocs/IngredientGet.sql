@@ -1,12 +1,14 @@
-create or alter procedure dbo.IngredientGet (@IngredientId int = 0,  @All bit = 0)
+create or alter procedure dbo.IngredientGet (@Ingredientid int = 0,  @All bit = 0)
 as
 begin
 
-	select @IngredientId = nullif (@IngredientId, 0)
+	select @Ingredientid = nullif (@Ingredientid, 0)
 
-	select i.ingredientid, i.ingredientname
+	select i.ingredientid, i.ingredientname, ir.RecipeId
 	from Ingredient i
-	where i.ingredientid = @IngredientId
+	join IngredientRecipe ir
+	on ir.IngredientId = i.ingredientid
+	where i.ingredientid = @Ingredientid
 	or @All = 1
 	order by i.ingredientid, i.ingredientname
 end

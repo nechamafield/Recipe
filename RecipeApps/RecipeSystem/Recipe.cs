@@ -95,7 +95,7 @@ namespace RecipeSystem
         {
             DataTable dt;
             SqlCommand cmd = SQLUtility.GetSQLCommand("IngredientGet");
-            cmd.Parameters["@All"].Value = 1;
+            cmd.Parameters["@All"].Value = 1; 
             dt = SQLUtility.GetDataTable(cmd);
             return dt;
         }

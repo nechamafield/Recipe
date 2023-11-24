@@ -260,7 +260,6 @@ namespace RecipeWinForms
             SaveRecipeIngredients();
         }
 
-
         private void ShowChangeStatusForm(int rowindex)
         {
             if (rowindex > -1)
@@ -268,7 +267,7 @@ namespace RecipeWinForms
                 recipeid = WindowsFormsUtility.GetIdFromGrid(gIngredients, rowindex, "RecipeId");
                 ((frmMain)this.MdiParent).OpenForm(typeof(frmChangeStatus), recipeid);
             }
-            if (recipeid == 0)   //this.MdiParent != null && this.MdiParent is frmCookbookList)
+            if (recipeid == 0)  
             {
                 ((frmMain)this.MdiParent).OpenForm(typeof(frmChangeStatus), recipeid);
             }
