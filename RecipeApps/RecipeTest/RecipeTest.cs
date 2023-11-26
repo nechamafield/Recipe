@@ -72,6 +72,10 @@ namespace RecipeTest
             TestContext.WriteLine("calories for recipe (" + recipeid + ") = " + newcaloriecount);
         }
 
+        /*Af This test is not working as intended.  YOu are trying to get a recipeid that is able to be deleted, but the select
+        or some other line of code along the way is not working, when I run it crashes with the error 
+        "System.Exception : Cannot delete recipe that is not currently in draft or archived for over 30 days."
+        but really that type of recipe should not be selected to begin with*/
         [Test]
         public void DeleteRecipe()
         {
