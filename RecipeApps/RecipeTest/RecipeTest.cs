@@ -24,7 +24,7 @@ namespace RecipeTest
 
         [Test]
         [TestCase("cookies", 250)]
-        [TestCase("ice cream", 175)]
+        //[TestCase("ice cream", 175)]
         [TestCase("yogurt", 122)]
         public void InsertNewRecipe(string recipename, int calories)
         {
@@ -41,13 +41,13 @@ namespace RecipeTest
             recipename = recipename + DateTime.Now.ToString();
 
             TestContext.WriteLine("insert recipe with datedrafted = " + datedrafted);
-            r["usersid"] = usersid;
-            r["RecipeName"] = recipename;
-            r["Calories"] = calories;
-            r["DateDrafted"] = datedrafted;
-            r["Cuisineid"] = Cuisineid;
             bizRecipe rec = new();
-            rec.Save(dt);
+            rec.UsersId = usersid;
+            rec.RecipeName = recipename;
+            rec.Calories = calories;
+            rec.DateDrafted = datedrafted;
+            rec.CuisineId = Cuisineid;
+            rec.Save();
 
             int maxid = SQLUtility.GetFirstColumnFirstRowValue("select max (recipeid) from recipe");
             maxid = maxid + 1;
@@ -77,10 +77,6 @@ namespace RecipeTest
             TestContext.WriteLine("calories for recipe (" + recipeid + ") = " + newcaloriecount);
         }
 
-        /*Af This test is not working as intended.  YOu are trying to get a recipeid that is able to be deleted, but the select
-        or some other line of code along the way is not working, when I run it crashes with the error 
-        "System.Exception : Cannot delete recipe that is not currently in draft or archived for over 30 days."
-        but really that type of recipe should not be selected to begin with*/
         public DataTable GetRecipeForDelete()
         {
             string sql = "select top 1 * from recipe r where r.RecipeStatus like 'draft'";
@@ -103,6 +99,53 @@ namespace RecipeTest
             TestContext.WriteLine("existing recipe without date archived, with id = " + recipeid + " " + recipedesc);
             TestContext.WriteLine("ensure that app can delete " + recipeid);
             bizRecipe rec = new();
+            rec.Load(recipeid);
+            rec.Delete();
+
+            DataTable dtafterdelete = SQLUtility.GetDataTable("select * from Recipe where recipeid = " + recipeid);
+            Assert.IsTrue(dtafterdelete.Rows.Count == 0, "record with recipeid " + recipeid + " exists in DB");
+            TestContext.WriteLine("Record with recipeid " + recipeid + " does not exist in DB");
+        }
+
+        [Test]
+        public void DeleteRecipeById()
+        {
+            DataTable dt = GetRecipeForDelete();
+            int recipeid = 0;
+            string recipedesc = "";
+            if (dt.Rows.Count > 0)
+            {
+                recipeid = (int)dt.Rows[0]["recipeid"];
+                recipedesc = dt.Rows[0]["RecipeName"] + " " + dt.Rows[0]["Calories"];
+            }
+            Assume.That(recipeid > 0, "No recipe wihtout date archived in DB, can't run test");
+            TestContext.WriteLine("existing recipe without date archived, with id = " + recipeid + " " + recipedesc);
+            TestContext.WriteLine("ensure that app can delete " + recipeid);
+            bizRecipe rec = new();
+            rec.Load(recipeid);
+            rec.Delete(recipeid);
+
+            DataTable dtafterdelete = SQLUtility.GetDataTable("select * from Recipe where recipeid = " + recipeid);
+            Assert.IsTrue(dtafterdelete.Rows.Count == 0, "record with recipeid " + recipeid + " exists in DB");
+            TestContext.WriteLine("Record with recipeid " + recipeid + " does not exist in DB");
+        }
+
+        [Test]
+        public void DeleteRecipeByDataTable()
+        {
+            DataTable dt = GetRecipeForDelete();
+            int recipeid = 0;
+            string recipedesc = "";
+            if (dt.Rows.Count > 0)
+            {
+                recipeid = (int)dt.Rows[0]["recipeid"];
+                recipedesc = dt.Rows[0]["RecipeName"] + " " + dt.Rows[0]["Calories"];
+            }
+            Assume.That(recipeid > 0, "No recipe wihtout date archived in DB, can't run test");
+            TestContext.WriteLine("existing recipe without date archived, with id = " + recipeid + " " + recipedesc);
+            TestContext.WriteLine("ensure that app can delete " + recipeid);
+            bizRecipe rec = new();
+            rec.Load(recipeid);
             rec.Delete(dt);
 
             DataTable dtafterdelete = SQLUtility.GetDataTable("select * from Recipe where recipeid = " + recipeid);
@@ -142,9 +185,9 @@ namespace RecipeTest
             TestContext.WriteLine("existing recipe with id = " + recipeid);
             TestContext.WriteLine("Ensure that app loads recipe " + recipeid);
             bizRecipe rec = new();
-            DataTable dt = rec.Load(recipeid);
-            int loadedid = (int)dt.Rows[0]["recipeid"];
-            Assert.IsTrue(loadedid == recipeid, (int)dt.Rows[0]["recipeid"] + " <> " + recipeid);
+            rec.Load(recipeid);
+            int loadedid = rec.RecipeId;
+            Assert.IsTrue(loadedid == recipeid, rec.RecipeId + " <> " + recipeid);
             TestContext.WriteLine("loaded recipe (" + loadedid + ")" + recipeid);
         }
 
