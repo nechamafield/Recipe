@@ -1,21 +1,26 @@
-﻿using CPUFramework;
-using RecipeSystem;
-using System;
-using System.Collections.Generic;
+﻿using System.Configuration;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RecipeTest
 {
     public class RecipeTest
     {
+        //string connstring = ConfigurationManager.ConnectionStrings["devconn"].ConnectionString;
+        //string testconnstring = ConfigurationManager.ConnectionStrings["unittestconn"].ConnectionString;
         [SetUp]
         public void Setup()
         {
             DBManager.SetConnectionString("Server=.\\SQLExpress;Database=HeartyHearthDB;Trusted_Connection=true", true);
         }
+
+        //private DataTable GetDataTable(string sql)
+        //{
+        //    DataTable dt = new();
+        //    DBManager.SetConnectionString(testconnstring, false);
+        //    dt = SQLUtility.GetDataTable(sql);
+        //    DBManager.SetConnectionString(connstring, false);
+        //    return dt;
+        //}
 
         [Test]
         [TestCase("cookies", 250)]
@@ -52,7 +57,7 @@ namespace RecipeTest
             TestContext.WriteLine("recipe with " + recipename + "is found in db with pk value = " + newid);
         }
 
-        
+
         [Test]
         public void ChangeRecipeCalorieCount()
         {
@@ -76,10 +81,17 @@ namespace RecipeTest
         or some other line of code along the way is not working, when I run it crashes with the error 
         "System.Exception : Cannot delete recipe that is not currently in draft or archived for over 30 days."
         but really that type of recipe should not be selected to begin with*/
+        public DataTable GetRecipeForDelete()
+        {
+            string sql = "select top 1 * from recipe r where r.RecipeStatus like 'draft'";
+            DataTable dt = SQLUtility.GetDataTable(sql);
+            return dt;
+        }
+
         [Test]
         public void DeleteRecipe()
         {
-            DataTable dt = SQLUtility.GetDataTable("select top 1 r.recipeid, r.RecipeName, r.calories from Recipe r where dateadd(day, 30, r.DateArchived) <= getdate() or r.RecipeStatus like 'draft' group by r.recipeid, r.RecipeName, r.calories having count(*) >= 1");
+            DataTable dt =  GetRecipeForDelete();
             int recipeid = 0;
             string recipedesc = "";
             if (dt.Rows.Count > 0)
@@ -92,8 +104,8 @@ namespace RecipeTest
             TestContext.WriteLine("ensure that app can delete " + recipeid);
             bizRecipe rec = new();
             rec.Delete(dt);
-            
-            DataTable dtafterdelete = SQLUtility.GetDataTable("delete IngredientRecipe delete DirectionRecipe delete CourseMealRecipe delete CookBookRecipe delete Recipe where recipeid = " + recipeid);
+
+            DataTable dtafterdelete = SQLUtility.GetDataTable("select * from Recipe where recipeid = " + recipeid);
             Assert.IsTrue(dtafterdelete.Rows.Count == 0, "record with recipeid " + recipeid + " exists in DB");
             TestContext.WriteLine("Record with recipeid " + recipeid + " does not exist in DB");
         }
