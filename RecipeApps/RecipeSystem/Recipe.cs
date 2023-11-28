@@ -16,6 +16,15 @@ namespace RecipeSystem
             return dt;
         }
 
+        //public static DataTable SearchRecipe(int usersid, int cuisineid, string recipename)
+        //{
+        //    DataTable dt = new();
+        //    SqlCommand cmd = SQLUtility.GetSQLCommand("RecipeSearch");
+        //    cmd.Parameters["@RecipeName"].Value = recipename;
+        //    dt = SQLUtility.GetDataTable(cmd);
+        //    return dt;
+        //}
+
         public static DataTable Load(int recipeid)
         {
             DataTable dt;
