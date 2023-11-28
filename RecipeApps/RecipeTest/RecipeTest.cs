@@ -192,18 +192,22 @@ namespace RecipeTest
         }
 
         [Test]
-        public void GetListOfRecipies()
+        [TestCase(false)]
+        [TestCase(true)]
+        public void GetListOfRecipies(bool includeblank)
         {
             int recipecount = SQLUtility.GetFirstColumnFirstRowValue("select total = count(*) from recipe");
+            if(includeblank == true) { recipecount = recipecount + 1; }
             Assume.That(recipecount > 0, "No recipies in DB, can't test");
 
             TestContext.WriteLine("Num of recipies in DB = " + recipecount);
             TestContext.WriteLine("Ensure that num of rows return by app matches " + recipecount);
+            bizIngredient r = new();
+            var lst = r.GetList(includeblank);
+            //DataTable dt = Recipe.GetRecipeList();
 
-            DataTable dt = Recipe.GetRecipeList();
-
-            Assert.IsTrue(dt.Rows.Count == recipecount, "num rows returned by app(" + dt.Rows.Count + ")<> " + recipecount);
-            TestContext.WriteLine("Number of rows in recipies returned by app = " + dt.Rows.Count);
+            Assert.IsTrue(lst.Count == recipecount, "num rows returned by app(" + lst.Count + ")<> " + recipecount);
+            TestContext.WriteLine("Number of rows in recipies returned by app = " + lst.Count);
         }
 
         private int GetExistingRecipeId()
