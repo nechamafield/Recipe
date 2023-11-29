@@ -219,6 +219,7 @@ to insert a recipe with the given recipe name */
             TestContext.WriteLine(numrec + " presidents that match " + criteria);
             TestContext.WriteLine("Ensure that president search returns " + numrec + " rows");
 
+            //AF YOu should be using bizRecipe to run the search, bizRecipe should have a procedure to search, like you have in bizIngredient
             DataTable dt = Recipe.SearchRecipe(criteria);
             int results = dt.Rows.Count;
 
@@ -228,7 +229,8 @@ to insert a recipe with the given recipe name */
 
         [Test]
         [TestCase(false)]
-        //[TestCase(true)]
+        [TestCase(true)]
+        //AF Just a type in the names - Recipes without the i at the end
         public void GetListOfRecipies(bool includeblank)
         {
             int recipecount = SQLUtility.GetFirstColumnFirstRowValue("select total = count(*) from recipe");
@@ -238,6 +240,7 @@ to insert a recipe with the given recipe name */
             TestContext.WriteLine("Num of recipies in DB = " + recipecount);
             TestContext.WriteLine("Ensure that num of rows return by app matches " + recipecount);
             bizRecipe r = new();
+            //AF It's failing to get a list, seems like includeblank is not a parameter in your recipeget sproc
             var lst = r.GetList(includeblank);
             //DataTable dt = Recipe.GetRecipeList();
 
@@ -248,6 +251,7 @@ to insert a recipe with the given recipe name */
         [Test]
         [TestCase(false)]
         //[TestCase(true)]
+        //Af This test is failing too, probably similiar issue to the one above
         public void GetListOfIngredients(bool includeblank)
         {
             int ingredientcount = SQLUtility.GetFirstColumnFirstRowValue("select total = count(*) from Ingredient i where i.ingredientname != 'Colored Pepper'");
@@ -263,6 +267,8 @@ to insert a recipe with the given recipe name */
             Assert.IsTrue(lst.Count == ingredientcount, "num rows returned by app(" + lst.Count + ")<> " + ingredientcount);
             TestContext.WriteLine("Number of rows in ingredients returned by app = " + lst.Count);
         }
+
+        //AF I don't see a test for the search using bizIngredient
 
         private int GetExistingRecipeId()
         {
