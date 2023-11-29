@@ -49,6 +49,10 @@ namespace RecipeTest
             DateTime datedrafted = DateTime.Now;
             recipename = recipename + DateTime.Now.ToString();
 
+            /*AF This is not such a clear message, it doesn't match up with the message upon success.  If the test is successful,
+you are writing that the recipe with that recipename is found in the db, so this message should be similiar, saying
+to insert a recipe with the given recipe name */
+
             TestContext.WriteLine("insert recipe with datedrafted = " + datedrafted);
             bizRecipe rec = new();
             rec.UsersId = usersid;
@@ -58,6 +62,7 @@ namespace RecipeTest
             rec.CuisineId = Cuisineid;
             rec.Save();
 
+            //Af I don't see this variable below being used for anything
             int maxid = SQLUtility.GetFirstColumnFirstRowValue("select max (recipeid) from recipe");
             maxid = maxid + 1;
 
@@ -88,6 +93,8 @@ namespace RecipeTest
 
         public DataTable GetRecipeForDelete()
         {
+            //Af A user can also delete a recipe that is archived for more than 30 days, you should also add that condition
+            // to this select statement
             string sql = "select top 1 * from recipe r where r.RecipeStatus like 'draft'";
             DataTable dt = SQLUtility.GetDataTable(sql);
             return dt;
@@ -104,7 +111,9 @@ namespace RecipeTest
                 recipeid = (int)dt.Rows[0]["recipeid"];
                 recipedesc = dt.Rows[0]["RecipeName"] + " " + dt.Rows[0]["Calories"];
             }
+            //Af The error message below is not accurate, it should say there are no recipes that are either drafted or archived over 30 days
             Assume.That(recipeid > 0, "No recipe wihtout date archived in DB, can't run test");
+            //AF the message below is not necessarily accurate, it can be a recipe that's drafted or archived over 30 days, 
             TestContext.WriteLine("existing recipe without date archived, with id = " + recipeid + " " + recipedesc);
             TestContext.WriteLine("ensure that app can delete " + recipeid);
             bizRecipe rec = new();
@@ -197,6 +206,7 @@ namespace RecipeTest
             rec.Load(recipeid);
             int loadedid = rec.RecipeId;
             Assert.IsTrue(loadedid == recipeid, rec.RecipeId + " <> " + recipeid);
+            //AF The message below repeats the loaded recipeid twice
             TestContext.WriteLine("loaded recipe (" + loadedid + ")" + recipeid);
         }
 
