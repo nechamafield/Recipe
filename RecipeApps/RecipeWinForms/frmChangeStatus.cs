@@ -26,6 +26,12 @@ namespace RecipeWinForms
             btnDraft.Click += BtnDraft_Click;
             btnPublish.Click += BtnPublish_Click;
             btnArchive.Click += BtnArchive_Click;
+            this.FormClosed += FrmChangeStatus_FormClosed;
+        }
+
+        private void FrmChangeStatus_FormClosed(object? sender, FormClosedEventArgs e)
+        {
+            Refresh();
         }
 
         public void LoadForm(int recipeidval)
@@ -61,7 +67,6 @@ namespace RecipeWinForms
             }
         }
 
-
         private void BtnDraft_Click(object? sender, EventArgs e)
         {
             var response = MessageBox.Show("Are you sure you want to change this recipe status?", "Hearty Hearth", MessageBoxButtons.YesNo);
@@ -81,6 +86,7 @@ namespace RecipeWinForms
             finally
             {
                 Application.UseWaitCursor = false;
+                //Refresh("Drafted");
             }
         }
 
@@ -103,6 +109,7 @@ namespace RecipeWinForms
             finally
             {
                 Application.UseWaitCursor = false;
+                //Refresh("Published");
             }
         }
 
@@ -125,7 +132,33 @@ namespace RecipeWinForms
             finally
             {
                 Application.UseWaitCursor = false;
+                //Refresh("Archived");
             }
+        }
+
+        private bool Refresh(string datetype)
+        {
+            bool b = false;
+            Application.UseWaitCursor = true;
+            try
+            {
+                Recipe.Save(dtrecipe);
+                b = true;
+                bindsource.ResetBindings(false);
+                recipeid = SQLUtility.GetValueFromFirstRowAsInt(dtrecipe, "RecipeId");
+                this.Tag = recipeid;
+
+                Recipe.SaveRecipeStatus(dtrecipe, datetype);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Hearty Hearth");
+            }
+            finally
+            {
+                Application.UseWaitCursor = false;
+            }
+            return b;
         }
 
     }

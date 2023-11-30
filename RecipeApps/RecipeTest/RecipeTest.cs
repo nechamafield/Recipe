@@ -33,7 +33,6 @@ namespace RecipeTest
 
         [Test]
         [TestCase("cookies", 250)]
-        //[TestCase("ice cream", 175)]
         [TestCase("yogurt", 122)]
         public void InsertNewRecipe(string recipename, int calories)
         {
@@ -49,11 +48,11 @@ namespace RecipeTest
             DateTime datedrafted = DateTime.Now;
             recipename = recipename + DateTime.Now.ToString();
 
-            /*AF This is not such a clear message, it doesn't match up with the message upon success.  If the test is successful,
+            /*done - AF This is not such a clear message, it doesn't match up with the message upon success.  If the test is successful,
 you are writing that the recipe with that recipename is found in the db, so this message should be similiar, saying
 to insert a recipe with the given recipe name */
 
-            TestContext.WriteLine("insert recipe with datedrafted = " + datedrafted);
+            TestContext.WriteLine("insert recipe with datedrafted = " + datedrafted + " and Recipe Name = " + recipename);
             bizRecipe rec = new();
             rec.UsersId = usersid;
             rec.RecipeName = recipename;
@@ -62,13 +61,9 @@ to insert a recipe with the given recipe name */
             rec.CuisineId = Cuisineid;
             rec.Save();
 
-            //Af I don't see this variable below being used for anything
-            int maxid = SQLUtility.GetFirstColumnFirstRowValue("select max (recipeid) from recipe");
-            maxid = maxid + 1;
-
             int newid = SQLUtility.GetFirstColumnFirstRowValue("select * from recipe where recipename = " + "'" + recipename + "'");
-            Assert.IsTrue(newid > 0, "recipe with recipename = " + recipename + "is not found in db");
-            TestContext.WriteLine("recipe with " + recipename + "is found in db with pk value = " + newid);
+            Assert.IsTrue(newid > 0, "recipe with recipename = " + recipename + " is not found in db");
+            TestContext.WriteLine("recipe with " + recipename + " is found in db with pk value = " + newid);
         }
 
 
@@ -76,7 +71,7 @@ to insert a recipe with the given recipe name */
         public void ChangeRecipeCalorieCount()
         {
             int recipeid = GetExistingRecipeId();
-            Assume.That(recipeid > 0, "No recipies without executive order in DB, can't run test");
+            Assume.That(recipeid > 0, "No recipes without executive order in DB, can't run test");
             int calories = SQLUtility.GetFirstColumnFirstRowValue("select calories from recipe where recipeid = " + recipeid);
             TestContext.WriteLine("calories for recipeid " + recipeid + " is " + calories);
             calories = calories + 25;
@@ -93,9 +88,9 @@ to insert a recipe with the given recipe name */
 
         public DataTable GetRecipeForDelete()
         {
-            //Af A user can also delete a recipe that is archived for more than 30 days, you should also add that condition
-            // to this select statement
-            string sql = "select top 1 * from recipe r where r.RecipeStatus like 'draft'";
+            ////Af A user can also delete a recipe that is archived for more than 30 days, you should also add that condition
+            //// to this select statement
+            string sql = "select top 1 * from recipe r where r.RecipeStatus like 'draft' or CURRENT_TIMESTAMP > r.DateArchived + DATEADD(day, 30,r.datearchived)";
             DataTable dt = SQLUtility.GetDataTable(sql);
             return dt;
         }
@@ -111,10 +106,10 @@ to insert a recipe with the given recipe name */
                 recipeid = (int)dt.Rows[0]["recipeid"];
                 recipedesc = dt.Rows[0]["RecipeName"] + " " + dt.Rows[0]["Calories"];
             }
-            //Af The error message below is not accurate, it should say there are no recipes that are either drafted or archived over 30 days
-            Assume.That(recipeid > 0, "No recipe wihtout date archived in DB, can't run test");
-            //AF the message below is not necessarily accurate, it can be a recipe that's drafted or archived over 30 days, 
-            TestContext.WriteLine("existing recipe without date archived, with id = " + recipeid + " " + recipedesc);
+            ////Af The error message below is not accurate, it should say there are no recipes that are either drafted or archived over 30 days
+            Assume.That(recipeid > 0, "No recipes that are either drafted or archived for more than 30 days in DB, can't run test");
+            ////AF the message below is not necessarily accurate, it can be a recipe that's drafted or archived over 30 days, 
+            TestContext.WriteLine("existing recipe that is either drafted or archived for more than 30 days, with id = " + recipeid + " " + recipedesc);
             TestContext.WriteLine("ensure that app can delete " + recipeid);
             bizRecipe rec = new();
             rec.Load(recipeid);
@@ -199,15 +194,14 @@ to insert a recipe with the given recipe name */
         public void LoadRecipe()
         {
             int recipeid = GetExistingRecipeId();
-            Assume.That(recipeid > 0, "No recipies in DB, can't run test");
+            Assume.That(recipeid > 0, "No recipes in DB, can't run test");
             TestContext.WriteLine("existing recipe with id = " + recipeid);
             TestContext.WriteLine("Ensure that app loads recipe " + recipeid);
             bizRecipe rec = new();
             rec.Load(recipeid);
             int loadedid = rec.RecipeId;
             Assert.IsTrue(loadedid == recipeid, rec.RecipeId + " <> " + recipeid);
-            //AF The message below repeats the loaded recipeid twice
-            TestContext.WriteLine("loaded recipe (" + loadedid + ")" + recipeid);
+            TestContext.WriteLine("loaded recipe (" + loadedid + ")");
         }
 
         [Test]
@@ -215,13 +209,31 @@ to insert a recipe with the given recipe name */
         {
             string criteria = "a";
             int numrec = SQLUtility.GetFirstColumnFirstRowValue("select total = count(*) from recipe where recipename like '%" + criteria + "%'");
-            Assume.That(numrec > 0, "There are no presidents that match the search for " + numrec);
-            TestContext.WriteLine(numrec + " presidents that match " + criteria);
-            TestContext.WriteLine("Ensure that president search returns " + numrec + " rows");
+            Assume.That(numrec > 0, "There are no recipes that match the search for " + numrec);
+            TestContext.WriteLine(numrec + " recipes that match " + criteria);
+            TestContext.WriteLine("Ensure that recipes search returns " + numrec + " rows");
 
-            //AF YOu should be using bizRecipe to run the search, bizRecipe should have a procedure to search, like you have in bizIngredient
-            DataTable dt = Recipe.SearchRecipe(criteria);
-            int results = dt.Rows.Count;
+            ////AF YOu should be using bizRecipe to run the search, bizRecipe should have a procedure to search, like you have in bizIngredient
+            bizRecipe rec = new();
+            List<bizRecipe> lst = rec.Search(criteria);
+            int results = lst.Count;
+
+            Assert.IsTrue(results == numrec, "results of recipe search does not match num of recipes, " + results + " <> " + numrec);
+            TestContext.WriteLine("Number of rows returned by recipe search is " + results);
+        }
+
+        [Test]
+        public void SearchIngredients()
+        {
+            string criteria = "a";
+            int numrec = SQLUtility.GetFirstColumnFirstRowValue("select total = count(*) from Ingredient where ingredientname like '%" + criteria + "%'");
+            Assume.That(numrec > 0, "There are no ingredients that match the search for " + numrec);
+            TestContext.WriteLine(numrec + " ingredients that match " + criteria);
+            TestContext.WriteLine("Ensure that ingredient search returns " + numrec + " rows");
+
+            bizIngredient ing = new();
+            List<bizIngredient> lst = ing.Search(criteria);
+            int results = lst.Count;
 
             Assert.IsTrue(results == numrec, "results of president search does not match num of presidents, " + results + " <> " + numrec);
             TestContext.WriteLine("Number of rows returned by president search is " + results);
@@ -230,28 +242,27 @@ to insert a recipe with the given recipe name */
         [Test]
         [TestCase(false)]
         [TestCase(true)]
-        //AF Just a type in the names - Recipes without the i at the end
-        public void GetListOfRecipies(bool includeblank)
+        ////AF Just a type in the names - Recipes without the i at the end
+        public void GetListOfRecipes(bool includeblank)
         {
             int recipecount = SQLUtility.GetFirstColumnFirstRowValue("select total = count(*) from recipe");
-            if(includeblank == true) { recipecount = recipecount + 1; }
-            Assume.That(recipecount > 0, "No recipies in DB, can't test");
+            if (includeblank == true) { recipecount = recipecount + 1; }
+            Assume.That(recipecount > 0, "No recipes in DB, can't test");
 
-            TestContext.WriteLine("Num of recipies in DB = " + recipecount);
+            TestContext.WriteLine("Num of recipes in DB = " + recipecount);
             TestContext.WriteLine("Ensure that num of rows return by app matches " + recipecount);
             bizRecipe r = new();
-            //AF It's failing to get a list, seems like includeblank is not a parameter in your recipeget sproc
+            ////AF It's failing to get a list, seems like includeblank is not a parameter in your recipeget sproc
             var lst = r.GetList(includeblank);
-            //DataTable dt = Recipe.GetRecipeList();
 
             Assert.IsTrue(lst.Count == recipecount, "num rows returned by app(" + lst.Count + ")<> " + recipecount);
-            TestContext.WriteLine("Number of rows in recipies returned by app = " + lst.Count);
+            TestContext.WriteLine("Number of rows in recipes returned by app = " + lst.Count);
         }
 
         [Test]
         [TestCase(false)]
-        //[TestCase(true)]
-        //Af This test is failing too, probably similiar issue to the one above
+        [TestCase(true)]
+        ////Af This test is failing too, probably similiar issue to the one above
         public void GetListOfIngredients(bool includeblank)
         {
             int ingredientcount = SQLUtility.GetFirstColumnFirstRowValue("select total = count(*) from Ingredient i where i.ingredientname != 'Colored Pepper'");
@@ -262,13 +273,12 @@ to insert a recipe with the given recipe name */
             TestContext.WriteLine("Ensure that num of rows return by app matches " + ingredientcount);
             bizIngredient i = new();
             var lst = i.GetList(includeblank);
-            //DataTable dt = Recipe.GetIngredientList();
 
             Assert.IsTrue(lst.Count == ingredientcount, "num rows returned by app(" + lst.Count + ")<> " + ingredientcount);
             TestContext.WriteLine("Number of rows in ingredients returned by app = " + lst.Count);
         }
 
-        //AF I don't see a test for the search using bizIngredient
+        ////AF I don't see a test for the search using bizIngredient
 
         private int GetExistingRecipeId()
         {
