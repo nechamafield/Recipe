@@ -48,10 +48,6 @@ namespace RecipeTest
             DateTime datedrafted = DateTime.Now;
             recipename = recipename + DateTime.Now.ToString();
 
-            /*done - AF This is not such a clear message, it doesn't match up with the message upon success.  If the test is successful,
-you are writing that the recipe with that recipename is found in the db, so this message should be similiar, saying
-to insert a recipe with the given recipe name */
-
             TestContext.WriteLine("insert recipe with datedrafted = " + datedrafted + " and Recipe Name = " + recipename);
             bizRecipe rec = new();
             rec.UsersId = usersid;
@@ -63,6 +59,7 @@ to insert a recipe with the given recipe name */
 
             int newid = SQLUtility.GetFirstColumnFirstRowValue("select * from recipe where recipename = " + "'" + recipename + "'");
             Assert.IsTrue(newid > 0, "recipe with recipename = " + recipename + " is not found in db");
+            //AF The message below is just missing a word or two - should say "recipe with name cookies..." etc. instead of  "recipe with cookies..."
             TestContext.WriteLine("recipe with " + recipename + " is found in db with pk value = " + newid);
         }
 
@@ -90,6 +87,11 @@ to insert a recipe with the given recipe name */
         {
             ////Af A user can also delete a recipe that is archived for more than 30 days, you should also add that condition
             //// to this select statement
+            /*AF 2 commets on the select statement below:
+             If you are checking if Recipestatus equals 'draft', use the equal sign.  Like is used when you are searching if the column contains that string inside
+            it, in which case you would use a wildcard eg: where REcipeSTatus like 'draft%' to see if there are any rows where recipestatus starts with 'draft
+            The second condition in the where clause is not working, you should not add r.DateArchived + DATEADD(day, 30,r.datearchived), that will give you a date very
+            far in the future as you are adding the 2 dates, it is enough to compare if currenttimestamp > DATEADD(day, 30,r.datearchived) */
             string sql = "select top 1 * from recipe r where r.RecipeStatus like 'draft' or CURRENT_TIMESTAMP > r.DateArchived + DATEADD(day, 30,r.datearchived)";
             DataTable dt = SQLUtility.GetDataTable(sql);
             return dt;
@@ -106,9 +108,7 @@ to insert a recipe with the given recipe name */
                 recipeid = (int)dt.Rows[0]["recipeid"];
                 recipedesc = dt.Rows[0]["RecipeName"] + " " + dt.Rows[0]["Calories"];
             }
-            ////Af The error message below is not accurate, it should say there are no recipes that are either drafted or archived over 30 days
             Assume.That(recipeid > 0, "No recipes that are either drafted or archived for more than 30 days in DB, can't run test");
-            ////AF the message below is not necessarily accurate, it can be a recipe that's drafted or archived over 30 days, 
             TestContext.WriteLine("existing recipe that is either drafted or archived for more than 30 days, with id = " + recipeid + " " + recipedesc);
             TestContext.WriteLine("ensure that app can delete " + recipeid);
             bizRecipe rec = new();
