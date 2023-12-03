@@ -211,7 +211,6 @@ namespace RecipeTest
             TestContext.WriteLine(numrec + " recipes that match " + criteria);
             TestContext.WriteLine("Ensure that recipes search returns " + numrec + " rows");
 
-            ////AF YOu should be using bizRecipe to run the search, bizRecipe should have a procedure to search, like you have in bizIngredient
             bizRecipe rec = new();
             List<bizRecipe> lst = rec.Search(criteria);
             int results = lst.Count;
@@ -224,6 +223,7 @@ namespace RecipeTest
         public void SearchIngredients()
         {
             string criteria = "a";
+            //AF Variables should be descriptive - I'm not clear what the name numrec is trying to represent
             int numrec = SQLUtility.GetFirstColumnFirstRowValue("select total = count(*) from Ingredient where ingredientname like '%" + criteria + "%'");
             Assume.That(numrec > 0, "There are no ingredients that match the search for " + numrec);
             TestContext.WriteLine(numrec + " ingredients that match " + criteria);
@@ -233,6 +233,7 @@ namespace RecipeTest
             List<bizIngredient> lst = ing.Search(criteria);
             int results = lst.Count;
 
+            //AF The 2 messages below should be changed to refer to ingredients, not presidents
             Assert.IsTrue(results == numrec, "results of president search does not match num of presidents, " + results + " <> " + numrec);
             TestContext.WriteLine("Number of rows returned by president search is " + results);
         }
@@ -240,7 +241,6 @@ namespace RecipeTest
         [Test]
         [TestCase(false)]
         [TestCase(true)]
-        ////AF Just a type in the names - Recipes without the i at the end
         public void GetListOfRecipes(bool includeblank)
         {
             int recipecount = SQLUtility.GetFirstColumnFirstRowValue("select total = count(*) from recipe");
@@ -250,7 +250,6 @@ namespace RecipeTest
             TestContext.WriteLine("Num of recipes in DB = " + recipecount);
             TestContext.WriteLine("Ensure that num of rows return by app matches " + recipecount);
             bizRecipe r = new();
-            ////AF It's failing to get a list, seems like includeblank is not a parameter in your recipeget sproc
             var lst = r.GetList(includeblank);
 
             Assert.IsTrue(lst.Count == recipecount, "num rows returned by app(" + lst.Count + ")<> " + recipecount);
@@ -260,9 +259,10 @@ namespace RecipeTest
         [Test]
         [TestCase(false)]
         [TestCase(true)]
-        ////Af This test is failing too, probably similiar issue to the one above
         public void GetListOfIngredients(bool includeblank)
         {
+            //Af Excluding an ingredient from the select list could make the test innacurrate, meaning that
+            //ingredient count doesnt really match up with what is returned from bizIngredient's getlist(), is there a reason you are excluding this ingredient?
             int ingredientcount = SQLUtility.GetFirstColumnFirstRowValue("select total = count(*) from Ingredient i where i.ingredientname != 'Colored Pepper'");
             if(includeblank == true) { ingredientcount = ingredientcount + 1; }
             Assume.That(ingredientcount > 0, "No ingredients in DB, can't test");
@@ -275,8 +275,6 @@ namespace RecipeTest
             Assert.IsTrue(lst.Count == ingredientcount, "num rows returned by app(" + lst.Count + ")<> " + ingredientcount);
             TestContext.WriteLine("Number of rows in ingredients returned by app = " + lst.Count);
         }
-
-        ////AF I don't see a test for the search using bizIngredient
 
         private int GetExistingRecipeId()
         {
