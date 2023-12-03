@@ -85,9 +85,7 @@ namespace RecipeTest
 
         public DataTable GetRecipeForDelete()
         {
-            ////Af A user can also delete a recipe that is archived for more than 30 days, you should also add that condition
-            //// to this select statement
-            /*AF 2 commets on the select statement below:
+            /*AF 2 comments on the select statement below:
              If you are checking if Recipestatus equals 'draft', use the equal sign.  Like is used when you are searching if the column contains that string inside
             it, in which case you would use a wildcard eg: where REcipeSTatus like 'draft%' to see if there are any rows where recipestatus starts with 'draft
             The second condition in the where clause is not working, you should not add r.DateArchived + DATEADD(day, 30,r.datearchived), that will give you a date very
