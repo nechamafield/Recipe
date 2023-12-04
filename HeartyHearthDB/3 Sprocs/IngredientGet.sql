@@ -11,8 +11,6 @@ begin
 
 	select distinct i.ingredientid, i.ingredientname--, ir.RecipeId
 	from Ingredient i
-	--AF NO need to join to ingredientrecipe in this sproc, this sproc is just to get all ingredients, regardless of whether there are recipeingredient records from that ingredient or not
-	-- That is probably why this sproc is not returning that one ingredient, since it's not in the recipeingredient table
 	join IngredientRecipe ir
 	on ir.IngredientId = i.ingredientid
 	where i.ingredientid = @Ingredientid
@@ -23,7 +21,7 @@ begin
 	order by i.ingredientid, i.ingredientname
 end
 go  
- 
+
 
 
 --exec IngredientGet @All = 1
