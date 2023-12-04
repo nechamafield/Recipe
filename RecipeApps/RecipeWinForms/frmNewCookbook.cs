@@ -77,6 +77,11 @@ namespace RecipeWinForms
 
             WindowsFormsUtility.SetControlBinding(txtCookbookName, bindsource);
             WindowsFormsUtility.SetControlBinding(txtPrice, bindsource);
+
+            string s = "";
+
+            txtPrice.Text = s;
+
             WindowsFormsUtility.SetControlBinding(txtDateCreated, bindsource);
             WindowsFormsUtility.SetControlBinding(chkIsActive, bindsource);
 

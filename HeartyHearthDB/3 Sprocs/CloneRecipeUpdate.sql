@@ -1,5 +1,6 @@
 create or alter proc dbo.ClonedRecipeUpdate(
 	@RecipeId int = 0 output,
+	@All bit = 0,
 	@Message varchar (500) =  '' output
 )
 as
@@ -42,5 +43,4 @@ begin
 	on r.RecipeName = x.RecipeName
 
 end
-
 go

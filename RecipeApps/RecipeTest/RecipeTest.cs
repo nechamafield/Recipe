@@ -59,8 +59,8 @@ namespace RecipeTest
 
             int newid = SQLUtility.GetFirstColumnFirstRowValue("select * from recipe where recipename = " + "'" + recipename + "'");
             Assert.IsTrue(newid > 0, "recipe with recipename = " + recipename + " is not found in db");
-            //AF The message below is just missing a word or two - should say "recipe with name cookies..." etc. instead of  "recipe with cookies..."
-            TestContext.WriteLine("recipe with " + recipename + " is found in db with pk value = " + newid);
+            ////AF The message below is just missing a word or two - should say "recipe with name cookies..." etc. instead of  "recipe with cookies..."
+            TestContext.WriteLine("recipe with name " + recipename + " is found in db with pk value = " + newid);
         }
 
 
@@ -90,7 +90,8 @@ namespace RecipeTest
             it, in which case you would use a wildcard eg: where REcipeSTatus like 'draft%' to see if there are any rows where recipestatus starts with 'draft
             The second condition in the where clause is not working, you should not add r.DateArchived + DATEADD(day, 30,r.datearchived), that will give you a date very
             far in the future as you are adding the 2 dates, it is enough to compare if currenttimestamp > DATEADD(day, 30,r.datearchived) */
-            string sql = "select top 1 * from recipe r where r.RecipeStatus like 'draft' or CURRENT_TIMESTAMP > r.DateArchived + DATEADD(day, 30,r.datearchived)";
+            string sql = "select top 1 * from recipe r where r.RecipeStatus = 'draft' or CURRENT_TIMESTAMP > r.DateArchived + DATEADD(day, 30,r.datearchived)";
+            //string sql = "select top 1 * from recipe r where r.RecipeStatus = 'draft' or CURRENT_TIMESTAMP > DATEADD(day, 30,r.datearchived)";
             DataTable dt = SQLUtility.GetDataTable(sql);
             return dt;
         }
@@ -223,19 +224,19 @@ namespace RecipeTest
         public void SearchIngredients()
         {
             string criteria = "a";
-            //AF Variables should be descriptive - I'm not clear what the name numrec is trying to represent
-            int numrec = SQLUtility.GetFirstColumnFirstRowValue("select total = count(*) from Ingredient where ingredientname like '%" + criteria + "%'");
-            Assume.That(numrec > 0, "There are no ingredients that match the search for " + numrec);
-            TestContext.WriteLine(numrec + " ingredients that match " + criteria);
-            TestContext.WriteLine("Ensure that ingredient search returns " + numrec + " rows");
+            ////AF Variables should be descriptive - I'm not clear what the name numrec is trying to represent
+            int recipenumber = SQLUtility.GetFirstColumnFirstRowValue("select total = count(*) from Ingredient where ingredientname like '%" + criteria + "%'");
+            Assume.That(recipenumber > 0, "There are no ingredients that match the search for " + recipenumber);
+            TestContext.WriteLine(recipenumber + " ingredients that match " + criteria);
+            TestContext.WriteLine("Ensure that ingredient search returns " + recipenumber + " rows");
 
             bizIngredient ing = new();
             List<bizIngredient> lst = ing.Search(criteria);
             int results = lst.Count;
 
-            //AF The 2 messages below should be changed to refer to ingredients, not presidents
-            Assert.IsTrue(results == numrec, "results of president search does not match num of presidents, " + results + " <> " + numrec);
-            TestContext.WriteLine("Number of rows returned by president search is " + results);
+            ////AF The 2 messages below should be changed to refer to ingredients, not presidents
+            Assert.IsTrue(results == recipenumber, "results of ingredient search does not match num of ingredients, " + results + " <> " + recipenumber);
+            TestContext.WriteLine("Number of rows returned by ingredient search is " + results);
         }
 
         [Test]

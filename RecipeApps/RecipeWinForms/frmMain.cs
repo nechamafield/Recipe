@@ -28,6 +28,13 @@ namespace RecipeWinForms
             mnuWindowsTile.Click += MnuWindowsTile_Click;
             mnuWindowsCascade.Click += MnuWindowsCascade_Click;
             this.Shown += FrmMain_Shown;
+
+            decimal d = new decimal();
+            //d.
+
+            //d = 32.5456;
+
+
         }
 
         private void FrmMain_Shown(object? sender, EventArgs e)

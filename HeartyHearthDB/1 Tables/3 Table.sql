@@ -137,7 +137,7 @@ create table dbo.CookBook(
         CONSTRAINT c_CookbookName_cannot_be_blank CHECK (cookbookname <> ''),
         --CONSTRAINT u_Cookbook_CookBookName UNIQUE,
     Price decimal(7,2) not null,
-        --CONSTRAINT c_Price_cannot_be_negative CHECK (price > 0),
+        CONSTRAINT c_Price_cannot_be_negative CHECK (price > 0),
     DateCreated date not null DEFAULT GETDATE(),
     IsActive bit null Default 1,
     CookbookPictureName as concat('Cookbook-', replace(cookbookname, ' ', '_'), '.jpg') persisted

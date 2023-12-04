@@ -5,7 +5,6 @@ create or alter procedure dbo.AutoCreateCookbookUpdate(
 	@All bit = 0,
 	@Message varchar (500) =  '' output
 )
-
 as
 begin
 
@@ -29,7 +28,6 @@ begin
 	    from Recipe r 
 		join users u
 	    on r.usersid = u.usersid
-	    --where cb.Cookbookid = @CookbookId
 		where u.usersId = @UsersId
 	)
 
@@ -40,8 +38,6 @@ begin
 	on r.RecipeName = x.RecipeName
 	join Cookbook cb
 	on cb.Cookbookid = @CookbookId
-
-	--select @CookbookId = SCOPE_IDENTITY()	
 	end
 go
 
