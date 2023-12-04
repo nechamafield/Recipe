@@ -224,6 +224,7 @@ namespace RecipeTest
         {
             string criteria = "a";
             ////AF Variables should be descriptive - I'm not clear what the name numrec is trying to represent
+            ///AF This name is more descriptive, but it should refer to ingredient count, not recipe count
             int recipenumber = SQLUtility.GetFirstColumnFirstRowValue("select total = count(*) from Ingredient where ingredientname like '%" + criteria + "%'");
             Assume.That(recipenumber > 0, "There are no ingredients that match the search for " + recipenumber);
             TestContext.WriteLine(recipenumber + " ingredients that match " + criteria);
@@ -233,7 +234,6 @@ namespace RecipeTest
             List<bizIngredient> lst = ing.Search(criteria);
             int results = lst.Count;
 
-            ////AF The 2 messages below should be changed to refer to ingredients, not presidents
             Assert.IsTrue(results == recipenumber, "results of ingredient search does not match num of ingredients, " + results + " <> " + recipenumber);
             TestContext.WriteLine("Number of rows returned by ingredient search is " + results);
         }
