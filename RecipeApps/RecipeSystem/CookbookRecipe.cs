@@ -14,7 +14,7 @@ namespace RecipeSystem
         {
             foreach (DataRow r in dt.Select("", "", DataViewRowState.Added))
             {
-                r["CookbookId"] = cookbookid;
+                r["Cookbookid"] = cookbookid;
             }
             SQLUtility.SaveDataTable(dt, "CookbookRecipeUpdate");
         }

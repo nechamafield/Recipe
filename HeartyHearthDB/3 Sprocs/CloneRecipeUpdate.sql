@@ -21,7 +21,7 @@ begin
 		from Recipe r
 		join IngredientRecipe ir
 		on r.RecipeId = ir.RecipeId
-		where r.RecipeId = @RecipeId
+		--where r.RecipeId = @RecipeId
 	)
 	insert IngredientRecipe(Ingredientid, Recipeid, Measurementid, Amount, IngredientSequence)
 	select x.Ingredientid, r.RecipeId, x.Measurementid, x.Amount, x.IngredientSequence
@@ -34,7 +34,7 @@ begin
 		from Recipe r
 		join DirectionRecipe dr
 		on r.RecipeId = dr.RecipeId
-		where r.RecipeId = @RecipeId
+		--where r.RecipeId = @RecipeId
 	)
 	insert DirectionRecipe(RecipeId, StepNumber, Direction)
 	select r.RecipeId, x.StepNumber, x.Direction

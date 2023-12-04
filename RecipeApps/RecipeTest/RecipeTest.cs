@@ -84,11 +84,11 @@ namespace RecipeTest
 
         public DataTable GetRecipeForDelete()
         {
-            /* AF I know it doesn't crash the way you have it now, but it's not an accurate select statement.
-             * If you run in it in sql you will see that it doesn't select recipes that are archived more than 30 days.
-             The select statement commented out below it is the proper one, you can test it in sql too and see how it works
-            The reason the proper select statement is crashing is because I see in your RecipeDelete sproc, your validation is incorrect
-            YOu can see the comment in the sproc and fix it there, and then use the correct select statement*/
+            /*AF 2 comments on the select statement below:
+             If you are checking if Recipestatus equals 'draft', use the equal sign.  Like is used when you are searching if the column contains that string inside
+            it, in which case you would use a wildcard eg: where REcipeSTatus like 'draft%' to see if there are any rows where recipestatus starts with 'draft
+            The second condition in the where clause is not working, you should not add r.DateArchived + DATEADD(day, 30,r.datearchived), that will give you a date very
+            far in the future as you are adding the 2 dates, it is enough to compare if currenttimestamp > DATEADD(day, 30,r.datearchived) */
             string sql = "select top 1 * from recipe r where r.RecipeStatus = 'draft' or CURRENT_TIMESTAMP > r.DateArchived + DATEADD(day, 30,r.datearchived)";
             //string sql = "select top 1 * from recipe r where r.RecipeStatus = 'draft' or CURRENT_TIMESTAMP > DATEADD(day, 30,r.datearchived)";
             DataTable dt = SQLUtility.GetDataTable(sql);
@@ -223,8 +223,6 @@ namespace RecipeTest
         public void SearchIngredients()
         {
             string criteria = "a";
-            ////AF Variables should be descriptive - I'm not clear what the name numrec is trying to represent
-            ///AF This name is more descriptive, but it should refer to ingredient count, not recipe count
             int recipenumber = SQLUtility.GetFirstColumnFirstRowValue("select total = count(*) from Ingredient where ingredientname like '%" + criteria + "%'");
             Assume.That(recipenumber > 0, "There are no ingredients that match the search for " + recipenumber);
             TestContext.WriteLine(recipenumber + " ingredients that match " + criteria);

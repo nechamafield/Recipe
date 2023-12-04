@@ -74,7 +74,7 @@
             // mnuFileDashboard
             // 
             mnuFileDashboard.Name = "mnuFileDashboard";
-            mnuFileDashboard.Size = new Size(224, 32);
+            mnuFileDashboard.Size = new Size(194, 32);
             mnuFileDashboard.Text = "Dashboard";
             // 
             // mnuRecipe
@@ -174,11 +174,12 @@
             // 
             // tsMain
             // 
+            tsMain.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             tsMain.ImageScalingSize = new Size(20, 20);
             tsMain.Location = new Point(0, 36);
             tsMain.Name = "tsMain";
             tsMain.Size = new Size(844, 25);
-            tsMain.TabIndex = 6;
+            tsMain.TabIndex = 3;
             tsMain.Text = "toolStrip1";
             // 
             // mnuMain
@@ -196,7 +197,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(844, 616);
+            ClientSize = new Size(844, 739);
             Controls.Add(tsMain);
             Controls.Add(mnuMain);
             IsMdiContainer = true;

@@ -152,6 +152,7 @@ namespace RecipeWinForms
                 this.Tag = cookbookid;
                 this.Text = GetCookbookDesc();
                 SaveRecipes();
+                this.Close();
             }
             catch (Exception ex)
             {

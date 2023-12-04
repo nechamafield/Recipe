@@ -79,6 +79,7 @@ namespace RecipeWinForms
         private void BtnClone_Click(object? sender, EventArgs e)
         {
             ShowRecipeForm(recipeid);
+            this.Close();
         }
     }
 }

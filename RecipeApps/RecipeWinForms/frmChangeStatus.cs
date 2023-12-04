@@ -31,7 +31,8 @@ namespace RecipeWinForms
 
         private void FrmChangeStatus_FormClosed(object? sender, FormClosedEventArgs e)
         {
-            Refresh();
+            //Refresh();
+            bindsource.ResetBindings(true);
         }
 
         public void LoadForm(int recipeidval)
@@ -86,7 +87,7 @@ namespace RecipeWinForms
             finally
             {
                 Application.UseWaitCursor = false;
-                //Refresh("Drafted");
+                this.Close();
             }
         }
 
@@ -109,7 +110,7 @@ namespace RecipeWinForms
             finally
             {
                 Application.UseWaitCursor = false;
-                //Refresh("Published");
+                this.Close();
             }
         }
 
@@ -132,7 +133,6 @@ namespace RecipeWinForms
             finally
             {
                 Application.UseWaitCursor = false;
-                //Refresh("Archived");
             }
         }
 

@@ -236,12 +236,12 @@
             tblRecipe.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tblRecipe.Controls.Add(btnSaveRecipe, 0, 0);
             tblRecipe.Controls.Add(gRecipe, 0, 1);
-            tblRecipe.Location = new Point(2, 278);
+            tblRecipe.Location = new Point(2, 360);
             tblRecipe.Name = "tblRecipe";
             tblRecipe.RowCount = 2;
             tblRecipe.RowStyles.Add(new RowStyle());
             tblRecipe.RowStyles.Add(new RowStyle(SizeType.Percent, 78.65613F));
-            tblRecipe.Size = new Size(789, 339);
+            tblRecipe.Size = new Size(789, 345);
             tblRecipe.TabIndex = 1;
             // 
             // btnSaveRecipe
@@ -263,14 +263,14 @@
             gRecipe.Name = "gRecipe";
             gRecipe.RowHeadersWidth = 51;
             gRecipe.RowTemplate.Height = 29;
-            gRecipe.Size = new Size(783, 282);
+            gRecipe.Size = new Size(783, 288);
             gRecipe.TabIndex = 1;
             // 
             // frmNewCookbook
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(792, 617);
+            ClientSize = new Size(792, 699);
             Controls.Add(tblRecipe);
             Controls.Add(tblMain);
             Name = "frmNewCookbook";
