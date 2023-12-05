@@ -28,13 +28,6 @@ namespace RecipeWinForms
             mnuWindowsTile.Click += MnuWindowsTile_Click;
             mnuWindowsCascade.Click += MnuWindowsCascade_Click;
             this.Shown += FrmMain_Shown;
-
-            decimal d = new decimal();
-            //d.
-
-            //d = 32.5456;
-
-
         }
 
         private void FrmMain_Shown(object? sender, EventArgs e)
@@ -44,7 +37,7 @@ namespace RecipeWinForms
 
         public void OpenForm(Type frmtype, int pkvalue = 0)
         {
-            bool b = WindowsFormsUtility.IsFormOpen(frmtype);
+            bool b = WindowsFormsUtility.IsFormOpen(frmtype, pkvalue);
             if (b == false)
             {
                 Form? newfrm = null;
@@ -94,6 +87,7 @@ namespace RecipeWinForms
                 {
                     frmChangeStatus f = new();
                     newfrm = f;
+                    f.LoadForm(pkvalue);
                 }
                 else if (frmtype == typeof(frmDataMaintenance))
                 {

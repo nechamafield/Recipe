@@ -31,7 +31,6 @@ namespace RecipeWinForms
 
         private void FrmChangeStatus_FormClosed(object? sender, FormClosedEventArgs e)
         {
-            //Refresh();
             bindsource.ResetBindings(true);
         }
 
@@ -68,7 +67,7 @@ namespace RecipeWinForms
             }
         }
 
-        private void BtnDraft_Click(object? sender, EventArgs e)
+        private void StatusBtnClicked(string status)
         {
             var response = MessageBox.Show("Are you sure you want to change this recipe status?", "Hearty Hearth", MessageBoxButtons.YesNo);
             if (response == DialogResult.No)
@@ -78,7 +77,7 @@ namespace RecipeWinForms
             Application.UseWaitCursor = true;
             try
             {
-                Recipe.SaveRecipeStatus(dtrecipe, "Drafted");
+                Recipe.SaveRecipeStatus(dtrecipe, status);
             }
             catch (Exception ex)
             {
@@ -89,77 +88,21 @@ namespace RecipeWinForms
                 Application.UseWaitCursor = false;
                 this.Close();
             }
+        }
+
+        private void BtnDraft_Click(object? sender, EventArgs e)
+        {
+            StatusBtnClicked("Drafted");
         }
 
         private void BtnPublish_Click(object? sender, EventArgs e)
         {
-            var response = MessageBox.Show("Are you sure you want to change this recipe status?", "Hearty Hearth", MessageBoxButtons.YesNo);
-            if (response == DialogResult.No)
-            {
-                return;
-            }
-            Application.UseWaitCursor = true;
-            try
-            {
-                Recipe.SaveRecipeStatus(dtrecipe, "Published");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Hearty Hearth");
-            }
-            finally
-            {
-                Application.UseWaitCursor = false;
-                this.Close();
-            }
+            StatusBtnClicked("Published");
         }
 
         private void BtnArchive_Click(object? sender, EventArgs e)
         {
-            var response = MessageBox.Show("Are you sure you want to change this recipe status?", "Hearty Hearth", MessageBoxButtons.YesNo);
-            if (response == DialogResult.No)
-            {
-                return;
-            }
-            Application.UseWaitCursor = true;
-            try
-            {
-                Recipe.SaveRecipeStatus(dtrecipe, "Archived");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Hearty Hearth");
-            }
-            finally
-            {
-                Application.UseWaitCursor = false;
-            }
+            StatusBtnClicked("Archived");
         }
-
-        private bool Refresh(string datetype)
-        {
-            bool b = false;
-            Application.UseWaitCursor = true;
-            try
-            {
-                Recipe.Save(dtrecipe);
-                b = true;
-                bindsource.ResetBindings(false);
-                recipeid = SQLUtility.GetValueFromFirstRowAsInt(dtrecipe, "RecipeId");
-                this.Tag = recipeid;
-
-                Recipe.SaveRecipeStatus(dtrecipe, datetype);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Hearty Hearth");
-            }
-            finally
-            {
-                Application.UseWaitCursor = false;
-            }
-            return b;
-        }
-
     }
 }

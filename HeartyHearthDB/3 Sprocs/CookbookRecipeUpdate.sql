@@ -1,5 +1,5 @@
 create or alter procedure dbo.CookbookRecipeUpdate(
-	@CookbookRecipeId int  output,
+	@CookbookRecipeId int = 0  output,
 	@RecipeId int ,
 	@CookbookId int ,
 	@RecipeSequence int,

@@ -260,14 +260,9 @@ namespace RecipeWinForms
             SaveRecipeIngredients();
         }
 
-        private void ShowChangeStatusForm(int rowindex)
+        private void ShowChangeStatusForm(int recipeid)
         {
-            if (rowindex > -1)
-            {
-                recipeid = WindowsFormsUtility.GetIdFromGrid(gIngredients, rowindex, "RecipeId");
-                ((frmMain)this.MdiParent).OpenForm(typeof(frmChangeStatus), recipeid);
-            }
-            if (recipeid == 0)  
+            if (recipeid > 0)
             {
                 ((frmMain)this.MdiParent).OpenForm(typeof(frmChangeStatus), recipeid);
             }
@@ -275,12 +270,7 @@ namespace RecipeWinForms
 
         private void BtnChangeStatus_Click(object? sender, EventArgs e)
         {
-            //this open blank form inside mdiparent
-            //ShowChangeStatusForm(recipeid);
-
-            //this opens correct form popped out
-            var frm = new frmChangeStatus();
-            frm.LoadForm(recipeid);
+            ShowChangeStatusForm(recipeid);
         }
 
         private void GSteps_CellContentClick(object? sender, DataGridViewCellEventArgs e)

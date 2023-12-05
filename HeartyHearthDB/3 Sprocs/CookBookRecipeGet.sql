@@ -10,7 +10,7 @@ begin
 
 	select @All = isnull(@All,0), @CookbookRecipeId = isnull(@CookbookRecipeId,0), @CookbookId = isnull (@CookbookId, 0)
 
-	select  distinct c.CookbookName, r.RecipeName, cr.RecipeSequence, r.Recipeid
+	select  distinct c.Cookbookid, c.CookbookName, r.RecipeName, cr.RecipeSequence, r.Recipeid
 	from CookBook c
 	left join CookBookRecipe cr
 	on c.Cookbookid = cr.Cookbookid

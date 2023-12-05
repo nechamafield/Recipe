@@ -134,8 +134,8 @@ create table dbo.CookBook(
     Cookbookid int not null IDENTITY PRIMARY KEY,
     usersid int not null CONSTRAINT f_Cookbook_usersid FOREIGN KEY REFERENCES users(usersid),
     CookbookName varchar(50) not null
-        CONSTRAINT c_CookbookName_cannot_be_blank CHECK (cookbookname <> ''),
-        --CONSTRAINT u_Cookbook_CookBookName UNIQUE,
+        CONSTRAINT c_CookbookName_cannot_be_blank CHECK (cookbookname <> '')
+        CONSTRAINT u_Cookbook_CookBookName UNIQUE,
     Price decimal(7,2) not null,
         CONSTRAINT c_Price_cannot_be_negative CHECK (price > 0),
     DateCreated date not null DEFAULT GETDATE(),
@@ -150,5 +150,5 @@ create TABLE dbo.CookBookRecipe(
     RecipeSequence int not null 
         CONSTRAINT c_Recipe_Sequence_cannot_be_0 CHECK (recipesequence > 0),
         CONSTRAINT u_CookbookRecipe_Recipeid_Cookbookid UNIQUE(recipeid, cookbookid),
-        --CONSTRAINT u_CookbookRecipe_RecipeSequence_Cookbook unique(recipesequence, cookbookid)
+        CONSTRAINT u_CookbookRecipe_RecipeSequence_Cookbook unique(recipesequence, cookbookid)
 )

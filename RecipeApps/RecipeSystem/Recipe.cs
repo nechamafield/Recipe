@@ -176,6 +176,11 @@ namespace RecipeSystem
                 SaveStatus(dt);
             }
         }
-    
+
+        public static void CloneRecipe(DataRow row)
+        {
+            SQLUtility.SaveDataRow(row, "ClonedRecipeUpdate");
+        }
+
     }
 }
