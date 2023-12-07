@@ -9,10 +9,8 @@ begin
 
 	select @Ingredientid = nullif (@Ingredientid, 0), @IncludeBlank = isnull(@includeblank,0), @All = isnull(@All, 0)
 
-	select distinct i.ingredientid, i.ingredientname--, ir.RecipeId
+	select distinct i.ingredientid, i.ingredientname
 	from Ingredient i
-	join IngredientRecipe ir
-	on ir.IngredientId = i.ingredientid
 	where i.ingredientid = @Ingredientid
 	or @All = 1
 	or i.ingredientname like '%' + @IngredientName + '%'

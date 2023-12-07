@@ -11,7 +11,7 @@ as
 begin
 	declare @return int = 0
 
-	select @RecipeId = isnull(@RecipeId,0)
+	select @IngredientRecipeId = isnull(@IngredientRecipeId,0), @RecipeId = isnull(@RecipeId,0), @MeasurementId = isnull(@MeasurementId,0)
 
 	if @IngredientRecipeId = 0
 	begin
@@ -28,7 +28,7 @@ begin
 			Recipeid = @RecipeId, 
 			Measurementid = @MeasurementId,
 			Amount = @Amount,
-			@IngredientSequence = @IngredientSequence
+			IngredientSequence = @IngredientSequence
 		where IngredientRecipeid = @IngredientRecipeId
 	end
 

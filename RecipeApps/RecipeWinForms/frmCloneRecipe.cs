@@ -19,6 +19,7 @@ namespace RecipeWinForms
     public partial class frmCloneRecipe : Form
     {
         DataTable dtRecipe = new();
+        DataTable dtselectrecipe = new();
         int recipeid = 0;
         string recipename = "";
         BindingSource bindsource = new BindingSource();
@@ -45,7 +46,7 @@ namespace RecipeWinForms
             {
                 dtRecipe.Rows.Add();
             }
-            DataTable dtselectrecipe = Recipe.GetRecipeList();
+            dtselectrecipe = Recipe.GetRecipeList();
             WindowsFormsUtility.SetListBinding(lstRecipeName, dtselectrecipe, dtRecipe, "Recipe");
             this.Show();
         }
@@ -81,7 +82,7 @@ namespace RecipeWinForms
             //ShowRecipeForm(recipeid);
             //this.Close();
 
-            DataRow row = dtRecipe.Rows[lstRecipeName.SelectedIndex];
+            DataRow row = dtselectrecipe.Rows[lstRecipeName.SelectedIndex];
             Recipe.CloneRecipe(row);
             int newid = (int)row["RecipeId"];
             if (this.MdiParent != null && this.MdiParent is frmMain)

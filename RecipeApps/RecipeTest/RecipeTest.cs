@@ -89,8 +89,8 @@ namespace RecipeTest
             it, in which case you would use a wildcard eg: where REcipeSTatus like 'draft%' to see if there are any rows where recipestatus starts with 'draft
             The second condition in the where clause is not working, you should not add r.DateArchived + DATEADD(day, 30,r.datearchived), that will give you a date very
             far in the future as you are adding the 2 dates, it is enough to compare if currenttimestamp > DATEADD(day, 30,r.datearchived) */
-            string sql = "select top 1 * from recipe r where r.RecipeStatus = 'draft' or CURRENT_TIMESTAMP > r.DateArchived + DATEADD(day, 30,r.datearchived)";
-            //string sql = "select top 1 * from recipe r where r.RecipeStatus = 'draft' or CURRENT_TIMESTAMP > DATEADD(day, 30,r.datearchived)";
+            //string sql = "select top 1 * from recipe r where r.RecipeStatus = 'draft' or CURRENT_TIMESTAMP > r.DateArchived + DATEADD(day, 30,r.datearchived)";
+            string sql = "select top 1 * from recipe r where r.RecipeStatus = 'draft' or CURRENT_TIMESTAMP > DATEADD(day, 30,r.datearchived)";
             DataTable dt = SQLUtility.GetDataTable(sql);
             return dt;
         }
@@ -223,16 +223,16 @@ namespace RecipeTest
         public void SearchIngredients()
         {
             string criteria = "a";
-            int recipenumber = SQLUtility.GetFirstColumnFirstRowValue("select total = count(*) from Ingredient where ingredientname like '%" + criteria + "%'");
-            Assume.That(recipenumber > 0, "There are no ingredients that match the search for " + recipenumber);
-            TestContext.WriteLine(recipenumber + " ingredients that match " + criteria);
-            TestContext.WriteLine("Ensure that ingredient search returns " + recipenumber + " rows");
+            int Ingredientnumber = SQLUtility.GetFirstColumnFirstRowValue("select total = count(*) from Ingredient where ingredientname like '%" + criteria + "%'");
+            Assume.That(Ingredientnumber > 0, "There are no ingredients that match the search for " + Ingredientnumber);
+            TestContext.WriteLine(Ingredientnumber + " ingredients that match " + criteria);
+            TestContext.WriteLine("Ensure that ingredient search returns " + Ingredientnumber + " rows");
 
             bizIngredient ing = new();
             List<bizIngredient> lst = ing.Search(criteria);
             int results = lst.Count;
 
-            Assert.IsTrue(results == recipenumber, "results of ingredient search does not match num of ingredients, " + results + " <> " + recipenumber);
+            Assert.IsTrue(results == Ingredientnumber, "results of ingredient search does not match num of ingredients, " + results + " <> " + Ingredientnumber);
             TestContext.WriteLine("Number of rows returned by ingredient search is " + results);
         }
 
@@ -259,9 +259,9 @@ namespace RecipeTest
         [TestCase(true)]
         public void GetListOfIngredients(bool includeblank)
         {
-            //Af Excluding an ingredient from the select list could make the test innacurrate, meaning that
-            //ingredient count doesnt really match up with what is returned from bizIngredient's getlist(), is there a reason you are excluding this ingredient?
-            int ingredientcount = SQLUtility.GetFirstColumnFirstRowValue("select total = count(*) from Ingredient i where i.ingredientname != 'Colored Pepper'");
+            ////Af Excluding an ingredient from the select list could make the test innacurrate, meaning that
+            ////ingredient count doesnt really match up with what is returned from bizIngredient's getlist(), is there a reason you are excluding this ingredient?
+            int ingredientcount = SQLUtility.GetFirstColumnFirstRowValue("select total = count(*) from Ingredient i");
             if(includeblank == true) { ingredientcount = ingredientcount + 1; }
             Assume.That(ingredientcount > 0, "No ingredients in DB, can't test");
 
