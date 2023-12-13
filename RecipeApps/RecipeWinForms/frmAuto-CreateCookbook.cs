@@ -24,17 +24,11 @@ namespace RecipeWinForms
             btnCreateCookbook.Click += BtnCreateCookbook_Click;
         }
 
-        private void FrmAuto_CreateCookbook_Activated(object? sender, EventArgs e)
-        {
-            BindData();
-        }
-
         private void BindData()
         {
             DataTable dtUser = Cookbook.GetUsersList();
             WindowsFormsUtility.SetListBinding(lstUsersCompleteName, dtUser, null, "Users");
         }
-
 
         private void ShowCookbookForm()
         {
@@ -52,6 +46,11 @@ namespace RecipeWinForms
         private void BtnCreateCookbook_Click(object? sender, EventArgs e)
         {
             ShowCookbookForm();
+        }
+
+        private void FrmAuto_CreateCookbook_Activated(object? sender, EventArgs e)
+        {
+            BindData();
         }
     }
 }

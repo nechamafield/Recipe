@@ -25,11 +25,6 @@ namespace RecipeWinForms
             btnNewCookBook.Click += BtnNewCookBook_Click;
         }
 
-        private void FrmCookbookList_Activated(object? sender, EventArgs e)
-        {
-            BindData();
-        }
-
         private void BindData()
         {
             gCookbookList.DataSource = Cookbook.GetCookbooksList();
@@ -41,7 +36,6 @@ namespace RecipeWinForms
                     col.Visible = false;
                 }
             }
-
         }
 
         private void ShowCookbookForm(int rowindex)
@@ -66,6 +60,11 @@ namespace RecipeWinForms
         private void BtnNewCookBook_Click(object? sender, EventArgs e)
         {
             ShowCookbookForm(-1);
+        }
+
+        private void FrmCookbookList_Activated(object? sender, EventArgs e)
+        {
+            BindData();
         }
     }
 }

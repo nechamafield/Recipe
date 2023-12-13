@@ -35,10 +35,6 @@ namespace RecipeWinForms
         }
 
 
-        private void FrmRecipe_Activated(object? sender, EventArgs e)
-        {
-            BindData();
-        }
 
         private void BindData()
         {
@@ -171,40 +167,6 @@ namespace RecipeWinForms
             }
         }
 
-        private void BtnDelete_Click(object? sender, EventArgs e)
-        {
-            Delete();
-        }
-
-        private void BtnSave_Click(object? sender, EventArgs e)
-        {
-            Save();
-        }
-
-        private void FrmRecipe_FormClosing(object? sender, FormClosingEventArgs e)
-        {
-            bindsource.EndEdit();
-            if (SQLUtility.TableHasChanges(dtRecipe))
-            {
-                var response = MessageBox.Show($"Do you want to save changes to {this.Text} before closing?", Application.ProductName, MessageBoxButtons.YesNoCancel);
-                switch (response)
-                {
-                    case DialogResult.Yes:
-                        bool b = Save();
-                        if (b == false)
-                        {
-                            e.Cancel = true;
-                            this.Activate();
-                        }
-                        break;
-                    case DialogResult.Cancel:
-                        e.Cancel = true;
-                        this.Activate();
-                        break;
-                }
-            }
-        }
-
         private void SaveRecipeIngredients()
         {
             try
@@ -250,6 +212,14 @@ namespace RecipeWinForms
             }
         }
 
+        private void ShowChangeStatusForm(int recipeid)
+        {
+            if (recipeid > 0)
+            {
+                ((frmMain)this.MdiParent).OpenForm(typeof(frmChangeStatus), recipeid);
+            }
+        }
+
         private void BtnStepsSave_Click(object? sender, EventArgs e)
         {
             SaveRecipeSteps();
@@ -260,11 +230,37 @@ namespace RecipeWinForms
             SaveRecipeIngredients();
         }
 
-        private void ShowChangeStatusForm(int recipeid)
+        private void BtnDelete_Click(object? sender, EventArgs e)
         {
-            if (recipeid > 0)
+            Delete();
+        }
+
+        private void BtnSave_Click(object? sender, EventArgs e)
+        {
+            Save();
+        }
+
+        private void FrmRecipe_FormClosing(object? sender, FormClosingEventArgs e)
+        {
+            bindsource.EndEdit();
+            if (SQLUtility.TableHasChanges(dtRecipe))
             {
-                ((frmMain)this.MdiParent).OpenForm(typeof(frmChangeStatus), recipeid);
+                var response = MessageBox.Show($"Do you want to save changes to {this.Text} before closing?", Application.ProductName, MessageBoxButtons.YesNoCancel);
+                switch (response)
+                {
+                    case DialogResult.Yes:
+                        bool b = Save();
+                        if (b == false)
+                        {
+                            e.Cancel = true;
+                            this.Activate();
+                        }
+                        break;
+                    case DialogResult.Cancel:
+                        e.Cancel = true;
+                        this.Activate();
+                        break;
+                }
             }
         }
 
@@ -287,6 +283,10 @@ namespace RecipeWinForms
             {
                 Delete(e.RowIndex, gIngredients, "IngredientRecipe");
             }
+        }
+        private void FrmRecipe_Activated(object? sender, EventArgs e)
+        {
+            BindData();
         }
 
     }

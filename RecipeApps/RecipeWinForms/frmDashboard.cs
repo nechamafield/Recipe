@@ -27,11 +27,6 @@ namespace RecipeWinForms
 
         }
 
-        private void FrmDashboard_Activated(object? sender, EventArgs e)
-        {
-            BindData();
-        }
-
         private void BindData()
         {
             DataTable dt = DataMaintenance.GetDashboard();
@@ -86,6 +81,11 @@ namespace RecipeWinForms
         private void BtnRecipeList_Click(object? sender, EventArgs e)
         {
             ShowFormRecipe();
+        }
+
+        private void FrmDashboard_Activated(object? sender, EventArgs e)
+        {
+            BindData();
         }
     }
 }

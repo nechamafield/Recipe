@@ -20,16 +20,15 @@ namespace RecipeWinForms
             this.Activated += MealsList_Activated;
         }
 
-        private void MealsList_Activated(object? sender, EventArgs e)
-        {
-            BindData();
-        }
-
-
         private void BindData()
         {
             gMeals.DataSource = Recipe.GetMealsList();
             WindowsFormsUtility.FormatGridForSearchResults(gMeals, "Meal");
+        }
+
+        private void MealsList_Activated(object? sender, EventArgs e)
+        {
+            BindData();
         }
     }
 }

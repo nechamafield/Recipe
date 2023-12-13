@@ -54,7 +54,6 @@ namespace RecipeWinForms
             ShowRecipeForm(-1);
         }
 
-        //???not making clicking enter open the recipe
         private void GRecipe_KeyDown(object? sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter && gRecipe.SelectedRows.Count > 0)

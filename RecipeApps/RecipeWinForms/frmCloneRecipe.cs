@@ -31,11 +31,6 @@ namespace RecipeWinForms
             btnClone.Click += BtnClone_Click;
         }
 
-        private void FrmCloneRecipe_Activated(object? sender, EventArgs e)
-        {
-            BindData(recipeid);
-        }
-
         private void BindData(int recipeidval)
         {
             recipeid = recipeidval;
@@ -79,9 +74,6 @@ namespace RecipeWinForms
 
         private void BtnClone_Click(object? sender, EventArgs e)
         {
-            //ShowRecipeForm(recipeid);
-            //this.Close();
-
             DataRow row = dtselectrecipe.Rows[lstRecipeName.SelectedIndex];
             Recipe.CloneRecipe(row);
             int newid = (int)row["RecipeId"];
@@ -90,6 +82,11 @@ namespace RecipeWinForms
                 ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), newid);
             }
             this.Close();
+        }
+
+        private void FrmCloneRecipe_Activated(object? sender, EventArgs e)
+        {
+            BindData(recipeid);
         }
     }
 }

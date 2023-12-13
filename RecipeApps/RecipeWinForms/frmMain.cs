@@ -30,11 +30,6 @@ namespace RecipeWinForms
             this.Shown += FrmMain_Shown;
         }
 
-        private void FrmMain_Shown(object? sender, EventArgs e)
-        {
-            OpenForm(typeof(frmDashboard));
-        }
-
         public void OpenForm(Type frmtype, int pkvalue = 0)
         {
             bool b = WindowsFormsUtility.IsFormOpen(frmtype, pkvalue);
@@ -121,6 +116,11 @@ namespace RecipeWinForms
                 }
                 WindowsFormsUtility.SetupNav(tsMain);
             }
+        }
+
+        private void FrmMain_Shown(object? sender, EventArgs e)
+        {
+            OpenForm(typeof(frmDashboard));
         }
 
         private void Newfrm_TextChanged(object? sender, EventArgs e)

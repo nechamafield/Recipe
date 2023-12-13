@@ -31,11 +31,6 @@ namespace RecipeWinForms
             btnSaveRecipe.Click += BtnSaveRecipe_Click;
         }
 
-        private void FrmNewCookbook_Activated(object? sender, EventArgs e)
-        {
-            BindData();
-        }
-
         private void BindData()
         {
             gRecipe.Columns.Clear();
@@ -148,7 +143,7 @@ namespace RecipeWinForms
                 Cookbook.Save(dtcookbook);
                 b = true;
                 bindsource.ResetBindings(false);
-                cookbookid = SQLUtility.GetValueFromFirstRowAsInt(dtcookbook, "RecipeId");
+                cookbookid = SQLUtility.GetValueFromFirstRowAsInt(dtcookbook, "CookbookId");
                 this.Tag = cookbookid;
                 this.Text = GetCookbookDesc();
                 SaveRecipes();
@@ -166,16 +161,39 @@ namespace RecipeWinForms
             return b;
         }
 
-        private void BtnSave_Click(object? sender, EventArgs e)
+
+        private void Delete(int rowindex, DataGridView dg, string tablename)
         {
-            Save();
+            int id = WindowsFormsUtility.GetIdFromGrid(dg, rowindex, tablename + "Id");
+            if (id != 0)
+            {
+                try
+                {
+                    DataMaintenance.DeleteRow(tablename, id);
+                    BindData();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, Application.ProductName);
+                }
+            }
+            else if (id == 0 && rowindex < dg.Rows.Count)
+            {
+                dg.Rows.Remove(dg.Rows[rowindex]);
+            }
         }
 
-        private void BtnDelete_Click(object? sender, EventArgs e)
+        private void SaveRecipes()
         {
-            Delete();
+            try
+            {
+                CookbookRecipe.SaveTable(dtcookbookrecipe, cookbookid);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Application.ProductName);
+            }
         }
-
 
         private void FrmNewCookbook_FormClosing(object? sender, FormClosingEventArgs e)
         {
@@ -201,27 +219,6 @@ namespace RecipeWinForms
             }
         }
 
-        private void Delete(int rowindex, DataGridView dg, string tablename)
-        {
-            int id = WindowsFormsUtility.GetIdFromGrid(dg, rowindex, tablename + "Id");
-            if (id != 0)
-            {
-                try
-                {
-                    DataMaintenance.DeleteRow(tablename, id);
-                    BindData();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, Application.ProductName);
-                }
-            }
-            else if (id == 0 && rowindex < dg.Rows.Count)
-            {
-                dg.Rows.Remove(dg.Rows[rowindex]);
-            }
-        }
-
         private void GRecipe_CellContentClick(object? sender, DataGridViewCellEventArgs e)
         {
             if (gRecipe.Columns[e.ColumnIndex].Name == deletecolname)
@@ -230,21 +227,24 @@ namespace RecipeWinForms
             }
         }
 
-        private void SaveRecipes()
+        private void BtnSave_Click(object? sender, EventArgs e)
         {
-            try
-            {
-                CookbookRecipe.SaveTable(dtcookbookrecipe, cookbookid);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName);
-            }
+            Save();
+        }
+
+        private void BtnDelete_Click(object? sender, EventArgs e)
+        {
+            Delete();
         }
 
         private void BtnSaveRecipe_Click(object? sender, EventArgs e)
         {
             SaveRecipes();
+        }
+
+        private void FrmNewCookbook_Activated(object? sender, EventArgs e)
+        {
+            BindData();
         }
 
     }

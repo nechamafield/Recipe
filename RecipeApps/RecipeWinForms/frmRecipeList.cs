@@ -25,13 +25,6 @@ namespace RecipeWinForms
 
         }
 
-        private void RecipeList_Activated(object? sender, EventArgs e)
-        {
-            Recipe.SearchRecipe(recipename);
-            BindData();
-        }
-
-
         private void BindData()
         {
             gRecipeList.DataSource = Recipe.GetRecipeList();
@@ -73,6 +66,12 @@ namespace RecipeWinForms
         {
 
             ShowRecipeForm(-1);
+        }
+
+        private void RecipeList_Activated(object? sender, EventArgs e)
+        {
+            Recipe.SearchRecipe(recipename);
+            BindData();
         }
 
     }

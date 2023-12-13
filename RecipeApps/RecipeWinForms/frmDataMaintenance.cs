@@ -94,7 +94,6 @@ namespace RecipeWinForms
                     return;
                 }
             }
-
             int id = WindowsFormsUtility.GetIdFromGrid(gData, rowindex, currenttabletype.ToString() + "Id");
             if (id != 0)
             {

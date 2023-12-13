@@ -29,11 +29,6 @@ namespace RecipeWinForms
             this.FormClosed += FrmChangeStatus_FormClosed;
         }
 
-        private void FrmChangeStatus_FormClosed(object? sender, FormClosedEventArgs e)
-        {
-            bindsource.ResetBindings(true);
-        }
-
         public void LoadForm(int recipeidval)
         {
             recipeid = recipeidval;
@@ -67,7 +62,7 @@ namespace RecipeWinForms
             }
         }
 
-        private void StatusBtnClicked(string status)
+        private void StatusBtnClicked(string status, string lblstatus)
         {
             var response = MessageBox.Show("Are you sure you want to change this recipe status?", "Hearty Hearth", MessageBoxButtons.YesNo);
             if (response == DialogResult.No)
@@ -78,6 +73,7 @@ namespace RecipeWinForms
             try
             {
                 Recipe.SaveRecipeStatus(dtrecipe, status);
+                lblCurrrentStatus.Text = "Current Status: " + lblstatus;
             }
             catch (Exception ex)
             {
@@ -86,23 +82,27 @@ namespace RecipeWinForms
             finally
             {
                 Application.UseWaitCursor = false;
-                this.Close();
             }
         }
 
         private void BtnDraft_Click(object? sender, EventArgs e)
         {
-            StatusBtnClicked("Drafted");
+            StatusBtnClicked("Drafted", "Draft");
         }
 
         private void BtnPublish_Click(object? sender, EventArgs e)
         {
-            StatusBtnClicked("Published");
+            StatusBtnClicked("Published", "Published");
         }
 
         private void BtnArchive_Click(object? sender, EventArgs e)
         {
-            StatusBtnClicked("Archived");
+            StatusBtnClicked("Archived", "Archived");
+        }
+
+        private void FrmChangeStatus_FormClosed(object? sender, FormClosedEventArgs e)
+        {
+            bindsource.ResetBindings(true);
         }
     }
 }
