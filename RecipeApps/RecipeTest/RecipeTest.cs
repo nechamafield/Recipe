@@ -84,11 +84,6 @@ namespace RecipeTest
 
         public DataTable GetRecipeForDelete()
         {
-            /*AF 2 comments on the select statement below:
-             If you are checking if Recipestatus equals 'draft', use the equal sign.  Like is used when you are searching if the column contains that string inside
-            it, in which case you would use a wildcard eg: where REcipeSTatus like 'draft%' to see if there are any rows where recipestatus starts with 'draft
-            The second condition in the where clause is not working, you should not add r.DateArchived + DATEADD(day, 30,r.datearchived), that will give you a date very
-            far in the future as you are adding the 2 dates, it is enough to compare if currenttimestamp > DATEADD(day, 30,r.datearchived) */
             //string sql = "select top 1 * from recipe r where r.RecipeStatus = 'draft' or CURRENT_TIMESTAMP > r.DateArchived + DATEADD(day, 30,r.datearchived)";
             string sql = "select top 1 * from recipe r where r.RecipeStatus = 'draft' or CURRENT_TIMESTAMP > DATEADD(day, 30,r.datearchived)";
             DataTable dt = SQLUtility.GetDataTable(sql);
