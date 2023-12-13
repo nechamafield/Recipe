@@ -6,8 +6,10 @@ as
 begin
 	declare @return int = 0
 
-		--AF The first part of the where clause is making it select recipes that are archived for over 30 days, and we want the opposite here
-		if exists(select * from Recipe r WHERE (DATEADD(DAY, 30, r.DateArchived) >= GETDATE() or r.RecipeStatus not LIKE 'draft') and Recipeid = @RecipeId)
+	--this works for all delete tests besides in draft or archived
+		if exists(select * from Recipe r WHERE  (dateadd(day,30, datearchived) >= GETDATE() and recipestatus = 'archived')and Recipeid = @RecipeId)
+	--this only works for delete test in  draft or archived		
+		--f exists(select * from Recipe r WHERE(DATEADD(DAY, 30, r.DateArchived) >= GETDATE() or r.RecipeStatus not LIKE 'draft') and Recipeid = @RecipeId)
 		begin
 			select @return = 1, @Message = 'Cannot delete recipe that is not currently in draft or archived for over 30 days.'
 			goto finished

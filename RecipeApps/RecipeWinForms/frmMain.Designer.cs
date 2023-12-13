@@ -176,7 +176,7 @@
             // 
             tsMain.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             tsMain.ImageScalingSize = new Size(20, 20);
-            tsMain.Location = new Point(0, 36);
+            tsMain.Location = new Point(0, 0);
             tsMain.Name = "tsMain";
             tsMain.Size = new Size(844, 25);
             tsMain.TabIndex = 3;
@@ -187,7 +187,7 @@
             mnuMain.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             mnuMain.ImageScalingSize = new Size(20, 20);
             mnuMain.Items.AddRange(new ToolStripItem[] { mnuFile, mnuRecipe, mnuMeals, cookbooksToolStripMenuItem, mnuDataMaintenance, mnuWindows });
-            mnuMain.Location = new Point(0, 0);
+            mnuMain.Location = new Point(0, 25);
             mnuMain.Name = "mnuMain";
             mnuMain.Size = new Size(844, 36);
             mnuMain.TabIndex = 8;
@@ -198,8 +198,8 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(844, 739);
-            Controls.Add(tsMain);
             Controls.Add(mnuMain);
+            Controls.Add(tsMain);
             IsMdiContainer = true;
             MainMenuStrip = miniToolStrip;
             Name = "frmMain";
