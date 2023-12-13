@@ -174,11 +174,12 @@
             // 
             // tsMain
             // 
+            tsMain.Dock = DockStyle.None;
             tsMain.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             tsMain.ImageScalingSize = new Size(20, 20);
             tsMain.Location = new Point(0, 36);
             tsMain.Name = "tsMain";
-            tsMain.Size = new Size(844, 25);
+            tsMain.Size = new Size(112, 25);
             tsMain.TabIndex = 3;
             tsMain.Text = "toolStrip1";
             // 
@@ -198,8 +199,8 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(844, 739);
-            Controls.Add(tsMain);
             Controls.Add(mnuMain);
+            Controls.Add(tsMain);
             IsMdiContainer = true;
             MainMenuStrip = miniToolStrip;
             Name = "frmMain";

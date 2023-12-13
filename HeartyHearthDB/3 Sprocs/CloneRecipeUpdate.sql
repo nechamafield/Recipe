@@ -20,27 +20,27 @@ begin
 		select RecipeName = concat(r.RecipeName,' - cloned'), ir.Amount, ir.IngredientId, ir.MeasurementId, ir.IngredientSequence
 		from Recipe r
 		join IngredientRecipe ir
-		on r.RecipeId = ir.RecipeId
-		--where r.RecipeId = @RecipeId
+		on r.RecipeId = ir.RecipeId	
 	)
 	insert IngredientRecipe(Ingredientid, Recipeid, Measurementid, Amount, IngredientSequence)
 	select x.Ingredientid, r.RecipeId, x.Measurementid, x.Amount, x.IngredientSequence
 	from x
 	join Recipe r
 	on r.RecipeName = x.RecipeName
+	where r.RecipeId = @RecipeId
 
 	;with x as(
 		select RecipeName = concat(r.RecipeName,' - cloned'), dr.StepNumber, dr.Direction
 		from Recipe r
 		join DirectionRecipe dr
 		on r.RecipeId = dr.RecipeId
-		--where r.RecipeId = @RecipeId
 	)
 	insert DirectionRecipe(RecipeId, StepNumber, Direction)
 	select r.RecipeId, x.StepNumber, x.Direction
 	from x
 	join Recipe r
 	on r.RecipeName = x.RecipeName
+	where r.RecipeId = @RecipeId
 
 end
 go
