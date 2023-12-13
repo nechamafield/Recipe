@@ -254,8 +254,6 @@ namespace RecipeTest
         [TestCase(true)]
         public void GetListOfIngredients(bool includeblank)
         {
-            ////Af Excluding an ingredient from the select list could make the test innacurrate, meaning that
-            ////ingredient count doesnt really match up with what is returned from bizIngredient's getlist(), is there a reason you are excluding this ingredient?
             int ingredientcount = SQLUtility.GetFirstColumnFirstRowValue("select total = count(*) from Ingredient i");
             if(includeblank == true) { ingredientcount = ingredientcount + 1; }
             Assume.That(ingredientcount > 0, "No ingredients in DB, can't test");
