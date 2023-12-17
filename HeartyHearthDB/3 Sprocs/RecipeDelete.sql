@@ -8,7 +8,7 @@ begin
 
 	--this works for all delete tests besides in draft or archived
 	--AF This updated select statement below works great, but the part checking that the RecipeStatus doesn't equal draft, was removed, but should be left in 
-		if exists(select * from Recipe r WHERE  (dateadd(day,30, datearchived) >= GETDATE() and recipestatus = 'archived')and Recipeid = @RecipeId)
+		if exists(select * from Recipe r WHERE  (dateadd(day,30, r.datearchived) >= GETDATE() and r.recipestatus = 'archived') or (r.RecipeStatus != 'draft') and r.Recipeid = @RecipeId)
 	--this only works for delete test in  draft or archived		
 		--f exists(select * from Recipe r WHERE(DATEADD(DAY, 30, r.DateArchived) >= GETDATE() or r.RecipeStatus not LIKE 'draft') and Recipeid = @RecipeId)
 		begin

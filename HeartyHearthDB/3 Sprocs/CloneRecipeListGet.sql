@@ -19,8 +19,3 @@ begin
 end
 go
 
---/*
-exec CloneRecipeGet @All = 1
---*/
-
---select * from recipe
