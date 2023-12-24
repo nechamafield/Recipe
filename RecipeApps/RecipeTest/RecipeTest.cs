@@ -164,7 +164,7 @@ namespace RecipeTest
         {
             string sql = @"select top 1 r.recipeid, r.RecipeName, r.calories 
                 from Recipe r 
-                where dateadd(day, 30, r.DateArchived) <= getdate() 
+                where (dateadd(day,30, datearchived) >= GETDATE() and recipestatus = 'archived') 
                 or r.RecipeStatus = 'draft'";
             DataTable dt = SQLUtility.GetDataTable(sql);
             int recipeid = 0;

@@ -6,11 +6,7 @@ as
 begin
 	declare @return int = 0
 
-	--this works for all delete tests besides in draft or archived
-	--AF This updated select statement below works great, but the part checking that the RecipeStatus doesn't equal draft, was removed, but should be left in 
-		if exists(select * from Recipe r WHERE  (dateadd(day,30, r.datearchived) >= GETDATE() and r.recipestatus = 'archived') or (r.RecipeStatus != 'draft') and r.Recipeid = @RecipeId)
-	--this only works for delete test in  draft or archived		
-		--f exists(select * from Recipe r WHERE(DATEADD(DAY, 30, r.DateArchived) >= GETDATE() or r.RecipeStatus not LIKE 'draft') and Recipeid = @RecipeId)
+		if exists(select * from Recipe r where r.RecipeId = @RecipeId and ((datediff(day, r.DateArchived, getdate() ) <= 30  and r.recipestatus = 'archived') or (r.RecipeStatus = 'Published') or (r.RecipeStatus  LIKE 'draft')))
 		begin
 			select @return = 1, @Message = 'Cannot delete recipe that is not currently in draft or archived for over 30 days.'
 			goto finished
